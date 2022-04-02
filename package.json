@@ -4,17 +4,23 @@
   "version": "0.0.0",
   "scripts": {
     "bootstrap": "pnpm install",
-    "dev": "vite",
+    "rimraf": "rimraf node_modules",
+    "serve:dev": "vite",
+    "serve:staging": "vite --mode staging",
+    "build:staging": "vue-tsc --noEmit && vite build  --mode staging",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.2.25"
+    "vue": "^3.2.31"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.2.0",
-    "typescript": "^4.5.4",
-    "vite": "^2.8.0",
+    "@vitejs/plugin-vue": "^2.3.1",
+    "eslint-define-config": "^1.3.0",
+    "typescript": "^4.6.3",
+    "vite": "^2.9.1",
+    "vite-plugin-svg-icons": "^2.0.1",
+    "vite-plugin-vue-setup-extend": "^0.4.0",
     "vue-tsc": "^0.29.8"
   }
 }
