@@ -1,6 +1,19 @@
-// @ts-check
-const { defineConfig } = require("eslint-define-config");
-module.exports = defineConfig({
+/*
+ * @Description: eslintrc配置文件
+ * @Date: 2022-04-06 16:14:25
+ * @Author: chenjiaming
+ * @LastEditors: chenjiaming
+ * @LastEditTime: 2022-04-06 17:33:48
+ */
+/*!
+ * https://eslint.bootcss.com/docs/rules/
+ * https://eslint.vuejs.org/rules/
+ *
+ * - 0: off
+ * - 1: warn
+ * - 2: error
+ */
+module.exports = {
   root: true,
   env: {
     browser: true,
@@ -17,15 +30,19 @@ module.exports = defineConfig({
       jsx: true,
     },
   },
+  globals: {
+    AMap: false,
+    AMapUI: false,
+  },
   extends: [
     "plugin:vue/vue3-recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
     "plugin:prettier/recommended",
-    "plugin:jest/recommended",
+    "prettier",
+    "plugin:prettier/recommended",
   ],
   rules: {
-    "vue/script-setup-uses-vars": "error",
     "@typescript-eslint/ban-ts-ignore": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-explicit-any": "off",
@@ -53,7 +70,7 @@ module.exports = defineConfig({
       },
     ],
     "space-before-function-paren": "off",
-
+    "vue/name-property-casing": ["error", "PascalCase"], // vue/component-definition-name-casing 对组件定义名称强制使用特定的大小
     "vue/attributes-order": "off",
     "vue/one-component-per-file": "off",
     "vue/html-closing-bracket-newline": "off",
@@ -62,6 +79,7 @@ module.exports = defineConfig({
     "vue/singleline-html-element-content-newline": "off",
     "vue/attribute-hyphenation": "off",
     "vue/require-default-prop": "off",
+    "vue/script-setup-uses-vars": "off",
     "vue/html-self-closing": [
       "error",
       {
@@ -74,6 +92,5 @@ module.exports = defineConfig({
         math: "always",
       },
     ],
-    "vue/multi-word-component-names": "off",
   },
-});
+};
