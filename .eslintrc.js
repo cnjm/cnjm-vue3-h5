@@ -1,19 +1,6 @@
-/*
- * @Description: eslintrc配置文件
- * @Date: 2022-04-06 16:14:25
- * @Author: chenjiaming
- * @LastEditors: chenjiaming
- * @LastEditTime: 2022-04-06 17:33:48
- */
-/*!
- * https://eslint.bootcss.com/docs/rules/
- * https://eslint.vuejs.org/rules/
- *
- * - 0: off
- * - 1: warn
- * - 2: error
- */
-module.exports = {
+// @ts-check
+const { defineConfig } = require("eslint-define-config");
+module.exports = defineConfig({
   root: true,
   env: {
     browser: true,
@@ -37,8 +24,6 @@ module.exports = {
   extends: [
     "plugin:vue/vue3-recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "plugin:prettier/recommended",
     "prettier",
     "plugin:prettier/recommended",
   ],
@@ -93,4 +78,4 @@ module.exports = {
       },
     ],
   },
-};
+});

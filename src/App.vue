@@ -1,7 +1,14 @@
+<!--
+ * @Description: App
+ * @Date: 2022-04-06 18:07:27
+ * @Author: chenjiaming
+ * @LastEditors: chenjiaming
+ * @LastEditTime: 2022-04-06 18:40:57
+-->
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
+  // This starter template is using Vue 3 <script setup> SFCs
+  // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+  import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
 <template>
@@ -10,12 +17,12 @@ import HelloWorld from './components/HelloWorld.vue'
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+  }
 </style>

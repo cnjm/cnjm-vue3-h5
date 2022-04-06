@@ -3,7 +3,7 @@
  * @Date: 2022-04-06 16:19:54
  * @Author: chenjiaming
  * @LastEditors: chenjiaming
- * @LastEditTime: 2022-04-06 16:19:55
+ * @LastEditTime: 2022-04-06 18:37:31
  */
 module.exports = {
   printWidth: 120, // 换行字符串阈值
@@ -18,4 +18,5 @@ module.exports = {
   arrowParens: "always", // (x) => {} 是否要有小括号
   requirePragma: false, // 不需要写文件开头的 @prettier
   insertPragma: false, // 不需要自动在文件开头插入 @prettier
+  endOfLine: "auto", // 换行格式
 };
