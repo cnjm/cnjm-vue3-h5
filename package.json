@@ -4,12 +4,15 @@
   "version": "0.0.0",
   "scripts": {
     "bootstrap": "pnpm install",
-    "rimraf": "rimraf node_modules",
+    "clean:cache": "rimraf node_modules/.cache/ && rimraf node_modules/.vite",
+    "clean:lib": "rimraf node_modules",
     "serve:dev": "vite",
     "serve:staging": "vite --mode staging",
     "build:staging": "vue-tsc --noEmit && vite build  --mode staging",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint:eslint": "eslint --cache --max-warnings 0  \"{src,mock}/**/*.{vue,ts,tsx}\" --fix",
+    "lint:lint-staged": "lint-staged"
   },
   "dependencies": {
     "vue": "^3.2.31"
@@ -38,15 +41,27 @@
     }
   },
   "lint-staged": {
-    "src*/**/*.ts": [
-      "prettier --config .prettierrc.js --write",
-      "eslint",
-      "git add"
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --config .prettierrc.js --write"
     ],
-    "src*/**/*.json": [
+    "{!(package)*.json,*.code-snippets,.!(browserslist)*rc}": [
+      "prettier --config .prettierrc.js --write--parser json"
+    ],
+    "package.json": [
+      "prettier --config .prettierrc.js --write"
+    ],
+    "*.vue": [
+      "eslint --fix",
       "prettier --config .prettierrc.js --write",
-      "eslint",
-      "git add"
+      "stylelint --fix"
+    ],
+    "*.{scss,less,styl,html}": [
+      "stylelint --fix",
+      "prettier --config .prettierrc.js --write"
+    ],
+    "*.md": [
+      "prettier --config .prettierrc.js --write"
     ]
   }
 }

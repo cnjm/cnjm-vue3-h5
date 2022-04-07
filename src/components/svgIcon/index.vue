@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import { computed, defineProps, toRefs } from "vue";
+  import { computed, defineProps, toRefs } from "vue";
 
-const props = defineProps({
-  prefix: {
-    type: String,
-    default: 'icon',
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  color: {
-    type: String,
-    default: '#333',
-  },
-})
-const { color } = toRefs(props)
-const symbolId = computed(() => `#${props.prefix}-${props.name}`)
+  const props = defineProps({
+    prefix: {
+      type: String,
+      default: "icon",
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    color: {
+      type: String,
+      default: "#333",
+    },
+  });
+  const { color } = toRefs(props);
+  const symbolId = computed(() => `#${props.prefix}-${props.name}`);
 </script>
 
 <template>
@@ -24,4 +24,3 @@ const symbolId = computed(() => `#${props.prefix}-${props.name}`)
     <use :xlink:href="symbolId" :fill="color" />
   </svg>
 </template>
-
