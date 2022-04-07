@@ -1,5 +1,20 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-// Register icon sprite
-import "virtual:svg-icons-register";
-createApp(App).mount("#app");
+import { setupRouter } from "./router";
+import { setupStore } from "./store";
+
+const bootstrap = async () => {
+  const app = createApp(App);
+
+  // pinia store
+  setupStore(app);
+
+  // router
+  setupRouter(app);
+
+  // other
+
+  app.mount("#app");
+};
+
+bootstrap();
