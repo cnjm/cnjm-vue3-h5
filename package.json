@@ -12,6 +12,7 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "npm run build && vite preview",
     "preview:dist": "vite preview",
+    "prepare": "husky install",
     "lint:eslint": "eslint --cache --max-warnings 0  \"{src,mock}/**/*.{vue,ts,tsx}\" --fix",
     "lint:prettier": "prettier --write  \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
     "lint:lint-staged": "lint-staged"
@@ -37,6 +38,18 @@
     "vite-plugin-vue-setup-extend": "^0.4.0",
     "vue-tsc": "^0.29.8"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cnjm-cli-template/vue_h5.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cnjm-cli-template/vue_h5/issues"
+  },
+  "engines": {
+    "node": "^12 || >=14"
+  },
+  "homepage": "https://github.com/cnjm-cli-template/vue_h5",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",
