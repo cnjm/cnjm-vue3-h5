@@ -64,7 +64,7 @@ module.exports = defineConfig({
     "vue/singleline-html-element-content-newline": "off",
     "vue/attribute-hyphenation": "off",
     "vue/require-default-prop": "off",
-    "vue/script-setup-uses-vars": "off",
+    "vue/script-setup-uses-vars": "error", //防止<script setup>使用的变量<template>被标记为未使用
     "vue/html-self-closing": [
       "error",
       {
