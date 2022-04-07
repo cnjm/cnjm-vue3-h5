@@ -37,11 +37,6 @@
     "vite-plugin-vue-setup-extend": "^0.4.0",
     "vue-tsc": "^0.29.8"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",
@@ -55,11 +50,9 @@
     ],
     "*.vue": [
       "eslint --fix",
-      "prettier --config .prettierrc.js --write",
-      "stylelint --fix"
+      "prettier --config .prettierrc.js --write"
     ],
     "*.{scss,less,styl,html}": [
-      "stylelint --fix",
       "prettier --config .prettierrc.js --write"
     ],
     "*.md": [
