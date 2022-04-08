@@ -13,7 +13,7 @@ const pathResolve = (dir: string) => {
 
 // https://vitejs.dev/config/
 export default ({ command, mode }: ConfigEnv): UserConfig => {
-  const _root = process.cwd();
+  const root = process.cwd();
   const env = loadEnv(mode, pathResolve("env"));
   const viteEnv = wrapperEnv(env);
   const { VITE_PORT, VITE_PROXY } = viteEnv;
@@ -22,6 +22,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   const isBuild = command === "build";
 
   return {
+    root,
     server: {
       // 监听到本地IP
       host: true,
