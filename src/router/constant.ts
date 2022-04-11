@@ -5,7 +5,7 @@ export const PARENT_LAYOUT_NAME = "ParentLayout";
 export const PAGE_NOT_FOUND_NAME = "PageNotFound";
 
 // 错误页
-export const EXCEPTION_COMPONENT = () => import("/@/views/basic/exception/exception.vue");
+export const EXCEPTION_COMPONENT = () => import("../views/error/exception/index.vue");
 
 /**
  * @description: default layout
@@ -13,13 +13,6 @@ export const EXCEPTION_COMPONENT = () => import("/@/views/basic/exception/except
 export const LAYOUT = () => import("/@/layouts/default/index.vue");
 
 /**
- * @description: parent-layout
+ * @description: error layout
  */
-export const getParentLayout = (_name?: string) => {
-  return () =>
-    new Promise((resolve) => {
-      resolve({
-        name: PARENT_LAYOUT_NAME,
-      });
-    });
-};
+export const ERROR_LAYOUT = () => import("/@/layouts/error/index.vue");

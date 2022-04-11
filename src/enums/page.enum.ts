@@ -5,7 +5,7 @@ export enum PageEnum {
   // 登录页路径
   BASE_LOGIN = "/login",
   // 基础主页路径
-  BASE_HOME = "/dashboard",
+  BASE_HOME = "/home",
   // 错误页路径
   ERROR_PAGE = "/exception",
   // error log page path

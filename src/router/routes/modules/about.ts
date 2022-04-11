@@ -14,7 +14,7 @@ const about: AppRouteModule = {
     {
       path: "index",
       name: "AboutPage",
-      component: () => import("/@/views/sys/about/index.vue"),
+      component: () => import("/@/views/about/index.vue"),
       meta: {
         title: "关于",
       },

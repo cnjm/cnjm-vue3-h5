@@ -1,9 +1,9 @@
 <script setup lang="ts">
-  console.log("出错");
+  console.log("首页");
 </script>
 
 <template>
-  <div>出错啦</div>
+  <div>首页</div>
 </template>
 
 <style scoped></style>

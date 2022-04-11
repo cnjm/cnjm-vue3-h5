@@ -1,9 +1,17 @@
-<script setup lang="ts" name="layoutsDefault">
-  console.log("默认布局");
+<script setup lang="ts" name="layoutsEntrance">
+  console.log("layoutsEntrance");
 </script>
 
 <template>
-  <div>默认布局</div>
+  <RouterView>
+    <template #default="{ Component, route }">
+      <transition mode="out-in" appear>
+        <keep-alive>
+          <component :is="Component" :key="route.fullPath" />
+        </keep-alive>
+      </transition>
+    </template>
+  </RouterView>
 </template>
 
 <style scoped></style>

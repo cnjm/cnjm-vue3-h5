@@ -1,4 +1,5 @@
 // 活动页、下载页等无需登录的路由配置
+import { ERROR_LAYOUT } from "../constant";
 import type { AppRouteModule } from "/@/router/types";
 
 // http:ip:port/entrance
@@ -6,7 +7,7 @@ export const entranceRoutes: AppRouteModule[] = [
   {
     path: "/entrance",
     name: "Entrance",
-    component: () => import("/@/views/demo/main-out/index.vue"),
+    component: ERROR_LAYOUT,
     redirect: "/entrance/index",
     meta: {
       title: "入口",

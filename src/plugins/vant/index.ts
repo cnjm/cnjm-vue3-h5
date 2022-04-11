@@ -5,7 +5,7 @@ const compList = [Button];
 
 // 注册
 export function setupVant(app: App<Element>) {
-  compList.forEach((comp) => {
-    app.use(comp);
-  });
+  for (let i = 0; i < compList.length; i++) {
+    app.use(compList[i]);
+  }
 }

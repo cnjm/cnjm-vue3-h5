@@ -1,6 +1,6 @@
 import type { AppRouteRecordRaw, AppRouteModule } from "/@/router/types";
 
-import { PAGE_NOT_FOUND_ROUTE } from "/@/router/routes/basic";
+import { PAGE_NOT_FOUND_ROUTE, NETWORK_ERROR_ROUTE } from "./error";
 
 import { entranceRoutes } from "./entrance";
 import { PageEnum } from "/@/enums/page.enum";
@@ -15,25 +15,25 @@ Object.keys(modules).forEach((key) => {
   routeModuleList.push(...modList);
 });
 
-export const asyncRoutes = [PAGE_NOT_FOUND_ROUTE, ...routeModuleList];
+export const asyncRoutes = [PAGE_NOT_FOUND_ROUTE, NETWORK_ERROR_ROUTE, ...routeModuleList];
 
 export const RootRoute: AppRouteRecordRaw = {
   path: "/",
   name: "Root",
   redirect: PageEnum.BASE_HOME,
   meta: {
-    title: "Root",
+    title: "CNJM-H5",
   },
 };
 
 export const LoginRoute: AppRouteRecordRaw = {
   path: "/login",
   name: "Login",
-  component: () => import("/@/views/sys/login/Login.vue"),
+  component: () => import("/@/views/login/index.vue"),
   meta: {
     title: "登录",
   },
 };
 
-// Basic routing without permission
-export const basicRoutes = [LoginRoute, RootRoute, ...entranceRoutes, PAGE_NOT_FOUND_ROUTE];
+// 基础路由（异常、无需token等页面）应为为白名单，不会鉴权
+export const basicRoutes = [LoginRoute, RootRoute, ...entranceRoutes, PAGE_NOT_FOUND_ROUTE, NETWORK_ERROR_ROUTE];

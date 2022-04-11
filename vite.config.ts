@@ -1,14 +1,23 @@
 import type { ConfigEnv, UserConfig } from "vite";
 import { loadEnv } from "vite";
+import dayjs from "dayjs";
 // import vue from "@vitejs/plugin-vue";
 import { resolve } from "path";
+import pkg from "./package.json";
 
 import { wrapperEnv } from "./build/utils";
 import { createProxy } from "./build/vite/proxy";
 import { createVitePlugins } from "./build/vite/plugin/index";
+import { generateModifyVars } from "./build/generate/generateModifyVars";
 
 const pathResolve = (dir: string) => {
   return resolve(process.cwd(), ".", dir);
+};
+
+const { dependencies, devDependencies, name, version } = pkg;
+const __APP_INFO__ = {
+  pkg: { dependencies, devDependencies, name, version },
+  lastBuildTime: dayjs().format("YYYY-MM-DD HH:mm:ss"),
 };
 
 // https://vitejs.dev/config/
@@ -47,5 +56,17 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     },
     // 构建模式所需的特有配置
     plugins: createVitePlugins(viteEnv, isBuild),
+    // css配置
+    css: {
+      preprocessorOptions: {
+        less: {
+          modifyVars: generateModifyVars(),
+          javascriptEnabled: true,
+        },
+      },
+    },
+    define: {
+      __APP_INFO__: JSON.stringify(__APP_INFO__),
+    },
   };
 };
