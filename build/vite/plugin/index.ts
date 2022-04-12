@@ -3,6 +3,7 @@ import vue from "@vitejs/plugin-vue";
 import vueSetupExtend from "vite-plugin-vue-setup-extend";
 import { configStyleImportPlugin } from "./styleImport";
 import { configSvgIconsPlugin } from "./svgSprite";
+import { configViteMockServePlugin } from "./viteMockServe";
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   console.log(viteEnv, isBuild);
@@ -22,6 +23,9 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 
   // style import
   vitePlugins.push(configStyleImportPlugin());
+
+  // mock
+  vitePlugins.push(configViteMockServePlugin());
 
   return vitePlugins;
 }
