@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import { resolve } from "path";
 import pkg from "./package.json";
 
+import { OUTPUT_DIR } from "./build/constant";
 import { wrapperEnv } from "./build/utils";
 import { createProxy } from "./build/vite/proxy";
 import { createVitePlugins } from "./build/vite/plugin/index";
@@ -38,6 +39,15 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       port: VITE_PORT,
       // 本地开发的代理配置
       proxy: createProxy(VITE_PROXY),
+    },
+    build: {
+      target: "es2015",
+      outDir: OUTPUT_DIR,
+      minify: "esbuild",
+      // 启用/禁用 brotli 压缩大小报告。压缩大型输出文件可能会很慢，因此禁用该功能可能会提高大型项目的构建性能。
+      brotliSize: false,
+      // chunk 大小警告的限制（以 kbs 为单位）。
+      chunkSizeWarningLimit: 2000,
     },
     resolve: {
       // 别名

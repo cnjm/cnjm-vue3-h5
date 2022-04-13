@@ -19,3 +19,9 @@
   - `ci` 持续集成
   - `types` 类型定义文件更改
   - `wip` 开发中
+
+## 备忘录
+
+1. postcss-px-to-viewport 未找到兼容多个设计稿尺寸的方法,因此稍加改造了该插件
+   解决 vite 中使用 postcss-px-to-viewport 无法使用 vant 等多种设计尺寸问题|postcss-plugins
+   [使用方法](https://blog.csdn.net/weixin_42998707/article/details/124150578)

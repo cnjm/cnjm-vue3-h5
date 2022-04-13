@@ -3,7 +3,7 @@ import { resolve } from "path";
 
 export const configViteMockServePlugin = () => {
   return viteMockServe({
-    mockPath: resolve(process.cwd(), "src/server/mock"),
+    mockPath: resolve(process.cwd(), "mock"),
     supportTs: true,
   });
 };
