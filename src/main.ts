@@ -1,7 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import { setupVant } from "./plugins/vant";
-import { setupRouter } from "./router";
+import { router, setupRouter } from "/@/router";
+import { setupRouterGuard } from "./router/guard";
 import { setupStore } from "./store";
 
 const bootstrap = async () => {
@@ -12,6 +13,9 @@ const bootstrap = async () => {
 
   // router
   setupRouter(app);
+
+  // router guard
+  setupRouterGuard(router);
 
   // vant 常用的全局组件注册
   setupVant(app);

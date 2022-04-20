@@ -20,6 +20,8 @@ declare global {
   declare type PropType<T> = VuePropType<T>;
   declare type VueNode = VNodeChild | JSX.Element;
 
+  declare type Nullable<T> = T | null;
+
   declare type Recordable<T = any> = Record<string, T>;
 
   interface ImportMetaEnv extends ViteEnv {
