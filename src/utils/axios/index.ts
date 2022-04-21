@@ -6,19 +6,11 @@ import type { RequestOptions, Result } from "/#/axios";
 import type { AxiosTransform, CreateAxiosOptions } from "./axiosTransform";
 import { VAxios } from "./axios";
 import { checkStatus } from "./checkStatus";
-import { useGlobSetting } from "/@/hooks/setting";
-import { useMessage } from "/@/hooks/web/useMessage";
 import { RequestEnum, ResultEnum, ContentTypeEnum } from "/@/enums/http.enum";
 import { isString } from "/@/utils/internal/isType";
-import { getToken } from "/@/utils/auth";
 import { setObjToUrlParams, deepMerge } from "/@/utils/util";
-import { useErrorLogStoreWithOut } from "/@/store/modules/errorLog";
 import { joinTimestamp, formatRequestDate } from "./helper";
 import { useUserStoreWithOut } from "/@/store/modules/user";
-
-const globSetting = useGlobSetting();
-const urlPrefix = globSetting.urlPrefix;
-const { createMessage, createErrorModal } = useMessage();
 
 /**
  * @description: 数据处理，方便区分多种处理方式
@@ -72,9 +64,9 @@ const transform: AxiosTransform = {
     // errorMessageMode=‘modal’的时候会显示modal错误弹窗，而不是消息提示，用于一些比较重要的错误
     // errorMessageMode='none' 一般是调用时明确表示不希望自动弹出错误提示
     if (options.errorMessageMode === "modal") {
-      createErrorModal({ title: "错误提示", content: timeoutMsg });
+      // createErrorModal({ title: "错误提示", content: timeoutMsg });
     } else if (options.errorMessageMode === "message") {
-      createMessage.error(timeoutMsg);
+      // createMessage.error(timeoutMsg);
     }
 
     throw new Error(timeoutMsg || "请求出错，请稍候重试");
@@ -131,7 +123,7 @@ const transform: AxiosTransform = {
    */
   requestInterceptors: (config, options) => {
     // 请求之前处理config
-    const token = getToken();
+    const token = "";
     if (token && (config as Recordable)?.requestOptions?.withToken !== false) {
       // jwt token
       (config as Recordable).headers.Authorization = options.authenticationScheme
@@ -153,8 +145,8 @@ const transform: AxiosTransform = {
    * @description: 响应错误处理
    */
   responseInterceptorsCatch: (error: any) => {
-    const errorLogStore = useErrorLogStoreWithOut();
-    errorLogStore.addAjaxErrorInfo(error);
+    // const errorLogStore = useErrorLogStoreWithOut();
+    // errorLogStore.addAjaxErrorInfo(error);
     const { response, code, message, config } = error || {};
     const errorMessageMode = config?.requestOptions?.errorMessageMode || "none";
     const msg: string = response?.data?.message ?? "";
@@ -172,9 +164,9 @@ const transform: AxiosTransform = {
 
       if (errMessage) {
         if (errorMessageMode === "modal") {
-          createErrorModal({ title: "错误提示", content: errMessage });
+          // createErrorModal({ title: "错误提示", content: errMessage });
         } else if (errorMessageMode === "message") {
-          createMessage.error(errMessage);
+          // createMessage.error(errMessage);
         }
         return Promise.reject(error);
       }
@@ -182,7 +174,7 @@ const transform: AxiosTransform = {
       throw new Error(error as unknown as string);
     }
     // 根据不同的错误码处理
-    checkStatus(error?.response?.status, msg, errorMessageMode);
+    checkStatus(error?.response?.status, msg);
     return Promise.reject(error);
   },
 };
@@ -220,9 +212,9 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
           // 错误消息提示类型
           errorMessageMode: "message",
           // 接口地址
-          apiUrl: globSetting.apiUrl,
+          // apiUrl: globSetting.apiUrl,
           // 接口拼接地址
-          urlPrefix: urlPrefix,
+          // urlPrefix: urlPrefix,
           //  是否加入时间戳
           joinTime: true,
           // 忽略重复请求

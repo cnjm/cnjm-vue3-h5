@@ -1,3 +1,9 @@
+// 应用配置
+export interface AppConfig {
+  storagePrefix: string;
+  defaultCacheTime: number;
+}
+// 项目配置
 export interface ProjectConfig {
   openPageLoading: boolean;
 }
