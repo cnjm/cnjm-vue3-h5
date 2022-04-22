@@ -18,6 +18,7 @@ export class VAxios {
   private readonly options: CreateAxiosOptions;
 
   constructor(options: CreateAxiosOptions) {
+    console.log(options);
     this.options = options;
     this.axiosInstance = axios.create(options);
     this.setupInterceptors();
@@ -185,7 +186,9 @@ export class VAxios {
   }
 
   request<T = any>(config: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
+    console.log(cloneDeep(config));
     let conf: CreateAxiosOptions = cloneDeep(config);
+    console.log(config, conf);
     const transform = this.getTransform();
 
     const { requestOptions } = this.options;
@@ -193,6 +196,7 @@ export class VAxios {
     const opt: RequestOptions = Object.assign({}, requestOptions, options);
 
     const { beforeRequestHook, requestCatchHook, transformRequestHook } = transform || {};
+
     if (beforeRequestHook && isFunction(beforeRequestHook)) {
       conf = beforeRequestHook(conf, opt);
     }

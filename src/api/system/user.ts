@@ -1,4 +1,5 @@
 import { LoginParams, LoginResult } from "./model/user.model";
+import { ErrorMessageMode } from "/#/axios";
 import { defHttp } from "/@/utils/axios/index";
 
 enum Api {
@@ -6,4 +7,5 @@ enum Api {
 }
 
 // 用户登录
-export const login = (params: LoginParams) => defHttp.get<LoginResult>({ url: Api.LOGIN, params });
+export const loginApi = (params: LoginParams, mode: ErrorMessageMode = "modal") =>
+  defHttp.get<LoginResult>({ url: Api.LOGIN, params }, { errorMessageMode: mode });

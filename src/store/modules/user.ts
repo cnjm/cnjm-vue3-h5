@@ -2,6 +2,9 @@ import type { UserInfo } from "/#/store";
 import { store } from "/@/store";
 import { defineStore } from "pinia";
 import { RoleEnum } from "/@/enums/role.enum";
+import { GetUserInfoModel, LoginParams } from "/@/api/system/model/user.model";
+import { ErrorMessageMode } from "/#/axios";
+import { loginApi } from "/@/api/system/user";
 
 interface UserState {
   userInfo: Nullable<UserInfo>;
@@ -33,6 +36,27 @@ export const useUserStore = defineStore({
     setToken(info: string | undefined) {
       this.token = info ? info : ""; // for null or undefined value
       // setAuthCache(TOKEN_KEY, info);
+    },
+    // 登录
+    async login(
+      params: LoginParams & {
+        goHome?: boolean;
+        mode?: ErrorMessageMode;
+      },
+    ): Promise<GetUserInfoModel | null> {
+      try {
+        const { goHome = true, mode, ...loginParams } = params;
+        const data = await loginApi(loginParams, mode);
+        console.log(goHome, data);
+        const { token } = data;
+
+        // save token
+        this.setToken(token);
+        return null;
+        // return this.afterLoginAction(goHome);
+      } catch (error) {
+        return Promise.reject(error);
+      }
     },
     // 登出
     async logout(goLogin = false) {

@@ -6,11 +6,14 @@ import type { RequestOptions, Result } from "/#/axios";
 import type { AxiosTransform, CreateAxiosOptions } from "./axiosTransform";
 import { VAxios } from "./axios";
 import { checkStatus } from "./checkStatus";
+import { useGlobSetting } from "/@/hooks/setting";
 import { RequestEnum, ResultEnum, ContentTypeEnum } from "/@/enums/http.enum";
 import { isString } from "/@/utils/internal/isType";
 import { setObjToUrlParams, deepMerge } from "/@/utils/util";
 import { joinTimestamp, formatRequestDate } from "./helper";
 import { useUserStoreWithOut } from "/@/store/modules/user";
+const globSetting = useGlobSetting();
+const urlPrefix = globSetting.urlPrefix;
 
 /**
  * @description: 数据处理，方便区分多种处理方式
@@ -75,11 +78,11 @@ const transform: AxiosTransform = {
   // 请求之前处理config
   beforeRequestHook: (config, options) => {
     const { apiUrl, joinPrefix, joinParamsToUrl, formatDate, joinTime = true, urlPrefix } = options;
-
+    console.log("**", config.url);
     if (joinPrefix) {
       config.url = `${urlPrefix}${config.url}`;
     }
-
+    console.log("++", urlPrefix);
     if (apiUrl && isString(apiUrl)) {
       config.url = `${apiUrl}${config.url}`;
     }
@@ -115,6 +118,7 @@ const transform: AxiosTransform = {
         config.params = undefined;
       }
     }
+    console.log("--", config.url);
     return config;
   },
 
@@ -212,9 +216,9 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
           // 错误消息提示类型
           errorMessageMode: "message",
           // 接口地址
-          // apiUrl: globSetting.apiUrl,
+          apiUrl: globSetting.apiUrl,
           // 接口拼接地址
-          // urlPrefix: urlPrefix,
+          urlPrefix,
           //  是否加入时间戳
           joinTime: true,
           // 忽略重复请求
