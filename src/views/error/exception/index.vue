@@ -4,7 +4,7 @@
 
 <template>
   <div class="box">页面出错啦</div>
-  <!-- <van-button type="primary">主要按钮</van-button> -->
+  <van-button type="primary">主要按钮</van-button>
 </template>
 
 <style scoped>
