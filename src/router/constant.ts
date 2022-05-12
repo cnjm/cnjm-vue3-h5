@@ -5,7 +5,7 @@ export const PARENT_LAYOUT_NAME = "ParentLayout";
 export const PAGE_NOT_FOUND_NAME = "PageNotFound";
 
 // 错误页
-export const EXCEPTION_COMPONENT = () => import("../views/error/exception/index.vue");
+export const EXCEPTION_COMPONENT = () => import("/@/layouts/error/exception/index.vue");
 
 /**
  * @description: default layout

@@ -26,6 +26,7 @@ export const usePermissionStore = defineStore({
     setDynamicAddedRoute(value: boolean) {
       this.isDynamicAddedRoute = value;
     },
+    // routes action
     async buildRoutesAction(): Promise<AppRouteRecordRaw[]> {
       const userStore = useUserStore();
       let routes: AppRouteRecordRaw[] = [];

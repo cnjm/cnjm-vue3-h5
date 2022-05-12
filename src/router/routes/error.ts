@@ -13,7 +13,7 @@ export const PAGE_NOT_FOUND_ROUTE: AppRouteRecordRaw = {
     {
       path: "/:path(.*)*",
       name: "PageNotFound",
-      component: () => import("/@/views/error/exception/index.vue"),
+      component: () => import("/@/layouts/error/exception/index.vue"),
       meta: {
         title: "页面出错啦！",
       },
@@ -33,7 +33,7 @@ export const NETWORK_ERROR_ROUTE: AppRouteRecordRaw = {
     {
       path: "network",
       name: "NetworkError",
-      component: () => import("/@/views/error/network/index.vue"),
+      component: () => import("/@/layouts/error/network/index.vue"),
       meta: {
         title: "网络出错啦！",
       },

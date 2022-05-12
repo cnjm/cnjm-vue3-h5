@@ -1,4 +1,5 @@
 <script setup lang="ts" name="layoutsEntrance">
+  import TabBar from "./tabBar/index.vue";
   console.log("layoutsEntrance");
 </script>
 
@@ -12,6 +13,7 @@
       </transition>
     </template>
   </RouterView>
+  <TabBar />
 </template>
 
 <style scoped></style>
