@@ -17,6 +17,7 @@ Object.keys(modules).forEach((key) => {
 
 export const asyncRoutes = [PAGE_NOT_FOUND_ROUTE, NETWORK_ERROR_ROUTE, ...routeModuleList];
 
+// 根路径
 export const RootRoute: AppRouteRecordRaw = {
   path: "/",
   name: "Root",
@@ -26,14 +27,5 @@ export const RootRoute: AppRouteRecordRaw = {
   },
 };
 
-export const LoginRoute: AppRouteRecordRaw = {
-  path: "/login",
-  name: "Login",
-  component: () => import("/@/views/login/index.vue"),
-  meta: {
-    title: "登录",
-  },
-};
-
 // 基础路由（异常、无需token等页面）应为为白名单，不会鉴权
-export const basicRoutes = [LoginRoute, RootRoute, ...entranceRoutes, PAGE_NOT_FOUND_ROUTE, NETWORK_ERROR_ROUTE];
+export const basicRoutes = [RootRoute, ...entranceRoutes, PAGE_NOT_FOUND_ROUTE, NETWORK_ERROR_ROUTE];

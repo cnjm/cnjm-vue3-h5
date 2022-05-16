@@ -1,9 +1,14 @@
 <script setup lang="ts">
-  console.log("活动页面");
+  console.log("action");
 </script>
 
 <template>
-  <div>活动页面</div>
+  <div class="action">可以作为活动推广、分享</div>
 </template>
 
-<style scoped></style>
+<style scoped>
+  .action {
+    margin: 100px auto 0;
+    text-align: center;
+  }
+</style>

@@ -28,6 +28,8 @@
     }
   },
   "include": [
+    "mock/**/*.d.ts",
+    "mock/**/*.ts",
     "types/**/*.d.ts",
     "types/**/*.ts",
     "build/**/*.ts",

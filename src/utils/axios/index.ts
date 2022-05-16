@@ -78,11 +78,9 @@ const transform: AxiosTransform = {
   // 请求之前处理config
   beforeRequestHook: (config, options) => {
     const { apiUrl, joinPrefix, joinParamsToUrl, formatDate, joinTime = true, urlPrefix } = options;
-    console.log("**", config.url);
     if (joinPrefix) {
       config.url = `${urlPrefix}${config.url}`;
     }
-    console.log("++", urlPrefix);
     if (apiUrl && isString(apiUrl)) {
       config.url = `${apiUrl}${config.url}`;
     }
@@ -118,7 +116,6 @@ const transform: AxiosTransform = {
         config.params = undefined;
       }
     }
-    console.log("--", config.url);
     return config;
   },
 
@@ -217,7 +214,7 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
           errorMessageMode: "message",
           // 接口地址
           apiUrl: globSetting.apiUrl,
-          // 接口拼接地址
+          // 接口默认前缀拼接地址
           urlPrefix,
           //  是否加入时间戳
           joinTime: true,

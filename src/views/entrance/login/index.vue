@@ -1,9 +1,12 @@
 <script setup lang="ts">
+  import axios from "axios";
   import { useUserStore } from "/@/store/modules/user";
 
   const userStore = useUserStore();
 
   async function handleLogin() {
+    const message = await axios.get("/base/mock/test");
+    console.log(message);
     await userStore.login({
       //请求login接口
       password: "123456",
@@ -14,7 +17,7 @@
 </script>
 
 <template>
-  <van-button type="primary" @click="handleLogin">测试</van-button>
+  <van-button type="primary" @click="handleLogin">登录</van-button>
 </template>
 
 <style scoped></style>

@@ -11,7 +11,7 @@ import { PAGE_NOT_FOUND_ROUTE } from "/@/router/routes/error";
 import { RouteRecordRaw } from "vue-router";
 import { PageEnum } from "/@/enums/page.enum";
 import { usePermissionStore } from "./permission";
-// import { loginApi } from "/@/api/system/user";
+import { loginApi } from "/@/api/system/user";
 
 interface UserState {
   userInfo: Nullable<UserInfo>;
@@ -53,8 +53,8 @@ export const useUserStore = defineStore({
     ): Promise<GetUserInfoModel | null> {
       try {
         const { goHome = true, mode, ...loginParams } = params;
-        // const data = await loginApi(loginParams, mode);
-        const data = { token: "123456" };
+        const data = await loginApi(loginParams, mode);
+        // const data = { token: "123456" };
         console.log(goHome, mode, loginParams, data);
         const { token } = data;
 

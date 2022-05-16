@@ -1,36 +1,33 @@
 // 活动页、下载页等无需登录的路由配置
-import { ERROR_LAYOUT } from "../constant";
 import type { AppRouteModule } from "/@/router/types";
 
-// http:ip:port/entrance
+// 此处为应用入口路由，无需校验权限，默认渲染
+// http:ip:port/*
 export const entranceRoutes: AppRouteModule[] = [
   {
-    path: "/entrance",
-    name: "Entrance",
-    component: ERROR_LAYOUT,
-    redirect: "/entrance/index",
+    path: "/login",
+    name: "Login",
+    component: () => import("/@/views/entrance/login/index.vue"),
     meta: {
-      title: "入口",
+      title: "登录",
+    },
+  },
+  {
+    path: "/action",
+    name: "Action",
+    component: () => import("/@/views/entrance/action/index.vue"),
+    meta: {
+      title: "活动",
+    },
+  },
+  {
+    path: "/download",
+    name: "Download",
+    component: import("/@/views/entrance/download/index.vue"),
+    meta: {
+      title: "下载",
       ignoreAuth: true,
     },
-    children: [
-      {
-        path: "action",
-        name: "EntranceAction",
-        component: () => import("/@/views/entrance/action/index.vue"),
-        meta: {
-          title: "活动",
-        },
-      },
-      {
-        path: "download",
-        name: "EntranceDownload",
-        component: () => import("/@/views/entrance/download/index.vue"),
-        meta: {
-          title: "下载",
-        },
-      },
-    ],
   },
 ];
 

@@ -1,9 +1,14 @@
 <script setup lang="ts">
-  console.log("下载页面");
+  console.log("download");
 </script>
 
 <template>
-  <div>下载页面</div>
+  <div class="download">如果有下载应用需求，可以作为下载落地页</div>
 </template>
 
-<style scoped></style>
+<style scoped>
+  .download {
+    margin: 100px auto 0;
+    text-align: center;
+  }
+</style>

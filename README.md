@@ -2,6 +2,29 @@
 
 基于 Vue 3 + Typescript + Vite
 
+## 步骤
+
+1. 安装依赖
+
+```
+npm run bootstrap
+```
+
+2. 启动
+
+```
+# 开发环境
+npm run serve:dev
+# 测试环境
+serve:staging
+```
+
+3. 构建
+
+```
+npm run build
+```
+
 ## Git 贡献提交规范
 
 - 这里遵循 [vue](https://github.com/vuejs/vue/blob/dev/.github/COMMIT_CONVENTION.md) 规范 ([Angular](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular))

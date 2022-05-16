@@ -25,7 +25,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   vitePlugins.push(configStyleImportPlugin());
 
   // mock
-  vitePlugins.push(configViteMockServePlugin());
+  vitePlugins.push(configViteMockServePlugin(isBuild));
 
   return vitePlugins;
 }
