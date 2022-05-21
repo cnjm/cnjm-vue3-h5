@@ -17,7 +17,12 @@
 </script>
 
 <template>
+  <div class="w-xs" w:bg="grey" w:text="base" w:animate="spin">test</div>
   <van-button type="primary" @click="handleLogin">登录</van-button>
 </template>
 
-<style scoped></style>
+<style scoped>
+  .w100 {
+    width: 750px;
+  }
+</style>

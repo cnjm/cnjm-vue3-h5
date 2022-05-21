@@ -1,3 +1,8 @@
+import "virtual:windi-devtools";
+import "virtual:windi-base.css";
+import "virtual:windi-components.css";
+import "virtual:windi-utilities.css";
+// windi end
 import { createApp } from "vue";
 import App from "./App.vue";
 import { setupVant } from "./plugins/vant";
