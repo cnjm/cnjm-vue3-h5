@@ -1,9 +1,11 @@
 import { defineStore } from "pinia";
 
+import { PageEnum } from "/@/enums/page.enum";
+
 interface Tabbar {
   path: string;
-  normalImg: string;
-  activeImg: string;
+  normalImg: Object;
+  activeImg: Object;
   title: string;
 }
 interface PageState {
@@ -18,15 +20,21 @@ export const usePageStore = defineStore({
     // 底部导航
     tabbar: [
       {
-        path: "/page/sales",
-        normalImg: require("/@/assets/tabbar/home_n.png"),
-        activeImg: require("/@/assets/tabbar/home.png"),
+        path: PageEnum.HOME_PAGE,
+        normalImg: () => import("/@/assets/tabbar/home_n.png"),
+        activeImg: () => import("/@/assets/tabbar/home.png"),
         title: "主页",
       },
       {
-        path: "/page/sales",
-        normalImg: require("/@/assets/tabbar/about_n.png"),
-        activeImg: require("/@/assets/tabbar/about.png"),
+        path: PageEnum.COMP_PAGE,
+        normalImg: () => import("/@/assets/tabbar/comp_n.png"),
+        activeImg: () => import("/@/assets/tabbar/comp.png"),
+        title: "组件",
+      },
+      {
+        path: PageEnum.ABOUT_PAGE,
+        normalImg: () => import("/@/assets/tabbar/about_n.png"),
+        activeImg: () => import("/@/assets/tabbar/about.png"),
         title: "关于",
       },
     ],

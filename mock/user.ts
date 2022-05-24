@@ -13,13 +13,16 @@ export default [
     },
   },
   {
-    url: "base/mock/user/login",
+    url: "/api/user/getUserInfo",
     method: "post",
     response: ({ query }) => {
       console.log(query);
       return {
         code: 20000,
-        result: { token: "123add" },
+        result: {
+          userId: 1,
+          userName: "微茫",
+        },
         message: "登录成功",
       };
     },

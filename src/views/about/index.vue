@@ -1,4 +1,7 @@
 <script setup lang="ts">
+  const meta = { a: 1 };
+
+  console.log(meta);
   console.log("关于");
 </script>
 

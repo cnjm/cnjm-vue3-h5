@@ -1,14 +1,17 @@
 <script setup lang="ts">
-  import { ref } from "vue";
-
-  const active = ref(0);
+  // import { ref } from "vue";
+  import { usePageStore } from "/@/store/modules/page";
+  const pageStore = usePageStore();
+  const tabbar = pageStore.tabbar;
+  console.log("pageStore", pageStore.tabbar);
 </script>
 
 <template>
-  <van-tabbar v-model="active">
-    <van-tabbar-item to="/home" icon="home-o">主页</van-tabbar-item>
-    <van-tabbar-item to="/about" icon="search">关于</van-tabbar-item>
-  </van-tabbar>
+  <div>
+    <div v-for="item in tabbar" :key="item.path">
+      <div w:bg="[#b2a8bb]" w:text="[20px] [#fff]">{{ item.title }}</div>
+    </div>
+  </div>
 </template>
 
 <style scoped></style>

@@ -1,11 +1,13 @@
 import type { AppRouteRecordRaw, AppRouteModule } from "/@/router/types";
-
 import { PAGE_NOT_FOUND_ROUTE, NETWORK_ERROR_ROUTE } from "./error";
 
 import { entranceRoutes } from "./entrance";
 import { PageEnum } from "/@/enums/page.enum";
 
 const modules = import.meta.globEager("./modules/**/*.ts");
+
+// const viewsFile = import.meta.globEager("/src/views/**/index.vue");
+// const itemPath = item.match(/\/src\/views\/(\S*)\/index\.vue/) || [];
 
 const routeModuleList: AppRouteModule[] = [];
 
