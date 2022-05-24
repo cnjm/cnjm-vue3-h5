@@ -30,6 +30,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
 
   // 是否构建
   const isBuild = command === "build";
+  console.log(createProxy(VITE_PROXY));
 
   return {
     root,

@@ -11,7 +11,14 @@ export default defineConfig({
     extend: {},
     colors: {
       // Configure your color palette here
-      grey: "#e879f9",
+      // 黄
+      primary: "#fac03d",
+      // 绿
+      secondary: "#697723",
+      // 白
+      white: "#ffffff",
+      // 危险
+      danger: "#e3342f",
     },
     fontSize: {
       xs: "20px",

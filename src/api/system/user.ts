@@ -3,7 +3,7 @@ import { ErrorMessageMode } from "/#/axios";
 import { defHttp } from "/@/utils/axios/index";
 
 enum Api {
-  LOGIN = "/mock/user/login",
+  LOGIN = "/user/login",
 }
 
 // 用户登录
