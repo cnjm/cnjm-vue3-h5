@@ -11,10 +11,10 @@ export default defineConfig({
     extend: {},
     colors: {
       // Configure your color palette here
-      // 黄
-      primary: "#fac03d",
-      // 绿
-      secondary: "#697723",
+      // 主题颜色 绿色
+      primary: "#21a675",
+      // 浅绿
+      secondary: "#a2e2c6",
       // 白
       white: "#ffffff",
       // 危险
