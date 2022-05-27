@@ -61,7 +61,7 @@ export const useUserStore = defineStore({
     // 设置用户信息
     setUserInfo(info: UserInfo | null) {
       this.userInfo = info;
-      this.lastUpdateTime = new Date().getTime();
+      this.lastUpdateTime = !info ? 0 : new Date().getTime();
       setLocalCache(USER_INFO_KEY, info);
     },
     // 设置角色

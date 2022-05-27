@@ -9,6 +9,7 @@ export default defineConfig({
   // https://windicss.org/utilities/general/colors.html
   theme: {
     extend: {},
+    // 颜色
     colors: {
       // Configure your color palette here
       // 主题颜色 绿色
@@ -20,6 +21,12 @@ export default defineConfig({
       // 危险
       danger: "#e3342f",
     },
+    // 背景颜色
+    backgroundColor: (theme) => ({
+      ...theme("colors"),
+      // 往后加
+    }),
+    // 字号  尽管windi可以让你享受数字推断的好处，但仍可以自行定义
     fontSize: {
       xs: "20px",
       sm: "24px",
@@ -28,8 +35,85 @@ export default defineConfig({
       lg: "36px",
       xl: "40px",
     },
+    // 粗细
+    fontWeight: {
+      hairline: 100,
+      "extra-light": 100,
+      thin: 200,
+      light: 300,
+      normal: 400,
+      medium: 500,
+      semibold: 600,
+      bold: 700,
+      extrabold: 800,
+      "extra-bold": 800,
+      black: 900,
+    },
+    // 一般width也不用特定，可以用[x]px 来设置不同的宽
+    // 高类似，auto fll screen
     width: {
-      xs: "20px",
+      routine: "700px",
+    },
+    // padding margin 自定义
+    padding: {
+      sm: "8px",
+      md: "16px",
+      lg: "24px",
+      xl: "48px",
+    },
+    paddingTop: {
+      sm: "8px",
+      md: "16px",
+      lg: "24px",
+      xl: "48px",
+    },
+    paddingRight: {
+      sm: "8px",
+      md: "16px",
+      lg: "24px",
+      xl: "48px",
+    },
+    paddingBottom: {
+      sm: "8px",
+      md: "16px",
+      lg: "24px",
+      xl: "48px",
+    },
+    paddingLeft: {
+      sm: "8px",
+      md: "16px",
+      lg: "24px",
+      xl: "48px",
+    },
+    margin: {
+      sm: "8px",
+      md: "16px",
+      lg: "24px",
+      xl: "48px",
+    },
+    marginTop: {
+      sm: "8px",
+      md: "16px",
+      lg: "24px",
+      xl: "48px",
+    },
+    marginRight: {
+      sm: "8px",
+      md: "16px",
+      lg: "24px",
+      xl: "48px",
+    },
+    marginBottom: {
+      sm: "8px",
+      md: "16px",
+      lg: "24px",
+      xl: "48px",
+    },
+    marginLeft: {
+      sm: "8px",
+      md: "16px",
+      lg: "24px",
+      xl: "48px",
     },
   },
 });
