@@ -18,6 +18,7 @@ interface UserState {
   userInfo: Nullable<UserInfo>;
   token?: string;
   roleList: RoleEnum[];
+  sessionTimeout: boolean;
   lastUpdateTime: number;
 }
 
@@ -30,6 +31,8 @@ export const useUserStore = defineStore({
     token: undefined,
     // 角色列表
     roleList: [],
+    // 是否登录过期
+    sessionTimeout: false,
     // 最后更新时间
     lastUpdateTime: 0,
   }),
@@ -46,6 +49,10 @@ export const useUserStore = defineStore({
     getRoleList(): RoleEnum[] {
       // return this.roleList.length > 0 ? this.roleList : getAuthCache<RoleEnum[]>(ROLES_KEY);
       return [RoleEnum.SUPER];
+    },
+    // 获取Session状态
+    getSessionTimeout(): boolean {
+      return !!this.sessionTimeout;
     },
     // 获取最后更新时间
     getLastUpdateTime(): number {
@@ -69,6 +76,10 @@ export const useUserStore = defineStore({
       this.roleList = roleList;
       setLocalCache(USER_ROLES_KEY, roleList);
     },
+    // 设置登录状态
+    setSessionTimeout(flag: boolean) {
+      this.sessionTimeout = flag;
+    },
     /**
      * @description: 登录
      */
@@ -81,8 +92,6 @@ export const useUserStore = defineStore({
       try {
         const { goHome = true, mode, ...loginParams } = params;
         const data = await loginApi(loginParams, mode);
-        // const data = { token: "123456" };
-        console.log(goHome, mode, loginParams, data);
         const { token } = data;
 
         // save token
@@ -98,18 +107,26 @@ export const useUserStore = defineStore({
     async afterLoginAction(goHome?: boolean): Promise<GetUserInfoModel | null> {
       if (!this.getToken) return null;
       // 获取用户信息
-      // const userInfo = await this.getUserInfoAction();
+      const userInfo = await this.getUserInfoAction();
       const permissionStore = usePermissionStore();
-      if (!permissionStore.isDynamicAddedRoute) {
-        const routes = await permissionStore.buildRoutesAction();
-        routes.forEach((route) => {
-          router.addRoute(route as unknown as RouteRecordRaw);
-        });
-        router.addRoute(PAGE_NOT_FOUND_ROUTE as unknown as RouteRecordRaw);
-        permissionStore.setDynamicAddedRoute(true);
+
+      const sessionTimeout = this.sessionTimeout;
+
+      if (sessionTimeout) {
+        this.setSessionTimeout(false);
+      } else {
+        if (!permissionStore.isDynamicAddedRoute) {
+          const routes = await permissionStore.buildRoutesAction();
+          routes.forEach((route) => {
+            router.addRoute(route as unknown as RouteRecordRaw);
+          });
+          router.addRoute(PAGE_NOT_FOUND_ROUTE as unknown as RouteRecordRaw);
+          permissionStore.setDynamicAddedRoute(true);
+        }
+        goHome && (await router.replace(PageEnum.BASE_HOME));
       }
-      goHome && (await router.replace(PageEnum.BASE_HOME));
-      return null;
+
+      return userInfo;
     },
     /**
      * @description: 获取用户信息
@@ -139,7 +156,7 @@ export const useUserStore = defineStore({
         }
       }
       this.setToken(undefined);
-      // this.setSessionTimeout(false);
+      this.setSessionTimeout(false);
       this.setUserInfo(null);
       goLogin && router.push(PageEnum.BASE_LOGIN);
     },

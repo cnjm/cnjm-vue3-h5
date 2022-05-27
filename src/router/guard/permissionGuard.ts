@@ -6,6 +6,8 @@ import { useUserStoreWithOut } from "/@/store/modules/user";
 
 const LOGIN_PATH = PageEnum.BASE_LOGIN;
 
+const whitePathList: PageEnum[] = [LOGIN_PATH];
+
 export function createPermissionGuard(router: Router) {
   const userStore = useUserStoreWithOut();
   const permissionStore = usePermissionStoreWithOut();
@@ -13,6 +15,22 @@ export function createPermissionGuard(router: Router) {
     console.log(to, from);
 
     const token = userStore.getToken;
+
+    if (whitePathList.includes(to.path as PageEnum)) {
+      if (to.path === LOGIN_PATH && token) {
+        const isSessionTimeout = userStore.getSessionTimeout;
+        try {
+          await userStore.afterLoginAction();
+          if (!isSessionTimeout) {
+            next((to.query?.redirect as string) || "/");
+            return;
+          }
+        } catch {}
+      }
+      next();
+      return;
+    }
+
     // 如果找不到token
     if (!token) {
       // 去的页面如果不需要校验，则直接通行
