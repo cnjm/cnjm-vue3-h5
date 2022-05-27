@@ -1,8 +1,10 @@
 import type { Router, RouteRecordRaw } from "vue-router";
 import { PAGE_NOT_FOUND_ROUTE } from "../routes/error";
-// import { PageEnum } from "/@/enums/page.enum";
+import { PageEnum } from "/@/enums/page.enum";
 import { usePermissionStoreWithOut } from "/@/store/modules/permission";
 import { useUserStoreWithOut } from "/@/store/modules/user";
+
+const LOGIN_PATH = PageEnum.BASE_LOGIN;
 
 export function createPermissionGuard(router: Router) {
   const userStore = useUserStoreWithOut();
@@ -11,7 +13,38 @@ export function createPermissionGuard(router: Router) {
     console.log(to, from);
 
     const token = userStore.getToken;
-    console.log("token===", token);
+    // 如果找不到token
+    if (!token) {
+      // 去的页面如果不需要校验，则直接通行
+      if (to.meta.ignoreAuth) {
+        next();
+        return;
+      }
+
+      // 重定向到登录，记下当前to.path，以作登录后跳回
+      const redirectData: { path: string; replace: boolean; query?: Recordable<string> } = {
+        path: LOGIN_PATH,
+        replace: true,
+      };
+      if (to.path) {
+        redirectData.query = {
+          ...redirectData.query,
+          redirect: to.path,
+        };
+      }
+      next(redirectData);
+      return;
+    }
+
+    // 如果未获取过用户信息
+    if (userStore.getLastUpdateTime === 0) {
+      try {
+        await userStore.getUserInfoAction();
+      } catch (err) {
+        next();
+        return;
+      }
+    }
 
     if (permissionStore.getIsDynamicAddedRoute) {
       next();

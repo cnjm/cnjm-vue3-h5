@@ -3,8 +3,7 @@ export default [
   {
     url: "/api/user/login",
     method: "post",
-    response: ({ query }) => {
-      console.log(query);
+    response: () => {
       return {
         code: 20000,
         result: { token: "123add" },
@@ -14,16 +13,26 @@ export default [
   },
   {
     url: "/api/user/getUserInfo",
-    method: "post",
-    response: ({ query }) => {
-      console.log(query);
+    method: "get",
+    response: () => {
       return {
         code: 20000,
         result: {
           userId: 1,
           userName: "微茫",
         },
-        message: "登录成功",
+        message: "获取用户信息成功",
+      };
+    },
+  },
+  {
+    url: "/api/user/logout",
+    method: "get",
+    response: () => {
+      return {
+        code: 20000,
+        result: {},
+        message: "登出成功",
       };
     },
   },

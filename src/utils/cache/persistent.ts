@@ -2,14 +2,22 @@ import type { UserInfo } from "/#/store";
 
 import { createLocalStorage, createSessionStorage } from "/@/utils/cache/create";
 import { Memory } from "./memory";
-import { APP_LOCAL_CACHE_KEY, APP_SESSION_CACHE_KEY, TOKEN_KEY, USER_INFO_KEY } from "/@/enums/cache.enum";
+import {
+  APP_LOCAL_CACHE_KEY,
+  APP_SESSION_CACHE_KEY,
+  TOKEN_KEY,
+  USER_INFO_KEY,
+  USER_ROLES_KEY,
+} from "/@/enums/cache.enum";
 import appSetting from "/@/settings/appSetting";
 import { toRaw } from "vue";
 import { pick } from "lodash-es";
+import { RoleInfo } from "/@/api/system/model/user.model";
 
 interface BasicStore {
   [TOKEN_KEY]: string | number | null | undefined;
   [USER_INFO_KEY]: UserInfo;
+  [USER_ROLES_KEY]: RoleInfo;
 }
 
 type LocalStore = BasicStore;

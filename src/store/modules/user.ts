@@ -4,19 +4,21 @@ import { defineStore } from "pinia";
 import { RoleEnum } from "/@/enums/role.enum";
 import { GetUserInfoModel, LoginParams } from "/@/api/system/model/user.model";
 import { ErrorMessageMode } from "/#/axios";
-import { setLocalCache } from "/@/utils/cache";
-import { TOKEN_KEY } from "/@/enums/cache.enum";
+import { getLocalCache, setLocalCache } from "/@/utils/cache";
+import { TOKEN_KEY, USER_INFO_KEY, USER_ROLES_KEY } from "/@/enums/cache.enum";
 import { router } from "/@/router";
 import { PAGE_NOT_FOUND_ROUTE } from "/@/router/routes/error";
 import { RouteRecordRaw } from "vue-router";
 import { PageEnum } from "/@/enums/page.enum";
 import { usePermissionStore } from "./permission";
-import { loginApi } from "/@/api/system/user";
+import { doLogout, getUserInfo, loginApi } from "/@/api/system/user";
+import { isArray } from "/@/utils/internal/isType";
 
 interface UserState {
   userInfo: Nullable<UserInfo>;
   token?: string;
   roleList: RoleEnum[];
+  lastUpdateTime: number;
 }
 
 export const useUserStore = defineStore({
@@ -26,16 +28,28 @@ export const useUserStore = defineStore({
     userInfo: null,
     // token
     token: undefined,
+    // 角色列表
     roleList: [],
+    // 最后更新时间
+    lastUpdateTime: 0,
   }),
   getters: {
     // 获取token
     getToken(): string {
-      return this.token || "";
+      return this.token || getLocalCache<string>(TOKEN_KEY);
     },
+    // 获取用户信息
+    getUserInfo(): UserInfo {
+      return this.userInfo || getLocalCache<UserInfo>(USER_INFO_KEY) || {};
+    },
+    // 获取角色列表
     getRoleList(): RoleEnum[] {
       // return this.roleList.length > 0 ? this.roleList : getAuthCache<RoleEnum[]>(ROLES_KEY);
       return [RoleEnum.SUPER];
+    },
+    // 获取最后更新时间
+    getLastUpdateTime(): number {
+      return this.lastUpdateTime;
     },
   },
   actions: {
@@ -44,7 +58,20 @@ export const useUserStore = defineStore({
       this.token = info ? info : ""; // for null or undefined value
       setLocalCache(TOKEN_KEY, info);
     },
-    // 登录
+    // 设置用户信息
+    setUserInfo(info: UserInfo | null) {
+      this.userInfo = info;
+      this.lastUpdateTime = new Date().getTime();
+      setLocalCache(USER_INFO_KEY, info);
+    },
+    // 设置角色
+    setRoleList(roleList: RoleEnum[]) {
+      this.roleList = roleList;
+      setLocalCache(USER_ROLES_KEY, roleList);
+    },
+    /**
+     * @description: 登录
+     */
     async login(
       params: LoginParams & {
         goHome?: boolean;
@@ -65,8 +92,13 @@ export const useUserStore = defineStore({
         return Promise.reject(error);
       }
     },
-    // login after
+    /**
+     * @description: 登录后
+     */
     async afterLoginAction(goHome?: boolean): Promise<GetUserInfoModel | null> {
+      if (!this.getToken) return null;
+      // 获取用户信息
+      // const userInfo = await this.getUserInfoAction();
       const permissionStore = usePermissionStore();
       if (!permissionStore.isDynamicAddedRoute) {
         const routes = await permissionStore.buildRoutesAction();
@@ -79,20 +111,37 @@ export const useUserStore = defineStore({
       goHome && (await router.replace(PageEnum.BASE_HOME));
       return null;
     },
+    /**
+     * @description: 获取用户信息
+     */
+    async getUserInfoAction(): Promise<UserInfo | null> {
+      if (!this.getToken) return null;
+      const userInfo = await getUserInfo();
+
+      const { roles = [] } = userInfo;
+      if (isArray(roles)) {
+        const roleList = roles.map((item) => item.value) as RoleEnum[];
+        this.setRoleList(roleList);
+      } else {
+        userInfo.roles = [];
+        this.setRoleList([]);
+      }
+      this.setUserInfo(userInfo);
+      return userInfo;
+    },
     // 登出
     async logout(goLogin = false) {
-      console.log("logout", goLogin);
-      // if (this.getToken) {
-      //   try {
-      //     await doLogout();
-      //   } catch {
-      //     console.log("注销Token失败");
-      //   }
-      // }
-      // this.setToken(undefined);
+      if (this.getToken) {
+        try {
+          await doLogout();
+        } catch {
+          console.log("注销Token失败");
+        }
+      }
+      this.setToken(undefined);
       // this.setSessionTimeout(false);
-      // this.setUserInfo(null);
-      // goLogin && router.push(PageEnum.BASE_LOGIN);
+      this.setUserInfo(null);
+      goLogin && router.push(PageEnum.BASE_LOGIN);
     },
   },
 });

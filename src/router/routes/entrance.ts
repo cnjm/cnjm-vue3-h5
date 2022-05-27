@@ -9,7 +9,10 @@ export const entranceRoutes: AppRouteModule[] = [
     name: "Login",
     component: () => import("/@/views/entrance/login/index.vue"),
     meta: {
+      // 页面标题
       title: "登录",
+      // 忽略token校验
+      ignoreAuth: true,
     },
   },
   {
@@ -18,6 +21,7 @@ export const entranceRoutes: AppRouteModule[] = [
     component: () => import("/@/views/entrance/action/index.vue"),
     meta: {
       title: "活动",
+      ignoreAuth: true,
     },
   },
   {

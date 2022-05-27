@@ -6,13 +6,16 @@
   const tabbar = pageStore.tabbar;
   const route = useRoute();
   const router = useRouter();
-  const active = ref("home");
+  let activeValue = "home";
+  tabbar.forEach((item) => {
+    if (item.path === route.path) {
+      activeValue = item.name;
+    }
+  });
+  const active = ref(activeValue);
   const onClick = (tab: Tabbar) => {
     router.replace({ path: tab.path });
   };
-
-  console.log(route.path);
-  console.log("pageStore", import.meta.globEager("/src/assets/tabbar/*.png"));
 </script>
 
 <template>

@@ -1,9 +1,8 @@
 export interface UserInfo {
+  // 用户id
   userId: string | number;
-  username: string;
-  realName: string;
-  avatar: string;
-  desc?: string;
-  homePath?: string;
-  // roles: RoleInfo[];
+  // 用户名
+  userName: string;
+  // 角色列表
+  // roles?: RoleInfo[];
 }

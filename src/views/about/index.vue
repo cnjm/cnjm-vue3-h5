@@ -1,12 +1,18 @@
 <script setup lang="ts">
-  const meta = { a: 1 };
+  import { useUserStore } from "/@/store/modules/user";
 
-  console.log(meta);
-  console.log("关于");
+  const userStore = useUserStore();
+
+  async function handleLogout() {
+    await userStore.logout(true);
+  }
 </script>
 
 <template>
-  <div>关于</div>
+  <div>
+    <div>关于</div>
+    <van-button type="primary" @click="handleLogout">登出</van-button>
+  </div>
 </template>
 
 <style scoped></style>
