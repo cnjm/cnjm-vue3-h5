@@ -1,6 +1,6 @@
 # cnjm-h5
 
-基于 Vue 3 + Typescript + Vite
+基于 Vue3 + Typescript + Vite + vant
 
 ## 步骤
 
@@ -24,6 +24,20 @@ serve:staging
 ```
 npm run build
 ```
+
+## 完成进度
+
+- [x] husky & .eslintrc - 代码规范
+- [x] windicss & .prettierrc & postcss-px-to-viewport & styleImport - 样式相关
+- [x] vite-plugin-svg-icons 引入 svg - 辅助功能
+- [x] mock - 数据模拟
+- [x] store - 全局状态管理
+- [x] axios - http 请求
+- [x] router（路由权限 - 目前只支持校验 token）
+- [x] 登入登出（后续加入微信联登）
+- [x] 构建信息 - 关于页
+- [x] tabbar
+- [ ] 组件
 
 ## Git 贡献提交规范
 

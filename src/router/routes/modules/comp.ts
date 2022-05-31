@@ -17,6 +17,23 @@ const comp: AppRouteModule = {
       component: () => import("/@/views/comp/index.vue"),
       meta: {
         title: "组件",
+        showTabbar: true,
+      },
+    },
+    {
+      path: "toast",
+      name: "CompToast",
+      component: () => import("/@/views/comp/toast/index.vue"),
+      meta: {
+        title: "toast",
+      },
+    },
+    {
+      path: "message",
+      name: "CompMessage",
+      component: () => import("/@/views/comp/message/index.vue"),
+      meta: {
+        title: "message",
       },
     },
   ],

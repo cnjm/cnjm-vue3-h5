@@ -3,6 +3,10 @@ import "virtual:windi-base.css";
 import "virtual:windi-components.css";
 import "virtual:windi-utilities.css";
 // windi end
+
+// svg
+import "virtual:svg-icons-register"; // 引入svg注册脚本
+
 import { createApp } from "vue";
 import App from "./App.vue";
 import { setupVant } from "./plugins/vant";

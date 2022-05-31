@@ -1,7 +1,18 @@
-import { Image as VanImage, Tabbar, TabbarItem, Lazyload, Button, ConfigProvider } from "vant";
+import {
+  Image as VanImage,
+  Tabbar,
+  TabbarItem,
+  Lazyload,
+  Button,
+  Cell,
+  CellGroup,
+  Form,
+  Field,
+  ConfigProvider,
+} from "vant";
 import type { App } from "vue";
 // 全局注册
-const compList = [VanImage, Tabbar, TabbarItem, Button, ConfigProvider];
+const compList = [VanImage, Tabbar, TabbarItem, Button, Cell, CellGroup, Form, Field, ConfigProvider];
 
 // 注册
 export function setupVant(app: App<Element>) {

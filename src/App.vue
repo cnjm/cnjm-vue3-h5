@@ -1,7 +1,21 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  const themeVars = {
+    rateIconFullColor: "#07c160",
+    sliderBarHeight: "4px",
+    sliderButtonWidth: "20px",
+    sliderButtonHeight: "20px",
+    sliderActiveBackgroundColor: "#07c160",
+    buttonPrimaryBorderColor: "#07c160",
+    buttonPrimaryBackgroundColor: "#07c160",
+  };
+</script>
 
 <template>
-  <RouterView />
+  <van-config-provider :theme-vars="themeVars"><RouterView /></van-config-provider>
 </template>
 
-<style lang="less"></style>
+<style lang="less">
+  :root {
+    --van-button-primary-background-color: red;
+  }
+</style>

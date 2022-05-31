@@ -18,13 +18,10 @@ export function createPermissionGuard(router: Router) {
 
     if (whitePathList.includes(to.path as PageEnum)) {
       if (to.path === LOGIN_PATH && token) {
-        const isSessionTimeout = userStore.getSessionTimeout;
         try {
           await userStore.afterLoginAction();
-          if (!isSessionTimeout) {
-            next((to.query?.redirect as string) || "/");
-            return;
-          }
+          next((to.query?.redirect as string) || "/");
+          return;
         } catch {}
       }
       next();
@@ -76,7 +73,6 @@ export function createPermissionGuard(router: Router) {
 
     permissionStore.setDynamicAddedRoute(true);
 
-    console.log("-----", to.name);
     if (to.name === PAGE_NOT_FOUND_ROUTE.name) {
       // 动态添加路由后，此处应当重定向到fullPath，否则会加载404页面内容
       next({ path: to.fullPath, replace: true, query: to.query });

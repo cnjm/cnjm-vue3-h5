@@ -13,6 +13,7 @@ import { PageEnum } from "/@/enums/page.enum";
 import { usePermissionStore } from "./permission";
 import { doLogout, getUserInfo, loginApi } from "/@/api/system/user";
 import { isArray } from "/@/utils/internal/isType";
+import { useMessage } from "/@/hooks/web/useMessage";
 
 interface UserState {
   userInfo: Nullable<UserInfo>;
@@ -109,22 +110,15 @@ export const useUserStore = defineStore({
       // 获取用户信息
       const userInfo = await this.getUserInfoAction();
       const permissionStore = usePermissionStore();
-
-      const sessionTimeout = this.sessionTimeout;
-
-      if (sessionTimeout) {
-        this.setSessionTimeout(false);
-      } else {
-        if (!permissionStore.isDynamicAddedRoute) {
-          const routes = await permissionStore.buildRoutesAction();
-          routes.forEach((route) => {
-            router.addRoute(route as unknown as RouteRecordRaw);
-          });
-          router.addRoute(PAGE_NOT_FOUND_ROUTE as unknown as RouteRecordRaw);
-          permissionStore.setDynamicAddedRoute(true);
-        }
-        goHome && (await router.replace(PageEnum.BASE_HOME));
+      if (!permissionStore.isDynamicAddedRoute) {
+        const routes = await permissionStore.buildRoutesAction();
+        routes.forEach((route) => {
+          router.addRoute(route as unknown as RouteRecordRaw);
+        });
+        router.addRoute(PAGE_NOT_FOUND_ROUTE as unknown as RouteRecordRaw);
+        permissionStore.setDynamicAddedRoute(true);
       }
+      goHome && (await router.replace(PageEnum.BASE_HOME));
 
       return userInfo;
     },
@@ -156,9 +150,16 @@ export const useUserStore = defineStore({
         }
       }
       this.setToken(undefined);
-      this.setSessionTimeout(false);
       this.setUserInfo(null);
       goLogin && router.push(PageEnum.BASE_LOGIN);
+    },
+    // 登出确认弹窗
+    confirmLogout() {
+      const { createConfirm } = useMessage();
+      createConfirm({
+        title: "温馨提示",
+        message: "是否确认退出？",
+      });
     },
   },
 });

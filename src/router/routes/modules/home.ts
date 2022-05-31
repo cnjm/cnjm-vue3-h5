@@ -17,6 +17,7 @@ const home: AppRouteModule = {
       component: () => import("/@/views/home/index.vue"),
       meta: {
         title: "主页",
+        showTabbar: true,
       },
     },
   ],

@@ -17,6 +17,7 @@ const about: AppRouteModule = {
       component: () => import("/@/views/about/index.vue"),
       meta: {
         title: "关于",
+        showTabbar: true,
       },
     },
   ],

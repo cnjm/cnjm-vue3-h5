@@ -1,5 +1,7 @@
 <script setup lang="ts" name="layoutsEntrance">
+  // import { useRoute } from "vue-router";
   import TabBar from "./tabBar/index.vue";
+  // const route = useRoute();
 </script>
 
 <template>

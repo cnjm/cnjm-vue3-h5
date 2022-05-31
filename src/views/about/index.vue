@@ -1,19 +1,17 @@
 <script setup lang="ts">
+  import SvgIcon from "/@/components/icon/index";
   import { useUserStore } from "/@/store/modules/user";
 
   const userStore = useUserStore();
 
   async function handleLogout() {
-    await userStore.logout(true);
+    await userStore.confirmLogout();
   }
 </script>
 
 <template>
-  <div>
-    <van-config-provider
-      ><div class="w-xs">关于</div>
-      <van-button type="primary" @click="handleLogout">登出</van-button>
-    </van-config-provider>
+  <div class="w-routine">
+    <SvgIcon name="logout" @click="handleLogout" />
   </div>
 </template>
 
