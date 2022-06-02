@@ -4,7 +4,7 @@
 
 <template>
   <div class="min-h-screen bg-[#f9f9f9]">
-    <van-cell-group inset title="反馈组件">
+    <van-cell-group inset title="反馈组件" v-for="item in 10" :key="item">
       <van-cell title="Message" is-link to="message" />
       <van-cell title="Toast" is-link to="toast" />
     </van-cell-group>

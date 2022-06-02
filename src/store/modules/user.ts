@@ -159,6 +159,8 @@ export const useUserStore = defineStore({
       createConfirm({
         title: "温馨提示",
         message: "是否确认退出？",
+      }).then(() => {
+        this.logout(true);
       });
     },
   },
