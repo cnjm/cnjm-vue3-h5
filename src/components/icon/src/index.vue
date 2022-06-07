@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { CSSProperties } from "vue";
+  // import type { CSSProperties } from "vue";
   import { computed, toRefs } from "vue";
 
   const props = defineProps({
@@ -21,21 +21,19 @@
     },
   });
   const { color } = toRefs(props);
-  console.log(props);
+
   const symbolId = computed(() => `#${props.prefix}-${props.name}`);
-  const getStyle = computed((): CSSProperties => {
+  const getStyle = computed((): String => {
     const { size } = props;
-    let s = `${size}`;
-    s = `${s.replace("px", "")}px`;
-    return {
-      width: s,
-      height: s,
-    };
+    const s = `${size}`;
+    const w = `w-[${s.replace("px", "")}px]`;
+    const h = `h-[${s.replace("px", "")}px]`;
+    return `${w} ${h}`;
   });
 </script>
 
 <template>
-  <svg aria-hidden="true" class="svg-icon" :style="getStyle">
+  <svg aria-hidden="true" :class="`svg-icon ${getStyle}`">
     <use :xlink:href="symbolId" :fill="color" />
   </svg>
 </template>

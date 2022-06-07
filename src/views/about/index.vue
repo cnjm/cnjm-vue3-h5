@@ -11,7 +11,7 @@
 
 <template>
   <div class="w-routine">
-    <SvgIcon name="logout" @click="handleLogout" />
+    <SvgIcon name="logout" @click="handleLogout" :size="48" />
   </div>
 </template>
 
