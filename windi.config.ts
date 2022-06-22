@@ -1,10 +1,18 @@
 import { defineConfig } from "vite-plugin-windicss";
 
+// function range(size: number, startAt = 1) {
+//   return Array.from(Array(size).keys()).map((i) => i + startAt);
+// }
+
 export default defineConfig({
   attributify: {
     prefix: "w:",
   },
   alias: {},
+  safelist: [
+    // range(48).map((i) => `w-${i}`), // w-1 to w-48
+    // range(10).map((i) => `mt-${i}`), // mt-1 to mt-10
+  ],
   // 根据设计稿等项目需要自行定制
   // https://windicss.org/utilities/general/colors.html
   theme: {
@@ -86,6 +94,7 @@ export default defineConfig({
       xl: "48px",
     },
     margin: {
+      auto: "0 auto 0",
       sm: "8px",
       md: "16px",
       lg: "24px",

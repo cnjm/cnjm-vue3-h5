@@ -8,7 +8,7 @@ import { getLocalCache, setLocalCache } from "/@/utils/cache";
 import { TOKEN_KEY, USER_INFO_KEY, USER_ROLES_KEY } from "/@/enums/cache.enum";
 import { router } from "/@/router";
 import { PAGE_NOT_FOUND_ROUTE } from "/@/router/routes/error";
-import { RouteRecordRaw } from "vue-router";
+import { RouteRecordRaw, useRoute } from "vue-router";
 import { PageEnum } from "/@/enums/page.enum";
 import { usePermissionStore } from "./permission";
 import { doLogout, getUserInfo, loginApi } from "/@/api/system/user";
@@ -22,6 +22,7 @@ interface UserState {
   sessionTimeout: boolean;
   lastUpdateTime: number;
 }
+const route = useRoute();
 
 export const useUserStore = defineStore({
   id: "user",
@@ -118,6 +119,7 @@ export const useUserStore = defineStore({
         router.addRoute(PAGE_NOT_FOUND_ROUTE as unknown as RouteRecordRaw);
         permissionStore.setDynamicAddedRoute(true);
       }
+      console.log(route);
       goHome && (await router.replace(PageEnum.BASE_HOME));
 
       return userInfo;

@@ -9,10 +9,13 @@ import {
   Form,
   Field,
   ConfigProvider,
+  Col,
+  Row,
+  Tag,
 } from "vant";
 import type { App } from "vue";
 // 全局注册
-const compList = [VanImage, Tabbar, TabbarItem, Button, Cell, CellGroup, Form, Field, ConfigProvider];
+const compList = [VanImage, Tabbar, TabbarItem, Button, Cell, CellGroup, Form, Field, ConfigProvider, Col, Row, Tag];
 
 // 注册
 export function setupVant(app: App<Element>) {
