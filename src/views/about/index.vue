@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" meta="123">
   import SvgIcon from "/@/components/icon/index";
   import { useUserStore } from "/@/store/modules/user";
 
@@ -6,7 +6,6 @@
   const { pkg, lastBuildTime } = __APP_INFO__;
   const { dependencies, devDependencies } = pkg;
   const infos = { dependencies, devDependencies };
-  console.log(pkg, lastBuildTime);
 
   function handleLogout() {
     userStore.confirmLogout();
@@ -29,16 +28,6 @@
         </div>
       </div>
     </div>
-    <!-- devDependencies -->
-    <!-- <div class="mb-lg">
-      <div>devDependencies:</div>
-      <van-row justify="space-between" v-for="(value, key) in pkg.devDependencies" :key="key">
-        <van-col span="18">{{ key }} </van-col>
-        <van-col span="6"
-          ><van-tag>{{ value }}</van-tag>
-        </van-col>
-      </van-row>
-    </div> -->
   </div>
 </template>
 

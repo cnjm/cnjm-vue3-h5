@@ -1,12 +1,11 @@
 <script setup lang="ts">
-  console.log("组件");
+  import { comList } from "./constant/config";
 </script>
 
 <template>
   <div class="min-h-screen bg-[#f9f9f9]">
-    <van-cell-group inset title="反馈组件" v-for="item in 10" :key="item">
-      <van-cell title="Message" is-link to="message" />
-      <van-cell title="Toast" is-link to="toast" />
+    <van-cell-group inset :title="item.title" v-for="(item, index) in comList" :key="index">
+      <van-cell v-for="page in item.children" :key="page.path" :title="page.title" is-link to="message" />
     </van-cell-group>
   </div>
 </template>

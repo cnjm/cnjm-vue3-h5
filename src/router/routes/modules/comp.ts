@@ -21,22 +21,22 @@ const comp: AppRouteModule = {
         keepAlive: true,
       },
     },
-    {
-      path: "toast",
-      name: "CompToast",
-      component: () => import("/@/views/comp/toast/index.vue"),
-      meta: {
-        title: "toast",
-      },
-    },
-    {
-      path: "message",
-      name: "CompMessage",
-      component: () => import("/@/views/comp/message/index.vue"),
-      meta: {
-        title: "message",
-      },
-    },
+    // {
+    //   path: "toast",
+    //   name: "CompToast",
+    //   component: () => import("/@/views/comp/toast/index.vue"),
+    //   meta: {
+    //     title: "toast",
+    //   },
+    // },
+    // {
+    //   path: "message",
+    //   name: "CompMessage",
+    //   component: () => import("/@/views/comp/message/index.vue"),
+    //   meta: {
+    //     title: "message",
+    //   },
+    // },
   ],
 };
 

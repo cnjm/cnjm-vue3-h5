@@ -7,7 +7,6 @@ import { configSvgIconsPlugin } from "./svgSprite";
 import { configViteMockServePlugin } from "./viteMockServe";
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
-  // console.log(viteEnv, isBuild);
   const { VITE_USE_MOCK } = viteEnv;
 
   const vitePlugins: (Plugin | Plugin[])[] = [
