@@ -6,6 +6,7 @@
     "bootstrap": "pnpm install",
     "clean:cache": "rimraf node_modules/.cache/ && rimraf node_modules/.vite",
     "clean:lib": "rimraf node_modules",
+    "clean:dist": "rimraf dist",
     "serve:dev": "vite",
     "serve:staging": "vite --mode staging",
     "build:staging": "vue-tsc --noEmit && vite build  --mode staging",

@@ -10,6 +10,7 @@ import "virtual:svg-icons-register"; // 引入svg注册脚本
 import { createApp } from "vue";
 import App from "./App.vue";
 import { setupVant } from "./plugins/vant";
+import { setupDirective } from "./plugins/directive";
 import { router, setupRouter } from "/@/router";
 import { setupRouterGuard } from "./router/guard";
 import { setupStore } from "./store";
@@ -28,6 +29,9 @@ const bootstrap = async () => {
 
   // vant 常用的全局组件注册
   setupVant(app);
+
+  // 全局的自定义指令注册
+  setupDirective(app);
 
   // other
 

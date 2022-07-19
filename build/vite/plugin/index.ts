@@ -7,9 +7,8 @@ import { configSvgIconsPlugin } from "./svgSprite";
 import { configViteMockServePlugin } from "./viteMockServe";
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
-  console.log(viteEnv, isBuild);
-  // const { VITE_USE_IMAGEMIN, VITE_USE_MOCK, VITE_LEGACY, VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE } =
-  //   viteEnv;
+  // console.log(viteEnv, isBuild);
+  const { VITE_USE_MOCK } = viteEnv;
 
   const vitePlugins: (Plugin | Plugin[])[] = [
     vue(),
@@ -29,7 +28,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   vitePlugins.push(configStyleImportPlugin());
 
   // mock
-  vitePlugins.push(configViteMockServePlugin(isBuild));
+  VITE_USE_MOCK && vitePlugins.push(configViteMockServePlugin(isBuild, VITE_USE_MOCK));
 
   return vitePlugins;
 }
