@@ -4,7 +4,6 @@ type HTMLElementDeb = HTMLElement & { timer: null | NodeJS.Timeout; handler: (e:
 export const debounceDirective = {
   install(app: App<Element>) {
     app.directive("debounce", {
-      // 元素插入父 DOM 后调用
       mounted(el: HTMLElementDeb, binding: any) {
         const { fun, event, delay = 200 } = binding.value;
         if (!isFunction(fun) || !event) return;
@@ -21,7 +20,6 @@ export const debounceDirective = {
         };
         el.addEventListener(event, el.handler);
       },
-      // 被卸载之前调用 新增
       beforeUnmount(el: HTMLElementDeb, binding: any) {
         if (el.timer) {
           clearTimeout(el.timer);
