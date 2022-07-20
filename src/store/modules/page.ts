@@ -10,14 +10,14 @@ export interface Tabbar {
   title: string;
 }
 interface PageState {
-  count: number;
+  pageTitle: string;
   tabbar: Tabbar[];
 }
 
 export const usePageStore = defineStore({
   id: "page",
   state: (): PageState => ({
-    count: 2,
+    pageTitle: "",
     // 底部导航
     tabbar: [
       {
@@ -43,19 +43,11 @@ export const usePageStore = defineStore({
       },
     ],
   }),
-  getters: {
-    getPageCount(): number {
-      return this.count * 2;
-    },
-  },
+  getters: {},
   actions: {
-    updatePageCount(count: number): void {
-      this.count = count;
-    },
-    async updatePageCountAsync(count: number): Promise<void> {
-      setTimeout(() => {
-        this.count = count;
-      }, 2000);
+    // g更改标题
+    updatePageTitle(title: string): void {
+      this.pageTitle = title;
     },
   },
 });

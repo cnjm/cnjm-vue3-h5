@@ -1,8 +1,12 @@
 <script setup lang="ts">
-  console.log("首页");
+  import { setPageTitle } from "/@/hooks/web/usePageTitle";
+
   const a = "666";
+  // const pageTitle = useTitle();
+  // pageTitle.value = "新的";
   function getData(e: Event) {
     console.log("hh", a, e);
+    setPageTitle("新的");
   }
 </script>
 

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import { usePageTitle } from "/@/hooks/web/usePageTitle";
+  usePageTitle();
   const themeVars = {
     rateIconFullColor: "#07c160",
     sliderBarHeight: "4px",

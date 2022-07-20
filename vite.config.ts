@@ -53,13 +53,13 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           // 用于输出静态资源的命名，[ext]表示文件扩展名
           assetFileNames: "[ext]/[name].[hash].[ext]",
           // 用于命名代码拆分时创建的共享块的输出命名
-          chunkFileNames: "js/[name].[hash].js",
+          // chunkFileNames: "js/[name].[hash].js",
           // 拆分js到模块文件夹
-          // chunkFileNames: (chunkInfo) => {
-          //   const facadeModuleId = chunkInfo.facadeModuleId ? chunkInfo.facadeModuleId.split("/") : [];
-          //   const fileName = facadeModuleId[facadeModuleId.length - 2] || "[name]";
-          //   return `js/${fileName}/[name].[hash].js`;
-          // },
+          chunkFileNames: (chunkInfo) => {
+            const facadeModuleId = chunkInfo.facadeModuleId ? chunkInfo.facadeModuleId.split("/") : [];
+            const fileName = facadeModuleId[facadeModuleId.length - 2] || "[name]";
+            return `js/${fileName}/[name].[hash].js`;
+          },
         },
       },
     },

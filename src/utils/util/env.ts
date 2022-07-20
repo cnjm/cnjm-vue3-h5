@@ -23,6 +23,7 @@ export function getAppEnvConfig() {
       `VITE_GLOB_APP_SHORT_NAME Variables can only be characters/underscores, please modify in the environment variables and re-running.`,
     );
   }
+  console.log(VITE_GLOB_APP_TITLE);
 
   return {
     VITE_GLOB_APP_TITLE,
