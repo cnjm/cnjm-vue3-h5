@@ -1,11 +1,11 @@
 import type { PluginOption } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueSetupExtend from "vite-plugin-vue-setup-extend";
-import windiCSS from "vite-plugin-windicss";
 import { configStyleImportPlugin } from "./styleImport";
 import { configSvgIconsPlugin } from "./svgSprite";
 import { configViteMockServePlugin } from "./viteMockServe";
 import { configHtmlPlugin } from "./html";
+import { configUnocssPlugin } from "./unocss";
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const { VITE_USE_MOCK } = viteEnv;
@@ -21,8 +21,8 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   // vite-plugin-html
   vitePlugins.push(configHtmlPlugin(viteEnv, isBuild));
 
-  // vite-plugin-windicss
-  vitePlugins.push(windiCSS());
+  // unocss https://uno.antfu.me/
+  vitePlugins.push(configUnocssPlugin());
 
   // svg
   vitePlugins.push(configSvgIconsPlugin(isBuild));

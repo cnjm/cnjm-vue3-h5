@@ -3,9 +3,9 @@
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#f9f9f9]">
+  <div class="min-h-screen bg-[#fafafa]">
     <van-cell-group inset :title="item.title" v-for="(item, index) in comList" :key="index">
-      <van-cell v-for="page in item.children" :key="page.path" :title="page.title" is-link to="message" />
+      <van-cell v-for="page in item.children" :key="page.path" :title="page.title" is-link :to="page.path" />
     </van-cell-group>
   </div>
 </template>

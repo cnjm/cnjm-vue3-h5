@@ -26,7 +26,7 @@ Object.keys(viewsFile).forEach((key) => {
     const children = {
       path: itemPath[1],
       name: mod.name,
-      component: () => viewsFileAsync[key],
+      component: viewsFileAsync[key],
       meta: mod.meta,
     };
     routeList.push(children);

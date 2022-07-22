@@ -28,7 +28,7 @@ npm run build
 ## 完成进度
 
 - [x] husky & .eslintrc - 代码规范
-- [x] windicss & .prettierrc & postcss-px-to-viewport & styleImport - 样式相关
+- [x] unocss(使用样式预算、属性模式预设) & .prettierrc & postcss-px-to-viewport & styleImport - 样式相关
 - [x] vite-plugin-svg-icons 引入 svg - 辅助功能
 - [x] mock - 数据模拟
 - [x] store - 全局状态管理
