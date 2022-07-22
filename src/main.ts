@@ -1,15 +1,24 @@
-// svg
+// 自定义的全局css
+import "/@/design/index.less";
 import "virtual:svg-icons-register"; // 引入svg注册脚本
 import "uno.css";
 import "virtual:unocss-devtools";
 import { createApp } from "vue";
 import App from "./App.vue";
 
-import { setupVant } from "./plugins/vant";
-import { setupDirective } from "./plugins/directive";
+// 引入vant UI组件库
+import { setupVant } from "/@/plugins/vant";
+// 自定义指令相关
+import { setupDirective } from "/@/plugins/directive";
+// 进度条控制
+import "/@/plugins/nprogress";
+
+// 路由相关
 import { router, setupRouter } from "/@/router";
-import { setupRouterGuard } from "./router/guard";
-import { setupStore } from "./store";
+// 路由守卫
+import { setupRouterGuard } from "/@/router/guard";
+// pinia状态管理
+import { setupStore } from "/@/store";
 
 const bootstrap = async () => {
   const app = createApp(App);

@@ -1,3 +1,11 @@
+┌───modules 模块
+├───├───page.ts 应用页面相关
+├───├───permission.ts 权限相关
+├───├───user.ts 用户相关
+└───index.ts 全局状态管理器 pinia
+
+## demo
+
 ```ts
 interface DemoState {
   pageTitle: string;

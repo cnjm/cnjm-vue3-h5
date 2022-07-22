@@ -1,8 +1,9 @@
 import type { Router, RouteRecordRaw } from "vue-router";
-import { PAGE_NOT_FOUND_ROUTE } from "../routes/error";
+import { PAGE_NOT_FOUND_ROUTE } from "/@/router/routes/error";
 import { PageEnum } from "/@/enums/page.enum";
 import { usePermissionStoreWithOut } from "/@/store/modules/permission";
 import { useUserStoreWithOut } from "/@/store/modules/user";
+import { startProgress, closeProgress } from "/@/plugins/nprogress";
 
 const LOGIN_PATH = PageEnum.BASE_LOGIN;
 
@@ -12,6 +13,7 @@ export function createPermissionGuard(router: Router) {
   const userStore = useUserStoreWithOut();
   const permissionStore = usePermissionStoreWithOut();
   router.beforeEach(async (to, from, next) => {
+    startProgress();
     // console.log(to, from);
 
     const token = userStore.getToken;
@@ -82,6 +84,13 @@ export function createPermissionGuard(router: Router) {
       const redirect = decodeURIComponent(redirectPath);
       const nextData = to.path === redirect ? { ...to, replace: true } : { path: redirect };
       next(nextData);
+    }
+  });
+
+  router.afterEach((to) => {
+    closeProgress();
+    // 进入登录页清空用户信息
+    if (to.path === PageEnum.BASE_LOGIN) {
     }
   });
 }
