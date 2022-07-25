@@ -1,8 +1,12 @@
 import { toRaw } from "vue";
 import { RoleEnum } from "/@/enums/role.enum";
 import { useUserStoreWithOut } from "/@/store/modules/user";
+import appSetting from "/@/settings/appSetting";
 const userStore = useUserStoreWithOut();
 export function getAuthStatus(roles: RoleEnum[]) {
+  if (appSetting.whetherToVerifyPermissions) {
+    return true;
+  }
   const roleList = toRaw(userStore.getRoleList) || [];
   // 没有设置角色则默认通过
   if (!roles || roles.length <= 0) return true;

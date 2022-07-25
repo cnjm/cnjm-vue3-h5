@@ -1,5 +1,6 @@
 // 应用配置
 export interface AppConfig {
+  whetherToVerifyPermissions: boolean;
   storagePrefix: string;
   defaultCacheTime: number;
 }
