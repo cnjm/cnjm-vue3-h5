@@ -50,7 +50,7 @@ Object.keys(modules).forEach((key) => {
   routeModuleList.push(...modList);
 });
 
-export const asyncRoutes = [PAGE_NOT_FOUND_ROUTE, NETWORK_ERROR_ROUTE, ...routeModuleList];
+export const asyncRoutes = routeModuleList;
 
 console.log(asyncRoutes);
 
@@ -65,4 +65,4 @@ export const RootRoute: AppRouteRecordRaw = {
 };
 
 // 基础路由（异常、无需token等页面）应为为白名单，不会鉴权
-export const basicRoutes = [RootRoute, ...entranceRoutes, PAGE_NOT_FOUND_ROUTE, NETWORK_ERROR_ROUTE];
+export const basicRoutes = [RootRoute, ...entranceRoutes, NETWORK_ERROR_ROUTE, PAGE_NOT_FOUND_ROUTE];

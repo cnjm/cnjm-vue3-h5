@@ -13,7 +13,7 @@
 <template>
   <div>
     <div v-debounce="{ fun: getData, event: 'click' }">1231</div>
-    <!-- <div v-auth="['s_admin', 'test']">权限</div> -->
+
     <div class="box">143123</div>
     <div>hhh</div>
   </div>

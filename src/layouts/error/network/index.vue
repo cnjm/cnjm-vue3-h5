@@ -1,9 +1,9 @@
 <script setup lang="ts">
-  import { Empty } from "vant";
+  console.log("额偶！网络出错啦");
 </script>
 
 <template>
-  <Empty image="network" description="描述文字" />
+  <van-empty image="network" description="额偶！网络出错啦" />
 </template>
 
 <style scoped></style>

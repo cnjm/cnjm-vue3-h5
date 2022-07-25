@@ -18,7 +18,6 @@ export class VAxios {
   private readonly options: CreateAxiosOptions;
 
   constructor(options: CreateAxiosOptions) {
-    console.log(options);
     this.options = options;
     this.axiosInstance = axios.create(options);
     this.setupInterceptors();

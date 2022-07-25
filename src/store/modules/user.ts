@@ -49,8 +49,7 @@ export const useUserStore = defineStore({
     },
     // 获取角色列表
     getRoleList(): RoleEnum[] {
-      // return this.roleList.length > 0 ? this.roleList : getAuthCache<RoleEnum[]>(ROLES_KEY);
-      return [RoleEnum.SUPER];
+      return this.roleList.length > 0 ? this.roleList : getLocalCache<RoleEnum[]>(USER_ROLES_KEY);
     },
     // 获取Session状态
     getSessionTimeout(): boolean {
@@ -110,6 +109,7 @@ export const useUserStore = defineStore({
       if (!this.getToken) return null;
       // 获取用户信息
       const userInfo = await this.getUserInfoAction();
+      console.log(userInfo);
       const permissionStore = usePermissionStore();
       if (!permissionStore.isDynamicAddedRoute) {
         const routes = await permissionStore.buildRoutesAction();

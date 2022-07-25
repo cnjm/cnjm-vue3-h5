@@ -21,10 +21,10 @@ export const PAGE_NOT_FOUND_ROUTE: AppRouteRecordRaw = {
   ],
 };
 
-// 网络错误
+// 网络错误 or other
 export const NETWORK_ERROR_ROUTE: AppRouteRecordRaw = {
   path: "/error",
-  name: "NetworkError",
+  name: "PageError",
   component: ERROR_LAYOUT,
   meta: {
     title: "网络出错啦！",

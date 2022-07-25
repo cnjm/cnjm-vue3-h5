@@ -1,14 +1,9 @@
 <script setup lang="ts">
-  console.log(11);
+  console.log("抱歉！页面出错啦");
 </script>
 
 <template>
-  <div class="box">页面出错啦</div>
-  <van-button type="primary">主要按钮</van-button>
+  <van-empty description="抱歉！页面出错啦！" />
 </template>
 
-<style scoped>
-  .box {
-    width: 700px;
-  }
-</style>
+<style scoped></style>

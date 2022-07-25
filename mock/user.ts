@@ -20,6 +20,10 @@ export default [
         result: {
           userId: 1,
           userName: "微茫",
+          roles: [
+            { value: "s_admin", roleName: "超级管理员" },
+            { value: "test", roleName: "测试角色" },
+          ],
         },
         message: "获取用户信息成功",
       };

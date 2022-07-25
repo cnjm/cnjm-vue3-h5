@@ -14,7 +14,8 @@ export function setPageTitle(tTitle: string) {
 }
 
 export function usePageTitle() {
-  const { currentRoute } = useRouter();
+  const router = useRouter();
+  const { currentRoute } = router;
 
   watch(
     [() => currentRoute.value.path],
