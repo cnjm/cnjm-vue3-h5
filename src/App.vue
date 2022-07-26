@@ -2,6 +2,8 @@
   import { usePageTitle } from "/@/hooks/web/usePageTitle";
   usePageTitle();
   const themeVars = {
+    // tab的底部横线颜色
+    tabsBottomBarColor: "rgb(33, 166, 117)",
     rateIconFullColor: "#07c160",
     sliderBarHeight: "4px",
     sliderButtonWidth: "20px",

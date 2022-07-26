@@ -13,6 +13,9 @@ import {
   Row,
   Tag,
   Empty,
+  Tab,
+  Tabs,
+  Divider,
 } from "vant";
 import type { App } from "vue";
 // 全局注册
@@ -30,6 +33,9 @@ const compList = [
   Row,
   Tag,
   Empty,
+  Tab,
+  Tabs,
+  Divider,
 ];
 
 // 注册

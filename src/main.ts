@@ -3,6 +3,7 @@ import "/@/design/index.less";
 import "virtual:svg-icons-register"; // 引入svg注册脚本
 import "uno.css";
 import "virtual:unocss-devtools";
+
 import { createApp } from "vue";
 import App from "./App.vue";
 
@@ -19,6 +20,8 @@ import { router, setupRouter } from "/@/router";
 import { setupRouterGuard } from "/@/router/guard";
 // pinia状态管理
 import { setupStore } from "/@/store";
+// 高亮代码组件
+import { setupHljsVue } from "/@/plugins/hljsVue";
 
 const bootstrap = async () => {
   const app = createApp(App);
@@ -37,6 +40,9 @@ const bootstrap = async () => {
 
   // 全局的自定义指令注册
   setupDirective(app);
+
+  // 高亮代码组件
+  setupHljsVue(app);
 
   // other
 
