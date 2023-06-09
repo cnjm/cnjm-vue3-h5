@@ -6,9 +6,10 @@ import "virtual:unocss-devtools";
 
 import { createApp } from "vue";
 import App from "./App.vue";
+import Custom from "./views/demo/custom/index.vue";
 
-// 引入vant UI组件库
-import { setupVant } from "/@/plugins/vant";
+console.log(Custom);
+
 // 自定义指令相关
 import { setupDirective } from "/@/plugins/directive";
 // 进度条控制
@@ -34,9 +35,6 @@ const bootstrap = async () => {
 
   // router guard
   setupRouterGuard(router);
-
-  // vant 常用的全局组件注册
-  setupVant(app);
 
   // 全局的自定义指令注册
   setupDirective(app);

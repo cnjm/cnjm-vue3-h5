@@ -15,6 +15,8 @@ const modules = import.meta.globEager("./modules/**/*.ts");
 const viewsFile = import.meta.globEager("/src/views/demo/**/index.vue");
 const viewsFileAsync = import.meta.glob("/src/views/demo/**/index.vue");
 
+console.log(viewsFile, viewsFileAsync);
+
 // 无需配置路由配置文件，直接获取指定文件夹下的index文件，使用其导出的meat信息，组成路由配置
 // 此处以demo文件夹下为例,并且不考虑继续嵌套，需要可自行实现
 const routeList: AppRouteRecordRaw[] = [];

@@ -1,8 +1,6 @@
-<script lang="ts">
-  export default { name: "DemoCustomPage", meta: { title: "自定义指令", roles: [] } };
+<script setup lang="ts">
+  defineOptions({ inheritAttrs: false, name: "Custom", title: "用户", meta: { a: 11 } });
 </script>
-
-<script setup lang="ts"></script>
 
 <template>
   <div>

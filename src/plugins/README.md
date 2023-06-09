@@ -1,6 +1,6 @@
 ┌───directive 自定义的指令，可以在 main 中控制需要需要、或者 directive/index.ts 中控制启用哪些
 ├───nprogress 页面进度条,可以在 design/index.less 中修改样式或者在 settings/projectSetting.ts 中控制开关，也可以在 main 中直接干掉
-└───vant 按需引入的 vant UI 组件
+└───vant unplugin-vue-components 自动按需引入
 
 自定义指令示例
 

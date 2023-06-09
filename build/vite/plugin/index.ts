@@ -1,7 +1,9 @@
 import type { PluginOption } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueSetupExtend from "vite-plugin-vue-setup-extend";
-import { configStyleImportPlugin } from "./styleImport";
+import Components from "unplugin-vue-components/vite";
+import { VantResolver } from "unplugin-vue-components/resolvers";
+// import { configStyleImportPlugin } from "./styleImport";
 import { configSvgIconsPlugin } from "./svgSprite";
 import { configViteMockServePlugin } from "./viteMockServe";
 import { configHtmlPlugin } from "./html";
@@ -12,6 +14,9 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 
   const vitePlugins: (PluginOption | PluginOption[])[] = [
     vue(),
+    Components({
+      resolvers: [VantResolver()],
+    }),
     // use vueJsx
     // vueJsx(),
     // https://www.npmjs.com/package/vite-plugin-vue-setup-extend
@@ -28,7 +33,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   vitePlugins.push(configSvgIconsPlugin(isBuild));
 
   // style import
-  vitePlugins.push(configStyleImportPlugin());
+  // vitePlugins.push(configStyleImportPlugin());
 
   // mock
   VITE_USE_MOCK && vitePlugins.push(configViteMockServePlugin(isBuild, VITE_USE_MOCK));

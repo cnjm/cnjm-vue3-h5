@@ -1,9 +1,11 @@
-import type { DialogOptions } from "vant";
-import { Dialog } from "vant";
+import { DialogOptions, showDialog } from "vant";
+import "vant/es/dialog/style";
+// import { showDialog } from "vant";
+// import "vant/lib/dialog/style";
 
 function createConfirm(options: DialogOptions): Promise<unknown> {
   const opt: DialogOptions = { messageAlign: "left", ...options };
-  return Dialog.confirm(opt) as unknown as Promise<unknown>;
+  return showDialog(opt) as unknown as Promise<unknown>;
 }
 
 /**

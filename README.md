@@ -1,6 +1,6 @@
 # cnjm-h5
 
-基于 Vue3 + Typescript + Vite + vant
+基于 Vue3.3 + Typescript + Vite + vant4
 
 ## 步骤
 
