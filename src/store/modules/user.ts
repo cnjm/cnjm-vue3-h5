@@ -1,4 +1,5 @@
 import type { UserInfo } from "/#/store";
+import type { RouteRecordRaw } from "vue-router";
 import { store } from "/@/store";
 import { defineStore } from "pinia";
 import { RoleEnum } from "/@/enums/role.enum";
@@ -8,7 +9,6 @@ import { getLocalCache, setLocalCache } from "/@/utils/cache";
 import { TOKEN_KEY, USER_INFO_KEY, USER_ROLES_KEY } from "/@/enums/cache.enum";
 import { router } from "/@/router";
 import { PAGE_NOT_FOUND_ROUTE } from "/@/router/routes/error";
-import { RouteRecordRaw } from "vue-router";
 import { PageEnum } from "/@/enums/page.enum";
 import { usePermissionStore } from "./permission";
 import { doLogout, getUserInfo, loginApi } from "/@/api/system/user";
@@ -108,7 +108,7 @@ export const useUserStore = defineStore({
       if (!this.getToken) return null;
       // 获取用户信息
       const userInfo = await this.getUserInfoAction();
-      console.log(userInfo);
+
       const permissionStore = usePermissionStore();
       if (!permissionStore.isDynamicAddedRoute) {
         const routes = await permissionStore.buildRoutesAction();

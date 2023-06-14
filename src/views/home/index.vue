@@ -14,7 +14,7 @@
   <div>
     <div v-debounce="{ fun: getData, event: 'click' }">1231</div>
 
-    <div class="box">143123</div>
+    <div class="box">5555</div>
     <div>hhh</div>
   </div>
 </template>

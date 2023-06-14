@@ -3,9 +3,9 @@ import { ErrorMessageMode } from "/#/axios";
 import { defHttp } from "/@/utils/axios/index";
 
 enum Api {
-  Login = "/user/login",
-  GetUserInfo = "/user/getUserInfo",
-  Logout = "/user/logout",
+  Login = "/mock/user/login",
+  GetUserInfo = "/mock/user/getUserInfo",
+  Logout = "/mock/user/logout",
 }
 
 /**
@@ -24,5 +24,5 @@ export const getUserInfo = () => {
  * @description: 用户登出
  */
 export const doLogout = () => {
-  return defHttp.get({ url: Api.Logout });
+  return defHttp.get({ url: Api.Logout }, {});
 };

@@ -12,8 +12,7 @@ import { isString } from "/@/utils/internal/isType";
 import { setObjToUrlParams, deepMerge } from "/@/utils/util";
 import { joinTimestamp, formatRequestDate } from "./helper";
 import { useUserStoreWithOut } from "/@/store/modules/user";
-const globSetting = useGlobSetting();
-const urlPrefix = globSetting.urlPrefix;
+const { urlPrefix, apiUrl } = useGlobSetting();
 
 /**
  * @description: 数据处理，方便区分多种处理方式
@@ -78,6 +77,7 @@ const transform: AxiosTransform = {
   // 请求之前处理config
   beforeRequestHook: (config, options) => {
     const { apiUrl, joinPrefix, joinParamsToUrl, formatDate, joinTime = true, urlPrefix } = options;
+    // 添加api前缀
     if (joinPrefix) {
       config.url = `${urlPrefix}${config.url}`;
     }
@@ -213,7 +213,7 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
           // 错误消息提示类型
           errorMessageMode: "message",
           // 接口地址
-          apiUrl: globSetting.apiUrl,
+          apiUrl,
           // 接口默认前缀拼接地址
           urlPrefix,
           //  是否加入时间戳

@@ -9,8 +9,9 @@
     sliderButtonWidth: "20px",
     sliderButtonHeight: "20px",
     sliderActiveBackgroundColor: "#07c160",
-    buttonPrimaryBorderColor: "#07c160",
-    buttonPrimaryBackgroundColor: "#07c160",
+    toastBackground: "rgba(0, 0, 0,0.7)",
+    // buttonPrimaryBorderColor: "#07c160",
+    // buttonPrimaryBackgroundColor: "#07c160",
   };
 </script>
 

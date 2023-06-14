@@ -2,8 +2,8 @@ import { toRaw } from "vue";
 import { RoleEnum } from "/@/enums/role.enum";
 import { useUserStoreWithOut } from "/@/store/modules/user";
 import appSetting from "/@/settings/appSetting";
-const userStore = useUserStoreWithOut();
 export function getAuthStatus(roles: RoleEnum[]) {
+  const userStore = useUserStoreWithOut();
   if (appSetting.whetherToVerifyPermissions) {
     return true;
   }

@@ -1,6 +1,8 @@
 <script setup lang="ts" name="layoutsEntrance">
   // import { useRoute } from "vue-router";
+  import { useRoute } from "vue-router";
   import TabBar from "./tabBar/index.vue";
+  const uRoute = useRoute();
   const includes = ["CompPage"];
 </script>
 
@@ -15,7 +17,7 @@
       </transition>
     </template>
   </RouterView>
-  <TabBar />
+  <TabBar v-if="uRoute.meta.showTabbar" />
 </template>
 
 <style scoped></style>

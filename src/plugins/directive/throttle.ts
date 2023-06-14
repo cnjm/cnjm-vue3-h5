@@ -5,7 +5,10 @@ type HTMLElementDeb = HTMLElement & { timer: null | NodeJS.Timeout; handler: (e:
 export default (app: App<Element>) => {
   app.directive("throttle", {
     mounted(el: HTMLElementDeb, binding: any) {
-      const { fun, event, delay = 500 } = binding.value;
+      const modifiers = Object.keys(binding.modifiers);
+      const delay = modifiers.length ? Number(modifiers[0]) : 200;
+      const fun = binding.value;
+      const event = binding.arg || "click";
       if (!isFunction(fun) || !event) return;
       el.timer = null;
       el.handler = function (e: Event): void {
@@ -18,11 +21,12 @@ export default (app: App<Element>) => {
       el.addEventListener(event, el.handler);
     },
     beforeUnmount(el: HTMLElementDeb, binding: any) {
+      const event = binding.arg || "click";
       if (el.timer) {
         clearTimeout(el.timer);
         el.timer = null;
       }
-      el.removeEventListener(binding.value.event, el.handler);
+      el.removeEventListener(event, el.handler);
     },
   });
 };

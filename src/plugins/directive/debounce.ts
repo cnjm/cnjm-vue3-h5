@@ -5,8 +5,11 @@ type HTMLElementDeb = HTMLElement & { timer: null | NodeJS.Timeout; handler: (e:
 export default (app: App<Element>) => {
   app.directive("debounce", {
     mounted(el: HTMLElementDeb, binding: any) {
-      const { fun, event, delay = 200 } = binding.value;
-      if (!isFunction(fun) || !event) return;
+      const modifiers = Object.keys(binding.modifiers);
+      const delay = modifiers.length ? Number(modifiers[0]) : 500;
+      const fun = binding.value;
+      const event = binding.arg || "click";
+      if (!isFunction(fun)) return;
       el.timer = null;
       el.handler = function (e: Event): void {
         if (el.timer) {
@@ -21,11 +24,12 @@ export default (app: App<Element>) => {
       el.addEventListener(event, el.handler);
     },
     beforeUnmount(el: HTMLElementDeb, binding: any) {
+      const event = binding.arg || "click";
       if (el.timer) {
         clearTimeout(el.timer);
         el.timer = null;
       }
-      el.removeEventListener(binding.value.event, el.handler);
+      el.removeEventListener(event, el.handler);
     },
   });
 };

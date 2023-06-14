@@ -1,4 +1,5 @@
 <script setup lang="ts" meta="123">
+  import { ref } from "vue";
   import SvgIcon from "/@/components/icon/index";
   import { useUserStore } from "/@/store/modules/user";
 
@@ -7,32 +8,25 @@
   const { dependencies, devDependencies } = pkg;
   const infos = { dependencies, devDependencies };
 
+  const active = ref(0);
+
   function handleLogout() {
     userStore.confirmLogout();
   }
 </script>
 
 <template>
-  <div class="w-routine m-auto pt-50px pr-25px pl-25px">
-    <div class="mb-lg flex justify-between">
-      <span class="text-tiny text-secondary">最后构建：{{ lastBuildTime }}</span>
-      <SvgIcon name="logout" @click="handleLogout" :size="48" />
+  <div class="w-routine m-auto">
+    <van-notice-bar mode="closeable">最后构建：{{ lastBuildTime }}</van-notice-bar>
+    <div class="mb-lg flex justify-end pt-50px pr-25px pl-25px">
+      <SvgIcon name="logout" @click="handleLogout" :size="36" />
     </div>
-    <!-- dependencies -->
-    <div class="mb-xl" v-for="(item, name) in infos" :key="name">
-      <div class="text-primary text-lg">{{ name }}:</div>
-      <div class="flex justify-between" v-for="(value, key) in item" :key="key">
-        <div class="text-base text-dark-800">{{ key }}</div>
-        <div class="text-dark-50">
-          {{ value }}
-        </div>
-      </div>
-    </div>
+    <van-tabs v-model:active="active">
+      <van-tab :title="name" v-for="(item, name) in infos" :key="name">
+        <van-cell :title="key" :value="value" v-for="(value, key) in item" :key="key" />
+      </van-tab>
+    </van-tabs>
   </div>
 </template>
 
-<style lang="less" scoped>
-  a {
-    font-size: 10px;
-  }
-</style>
+<style lang="less" scoped></style>

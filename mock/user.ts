@@ -1,7 +1,8 @@
 import { MockMethod } from "vite-plugin-mock";
+const baseUrl = "/api/mock/user";
 export default [
   {
-    url: "/api/user/login",
+    url: `${baseUrl}/login`,
     method: "post",
     response: () => {
       return {
@@ -12,7 +13,7 @@ export default [
     },
   },
   {
-    url: "/api/user/getUserInfo",
+    url: `${baseUrl}/getUserInfo`,
     method: "get",
     response: () => {
       return {
@@ -30,7 +31,7 @@ export default [
     },
   },
   {
-    url: "/api/user/logout",
+    url: `${baseUrl}/logout`,
     method: "get",
     response: () => {
       return {

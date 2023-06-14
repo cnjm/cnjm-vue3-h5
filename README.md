@@ -7,14 +7,14 @@
 1. 安装依赖
 
 ```
-npm run bootstrap
+pnpm run bootstrap
 ```
 
 2. 启动
 
 ```
 # 开发环境
-npm run serve:dev
+pnpm run serve:dev
 # 测试环境
 serve:staging
 ```
@@ -22,7 +22,7 @@ serve:staging
 3. 构建
 
 ```
-npm run build
+pnpm run build
 ```
 
 ## 完成进度
@@ -38,6 +38,36 @@ npm run build
 - [x] 构建信息 - 关于页
 - [x] tabbar
 - [ ] 组件
+
+## 项目说明
+
+### axios 请求
+
+### 关于权限
+
+### 请求 mock 的使用
+
+axios 所有的请求默认路径带了/api 前缀，如有必要在配置文件中修改，mock 中也带有/api 前缀，需同步修改，在需要 mock 的接口的路径中加入/mock，即为请求 mock 数据
+
+1. 例如期望请求/api/user/login
+
+2. 在 src/api 文件夹中只需要填写/user/login 会正常请求
+
+3. 而填写/mock/user/login，则会请求/api/mock/user/login 获取 mock 数据
+
+### 自定义指令的实现
+
+1. 按钮级别的权限指令 auth，权限拦截`hooks/web/useAuth`中同路由权限校验
+
+2. 防抖指令 debounce，默认 500 毫秒，使用同 throttle，详见 src\plugins\directive\debounce.ts
+
+3. 元素滚动到底部指令 scroll ，详见 src\plugins\directive\scroll.ts
+
+4. 元素点击节流指令 throttle，默认 click 事件，200 毫秒，可以这样使用 v-throttle:click.500="fun" 详见 src\plugins\directive\throttle.ts
+
+### 关于权限
+
+### 关于权限
 
 ## Git 贡献提交规范
 

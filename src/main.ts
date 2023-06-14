@@ -6,9 +6,6 @@ import "virtual:unocss-devtools";
 
 import { createApp } from "vue";
 import App from "./App.vue";
-import Custom from "./views/demo/custom/index.vue";
-
-console.log(Custom);
 
 // 自定义指令相关
 import { setupDirective } from "/@/plugins/directive";
@@ -27,14 +24,14 @@ import { setupHljsVue } from "/@/plugins/hljsVue";
 const bootstrap = async () => {
   const app = createApp(App);
 
-  // pinia store
-  setupStore(app);
-
   // router
   setupRouter(app);
 
   // router guard
   setupRouterGuard(router);
+
+  // pinia store
+  setupStore(app);
 
   // 全局的自定义指令注册
   setupDirective(app);
