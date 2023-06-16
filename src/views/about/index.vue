@@ -4,6 +4,7 @@
   import { useUserStore } from "/@/store/modules/user";
 
   const userStore = useUserStore();
+
   const { pkg, lastBuildTime } = __APP_INFO__;
   const { dependencies, devDependencies } = pkg;
   const infos = { dependencies, devDependencies };

@@ -50,4 +50,15 @@ export const usePageStore = defineStore({
       this.pageTitle = title;
     },
   },
+  persist: {
+    enabled: true,
+    strategies: [
+      {
+        key: "my_user",
+        // storage可自定义见 https://seb-l.github.io/pinia-plugin-persist/advanced/custom-storage.html
+        storage: localStorage,
+        paths: ["pageTitle"],
+      },
+    ],
+  },
 });

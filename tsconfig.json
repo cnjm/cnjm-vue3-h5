@@ -18,7 +18,7 @@
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
     "baseUrl": ".",
-    "types": ["vite/client"],
+    "types": ["vite/client", "pinia-plugin-persist"],
     "typeRoots": ["./node_modules/@types/", "./types"],
     "skipLibCheck": true,
     "noImplicitAny": false,

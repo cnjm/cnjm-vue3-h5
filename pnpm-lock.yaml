@@ -34,6 +34,7 @@ specifiers:
   mockjs: ^1.1.0
   nprogress: ^0.2.0
   pinia: ^2.1.3
+  pinia-plugin-persist: ^1.0.0
   postcss: ^8.4.14
   postcss-less: ^6.0.0
   prettier: ^2.6.2
@@ -63,6 +64,7 @@ dependencies:
   lodash-es: registry.npmmirror.com/lodash-es/4.17.21
   nprogress: registry.npmmirror.com/nprogress/0.2.0
   pinia: 2.1.3_typescript@4.6.3+vue@3.3.4
+  pinia-plugin-persist: 1.0.0_pinia@2.1.3+vue@3.3.4
   qs: registry.npmmirror.com/qs/6.10.3
   vant: 4.4.0_vue@3.3.4
   vue: 3.3.4
@@ -1085,12 +1087,6 @@ packages:
     dev: true
     optional: true
 
-  /graceful-fs/4.2.9:
-    resolution: {integrity: sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==}
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /has-ansi/2.0.0:
     resolution: {integrity: sha1-NPUEnOHs3ysGSa8+8k5F7TVBbZE=}
     engines: {node: '>=0.10.0'}
@@ -1326,7 +1322,7 @@ packages:
     dependencies:
       universalify: registry.npmmirror.com/universalify/2.0.0
     optionalDependencies:
-      graceful-fs: 4.2.9
+      graceful-fs: 4.2.11
     dev: true
 
   /jstransformer/1.0.0:
@@ -1519,6 +1515,21 @@ packages:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
     dev: true
+
+  /pinia-plugin-persist/1.0.0_pinia@2.1.3+vue@3.3.4:
+    resolution: {integrity: sha512-M4hBBd8fz/GgNmUPaaUsC29y1M09lqbXrMAHcusVoU8xlQi1TqgkWnnhvMikZwr7Le/hVyMx8KUcumGGrR6GVw==}
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0
+      pinia: ^2.0.0
+      vue: ^2.0.0 || >=3.0.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      pinia: 2.1.3_typescript@4.6.3+vue@3.3.4
+      vue: 3.3.4
+      vue-demi: 0.12.5_vue@3.3.4
+    dev: false
 
   /pinia/2.1.3_typescript@4.6.3+vue@3.3.4:
     resolution: {integrity: sha512-XNA/z/ye4P5rU1pieVmh0g/hSuDO98/a5UC8oSP0DNdvt6YtetJNHTrXwpwsQuflkGT34qKxAEcp7lSxXNjf/A==}
@@ -2186,6 +2197,21 @@ packages:
       vscode-pug-languageservice: 0.29.8
       vscode-typescript-languageservice: 0.29.8
     dev: true
+
+  /vue-demi/0.12.5_vue@3.3.4:
+    resolution: {integrity: sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: 3.3.4
+    dev: false
 
   /vue-demi/0.14.5_vue@3.3.4:
     resolution: {integrity: sha512-o9NUVpl/YlsGJ7t+xuqJKx8EBGf1quRhCiT6D/J0pfwmk9zUwYkC7yrF4SZCe6fETvSM3UNL2edcbYrSyc4QHA==}
@@ -5450,7 +5476,7 @@ packages:
     dependencies:
       universalify: registry.npmmirror.com/universalify/2.0.0
     optionalDependencies:
-      graceful-fs: 4.2.9
+      graceful-fs: 4.2.11
     dev: true
 
   registry.npmmirror.com/jsonparse/1.3.1:

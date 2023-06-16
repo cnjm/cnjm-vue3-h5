@@ -30,8 +30,8 @@ pnpm run build
 - [x] husky & .eslintrc - 代码规范
 - [x] unocss(使用样式预算、属性模式预设) & .prettierrc & postcss-px-to-viewport & styleImport - 样式相关
 - [x] vite-plugin-svg-icons 引入 svg - 辅助功能
-- [x] mock - 数据模拟
-- [x] store - 全局状态管理
+- [x] mock - 请求数据模拟
+- [x] pinia - store 全局状态管理
 - [x] axios - http 请求
 - [x] router（路由权限 - 目前只支持校验 token）
 - [x] 登入登出（后续加入微信联登）
@@ -42,6 +42,8 @@ pnpm run build
 ## 项目说明
 
 ### axios 请求
+
+src\utils\axios\index.ts 中通过 createAxios 得到 http 实例，可以通过不同配置创建
 
 ### 关于权限
 
@@ -64,6 +66,8 @@ axios 所有的请求默认路径带了/api 前缀，如有必要在配置文件
 3. 元素滚动到底部指令 scroll ，详见 src\plugins\directive\scroll.ts
 
 4. 元素点击节流指令 throttle，默认 click 事件，200 毫秒，可以这样使用 v-throttle:click.500="fun" 详见 src\plugins\directive\throttle.ts
+
+5. 双击指令 默认 600 毫秒，可以这样使用 v-longTouch:stop.500="fun" ，stop 可阻止 touchstart 默认事件 详见 src\plugins\directive\throttle.ts
 
 ### 关于权限
 

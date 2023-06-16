@@ -24,14 +24,14 @@ import { setupHljsVue } from "/@/plugins/hljsVue";
 const bootstrap = async () => {
   const app = createApp(App);
 
+  // pinia store
+  setupStore(app);
+
   // router
   setupRouter(app);
 
   // router guard
   setupRouterGuard(router);
-
-  // pinia store
-  setupStore(app);
 
   // 全局的自定义指令注册
   setupDirective(app);

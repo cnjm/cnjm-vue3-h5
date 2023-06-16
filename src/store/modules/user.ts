@@ -5,8 +5,8 @@ import { defineStore } from "pinia";
 import { RoleEnum } from "/@/enums/role.enum";
 import { GetUserInfoModel, LoginParams } from "/@/api/system/model/user.model";
 import { ErrorMessageMode } from "/#/axios";
-import { getLocalCache, setLocalCache } from "/@/utils/cache";
-import { TOKEN_KEY, USER_INFO_KEY, USER_ROLES_KEY } from "/@/enums/cache.enum";
+// import { getLocalCache, setLocalCache } from "/@/utils/cache";
+// import { TOKEN_KEY, USER_INFO_KEY, USER_ROLES_KEY } from "/@/enums/cache.enum";
 import { router } from "/@/router";
 import { PAGE_NOT_FOUND_ROUTE } from "/@/router/routes/error";
 import { PageEnum } from "/@/enums/page.enum";
@@ -39,16 +39,16 @@ export const useUserStore = defineStore({
   }),
   getters: {
     // 获取token
-    getToken(): string {
-      return this.token || getLocalCache<string>(TOKEN_KEY);
+    getToken(): string | undefined {
+      return this.token;
     },
     // 获取用户信息
-    getUserInfo(): UserInfo {
-      return this.userInfo || getLocalCache<UserInfo>(USER_INFO_KEY) || {};
+    getUserInfo(): Nullable<UserInfo> {
+      return this.userInfo;
     },
     // 获取角色列表
     getRoleList(): RoleEnum[] {
-      return this.roleList.length > 0 ? this.roleList : getLocalCache<RoleEnum[]>(USER_ROLES_KEY);
+      return this.roleList.length > 0 ? this.roleList : [];
     },
     // 获取Session状态
     getSessionTimeout(): boolean {
@@ -63,18 +63,15 @@ export const useUserStore = defineStore({
     // 设置token
     setToken(info: string | undefined) {
       this.token = info ? info : ""; // for null or undefined value
-      setLocalCache(TOKEN_KEY, info);
     },
     // 设置用户信息
     setUserInfo(info: UserInfo | null) {
       this.userInfo = info;
       this.lastUpdateTime = !info ? 0 : new Date().getTime();
-      setLocalCache(USER_INFO_KEY, info);
     },
     // 设置角色
     setRoleList(roleList: RoleEnum[]) {
       this.roleList = roleList;
-      setLocalCache(USER_ROLES_KEY, roleList);
     },
     // 设置登录状态
     setSessionTimeout(flag: boolean) {
@@ -155,8 +152,8 @@ export const useUserStore = defineStore({
     },
     // 登出确认弹窗
     confirmLogout() {
-      const { createConfirm } = useMessage();
-      createConfirm({
+      const { createDialog } = useMessage();
+      createDialog({
         title: "温馨提示",
         message: "是否确认退出？",
         showCancelButton: true,
@@ -168,6 +165,18 @@ export const useUserStore = defineStore({
           console.log("取消退出");
         });
     },
+  },
+  // 持久化存储插件配置persist 默认使用的是session
+  persist: {
+    enabled: true,
+    strategies: [
+      {
+        key: "user",
+        // storage可自定义见 https://seb-l.github.io/pinia-plugin-persist/advanced/custom-storage.html
+        storage: localStorage,
+        paths: ["token", "userInfo", "sessionTimeout"],
+      },
+    ],
   },
 });
 

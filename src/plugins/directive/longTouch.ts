@@ -13,9 +13,15 @@ export default (app: App<Element>) => {
       const modifiers = Object.keys(binding.modifiers);
       const delay = modifiers.length ? Number(modifiers[0]) : 600;
       const fun = binding.value;
+      const stop = binding.arg === "stop";
       if (!isFunction(fun)) return;
       el.timer = null;
       el.handlerTouchStart = function (e: Event): void {
+        if (stop) {
+          // e.stopPropagation();
+          e.preventDefault();
+        }
+
         if (el.timer) {
           clearTimeout(el.timer);
           el.timer = null;
