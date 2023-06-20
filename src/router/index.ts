@@ -2,6 +2,7 @@ import type { RouteRecordRaw } from "vue-router";
 import type { App } from "vue";
 
 import { createRouter, createWebHashHistory, createWebHistory } from "vue-router";
+// import { createRouter, createWebHashHistory, createWebHistory } from "vue-router/auto";
 import { basicRoutes } from "./routes";
 import { RouterModeEnum } from "/@/enums/router.enum";
 
@@ -19,7 +20,7 @@ export const router = createRouter({
   strict: true,
   scrollBehavior: () => ({ left: 0, top: 0 }),
 });
-
+console.log(router);
 // use router
 export function setupRouter(app: App<Element>) {
   app.use(router);

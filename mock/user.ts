@@ -24,6 +24,7 @@ export default [
           roles: [
             { value: "s_admin", roleName: "超级管理员" },
             { value: "test", roleName: "测试角色" },
+            { value: "test1", roleName: "测试角色1" },
           ],
         },
         message: "获取用户信息成功",

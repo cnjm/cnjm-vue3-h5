@@ -1,4 +1,4 @@
-<script setup lang="ts" name="layoutsEntrance">
+<script setup lang="ts">
   // import { useRoute } from "vue-router";
   import { useRoute } from "vue-router";
   import TabBar from "./tabBar/index.vue";

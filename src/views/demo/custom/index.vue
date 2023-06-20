@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" name="ResolverElement11">
   import { ref } from "vue";
   import { useMessage } from "/@/hooks/web/useMessage";
 

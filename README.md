@@ -45,7 +45,11 @@ pnpm run build
 
 src\utils\axios\index.ts 中通过 createAxios 得到 http 实例，可以通过不同配置创建
 
-### 关于权限
+### 自动导入说明
+
+1. 使用[unplugin-auto-import](https://github.com/antfu/unplugin-auto-import) 已经配置自动导入 vue、vue-router,更多自定义导入在 build\vite\plugin\autoImport.ts 可配置
+
+2. 使用[unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) 已经配置自动导入 vant,src\components\resolver 下的组件也会默认自动按需导入，目前只找到这种固定的文件结构的方式，具体要看这个[pr](https://github.com/antfu/unplugin-vue-components/pull/645)能不能过更多自定义导入在 build\vite\plugin\componentResolver.ts 可配置
 
 ### 请求 mock 的使用
 

@@ -65,6 +65,7 @@
     "rollup": "^2.70.1",
     "typescript": "^4.6.3",
     "unocss": "^0.44.5",
+    "unplugin-auto-import": "^0.16.4",
     "unplugin-vue-components": "^0.24.1",
     "vite": "^2.9.15",
     "vite-plugin-html": "^3.2.0",

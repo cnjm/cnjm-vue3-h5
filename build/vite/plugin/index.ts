@@ -1,22 +1,21 @@
 import type { PluginOption } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueSetupExtend from "vite-plugin-vue-setup-extend";
-import Components from "unplugin-vue-components/vite";
-import { VantResolver } from "unplugin-vue-components/resolvers";
 // import { configStyleImportPlugin } from "./styleImport";
 import { configSvgIconsPlugin } from "./svgSprite";
 import { configViteMockServePlugin } from "./viteMockServe";
 import { configHtmlPlugin } from "./html";
 import { configUnocssPlugin } from "./unocss";
+import { componentResolverPlugin } from "./componentResolver";
+import { autoImportPlugin } from "./autoImport";
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const { VITE_USE_MOCK } = viteEnv;
 
   const vitePlugins: (PluginOption | PluginOption[])[] = [
     vue(),
-    Components({
-      resolvers: [VantResolver()],
-    }),
+    componentResolverPlugin(),
+    autoImportPlugin(),
     // use vueJsx
     // vueJsx(),
     // https://www.npmjs.com/package/vite-plugin-vue-setup-extend

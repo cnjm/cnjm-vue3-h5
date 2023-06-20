@@ -38,7 +38,9 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "vite.config.ts"
+    "vite.config.ts",
+    "auto-imports.d.ts",
+    "components.d.ts"
   ],
   "exclude": ["node_modules", "dist", "**/*.js"]
 }
