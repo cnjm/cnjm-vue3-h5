@@ -1,6 +1,6 @@
 import type { PluginOption } from "vite";
 import vue from "@vitejs/plugin-vue";
-import vueSetupExtend from "vite-plugin-vue-setup-extend";
+// import vueSetupExtend from "vite-plugin-vue-setup-extend";
 // import { configStyleImportPlugin } from "./styleImport";
 import { configSvgIconsPlugin } from "./svgSprite";
 import { configViteMockServePlugin } from "./viteMockServe";
@@ -19,7 +19,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     // use vueJsx
     // vueJsx(),
     // https://www.npmjs.com/package/vite-plugin-vue-setup-extend
-    vueSetupExtend(),
+    // vueSetupExtend(),
   ];
 
   // vite-plugin-html

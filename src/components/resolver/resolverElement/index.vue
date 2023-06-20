@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  console.log(11);
+  console.log("11");
 </script>
 
 <template>
