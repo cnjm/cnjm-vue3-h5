@@ -8,6 +8,7 @@ import { configHtmlPlugin } from "./html";
 import { configUnocssPlugin } from "./unocss";
 import { componentResolverPlugin } from "./componentResolver";
 import { autoImportPlugin } from "./autoImport";
+import { autoVconsolePlugin } from "./autoVconsole";
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const { VITE_USE_MOCK } = viteEnv;
@@ -31,8 +32,8 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   // svg
   vitePlugins.push(configSvgIconsPlugin(isBuild));
 
-  // style import
-  // vitePlugins.push(configStyleImportPlugin());
+  // console
+  vitePlugins.push(autoVconsolePlugin(isBuild));
 
   // mock
   VITE_USE_MOCK && vitePlugins.push(configViteMockServePlugin(isBuild, VITE_USE_MOCK));
