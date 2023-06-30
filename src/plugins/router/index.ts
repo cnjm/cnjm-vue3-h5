@@ -1,4 +1,14 @@
+import { pick } from "lodash-es";
+import type {
+  RouteLocationPathRaw,
+  RouteLocationNamedRaw,
+  RouteLocationRaw,
+  Router,
+  LocationQueryRaw,
+} from "vue-router";
 import type { AppRouteRecordRaw } from "/@/router/types";
+import { usePageStoreWithOut } from "/@/store/modules/page";
+
 export function routerMetaAsync({
   viewsFile,
   viewsFileAsync,
@@ -14,7 +24,7 @@ export function routerMetaAsync({
     if (mod.meta && itemPath.length) {
       const children = {
         path: itemPath[1],
-        name: mod.name,
+        name: mod.meta?.name || mod.name,
         component: viewsFileAsync[key],
         meta: mod.meta,
       };
@@ -22,4 +32,47 @@ export function routerMetaAsync({
     }
   });
   return routeList;
+}
+
+function isRouteLocationPathRaw(to: RouteLocationRaw): to is RouteLocationPathRaw {
+  return (to as RouteLocationPathRaw).path !== undefined;
+}
+function isRouteLocationNamedRaw(to: RouteLocationRaw): to is RouteLocationNamedRaw {
+  return (to as RouteLocationNamedRaw).params !== undefined;
+}
+
+// 重新整合to
+function getRouterTo(router: Router, to: RouteLocationRaw) {
+  const pageStore = usePageStoreWithOut();
+  const currentRouteQuery = router.currentRoute.value.query || {};
+  const persistQuery = pick(currentRouteQuery, pageStore.persistQuery);
+  let query: LocationQueryRaw | undefined = {};
+
+  if (isRouteLocationPathRaw(to)) {
+    query = to.query;
+  } else if (isRouteLocationNamedRaw(to)) {
+    query = to.query;
+    if (to.name && to.params) {
+      pageStore.updateRouterParams(to.name, to.params);
+    }
+    delete to.params;
+  } else {
+    to = { path: to, query: {} } as RouteLocationPathRaw;
+  }
+  to.query = { ...persistQuery, ...query };
+  return to;
+}
+
+// 特殊处理router pageState.persistQuery 标明的参数字段每次跳转时，如果当前页面有，则一并带入
+// params 参数的变化 https://github.com/vuejs/router/blob/main/packages/router/CHANGELOG.md#414-2022-08-22
+export function overWriteRouter(router: Router) {
+  const originalPush = router.push;
+  const originalReplace = router.replace;
+
+  router.push = async function overWritePush(to: RouteLocationRaw) {
+    return originalPush.call(this, getRouterTo(router, to));
+  };
+  router.replace = async function overWritePush(to: RouteLocationRaw) {
+    return originalReplace.call(this, getRouterTo(router, to));
+  };
 }

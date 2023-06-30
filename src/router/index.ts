@@ -5,6 +5,9 @@ import { createRouter, createWebHashHistory, createWebHistory } from "vue-router
 // import { createRouter, createWebHashHistory, createWebHistory } from "vue-router/auto";
 import { basicRoutes } from "./routes";
 import { RouterModeEnum } from "/@/enums/router.enum";
+import { overWriteRouter } from "../plugins/router";
+// 路由守卫
+import { setupRouterGuard } from "/@/router/guard";
 
 // 决定路由模式
 const getHistoryMode = (path: string) => {
@@ -20,8 +23,12 @@ export const router = createRouter({
   strict: true,
   scrollBehavior: () => ({ left: 0, top: 0 }),
 });
-console.log(router);
+
 // use router
 export function setupRouter(app: App<Element>) {
   app.use(router);
+  // router guard
+  setupRouterGuard(router);
+  // over write
+  overWriteRouter(router);
 }

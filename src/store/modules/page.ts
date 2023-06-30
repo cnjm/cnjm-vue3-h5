@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
-
+import { store } from "/@/store";
 import { PageEnum } from "/@/enums/page.enum";
+import { RouteParamsRaw } from "vue-router";
 
 export interface Tabbar {
   name: string;
@@ -9,9 +10,18 @@ export interface Tabbar {
   activeImg: string;
   title: string;
 }
+
+interface ObjectOf {
+  [_: string | symbol]: RouteParamsRaw;
+}
 interface PageState {
+  // 页面标题
   pageTitle: string;
   tabbar: Tabbar[];
+  // 路由跳转时需要带上的字段，a=>b 只要a页面链接有就会带上
+  persistQuery: string[];
+  // 路由跳转时 params 参数的暂存，以此替代
+  routerParams: ObjectOf;
 }
 
 export const usePageStore = defineStore({
@@ -42,23 +52,30 @@ export const usePageStore = defineStore({
         title: "关于",
       },
     ],
+    persistQuery: ["enable_console"],
+    routerParams: {},
   }),
   getters: {},
   actions: {
-    // g更改标题
+    // 更改标题
     updatePageTitle(title: string): void {
       this.pageTitle = title;
+    },
+    updateRouterParams(name: string | symbol, params: RouteParamsRaw): void {
+      this.routerParams[name] = params;
     },
   },
   persist: {
     enabled: true,
     strategies: [
       {
-        key: "my_user",
-        // storage可自定义见 https://seb-l.github.io/pinia-plugin-persist/advanced/custom-storage.html
-        storage: localStorage,
-        paths: ["pageTitle"],
+        key: "page",
+        paths: ["routerParams"],
       },
     ],
   },
 });
+
+export function usePageStoreWithOut() {
+  return usePageStore(store);
+}

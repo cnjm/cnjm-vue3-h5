@@ -13,9 +13,8 @@ import { setupDirective } from "/@/plugins/directive";
 import "/@/plugins/nprogress";
 
 // 路由相关
-import { router, setupRouter } from "/@/router";
-// 路由守卫
-import { setupRouterGuard } from "/@/router/guard";
+import { setupRouter } from "/@/router";
+
 // pinia状态管理
 import { setupStore } from "/@/store";
 // 高亮代码组件
@@ -29,9 +28,6 @@ const bootstrap = async () => {
 
   // router
   setupRouter(app);
-
-  // router guard
-  setupRouterGuard(router);
 
   // 全局的自定义指令注册
   setupDirective(app);

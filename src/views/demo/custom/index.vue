@@ -1,10 +1,13 @@
-<script setup lang="ts" name="ResolverElement11">
-  import { ref } from "vue";
-  import { useMessage } from "/@/hooks/web/useMessage";
-
-  defineOptions({ inheritAttrs: false, name: "Custom", meta: { title: "自定义指令" } });
+<script setup lang="ts">
+  import { usePageStore } from "/@/store/modules/page";
+  import { router } from "/@/router";
+  defineOptions({ inheritAttrs: false, meta: { title: "自定义指令", name: "DemoCustomPage" } });
 
   const { createToast } = useMessage();
+
+  const pageStore = usePageStore();
+  console.log(pageStore.routerParams);
+  console.log(router.currentRoute.value);
 
   const throttleNum = ref(0);
   const debounceNum = ref(0);
@@ -17,6 +20,7 @@
     debounceNum.value++;
     console.log(event);
   }
+
   function onScroll(event: Event) {
     console.log(event);
     createToast({ message: "触底啦" });
