@@ -92,7 +92,7 @@ export function createPermissionGuard(router: Router) {
 
   router.afterEach((to) => {
     if (to.name && pageStore.routerParams[to.name]) {
-      to.params = pageStore.routerParams[to.name] as RouteParams;
+      to.params = { ...(pageStore.routerParams[to.name] as RouteParams) };
     }
     closeProgress();
     // 进入登录页清空用户信息

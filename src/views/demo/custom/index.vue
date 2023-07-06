@@ -1,13 +1,7 @@
 <script setup lang="ts">
-  import { usePageStore } from "/@/store/modules/page";
-  import { router } from "/@/router";
   defineOptions({ inheritAttrs: false, meta: { title: "自定义指令", name: "DemoCustomPage" } });
 
   const { createToast } = useMessage();
-
-  const pageStore = usePageStore();
-  console.log(pageStore.routerParams);
-  console.log(router.currentRoute.value);
 
   const throttleNum = ref(0);
   const debounceNum = ref(0);

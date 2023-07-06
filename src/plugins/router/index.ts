@@ -38,7 +38,7 @@ function isRouteLocationPathRaw(to: RouteLocationRaw): to is RouteLocationPathRa
   return (to as RouteLocationPathRaw).path !== undefined;
 }
 function isRouteLocationNamedRaw(to: RouteLocationRaw): to is RouteLocationNamedRaw {
-  return (to as RouteLocationNamedRaw).params !== undefined;
+  return (to as RouteLocationNamedRaw).name !== undefined;
 }
 
 // 重新整合to
