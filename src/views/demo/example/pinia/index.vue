@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  defineOptions({ inheritAttrs: false, name: "DemoPiniaPage", meta: { title: "pinia" } });
+  defineOptions({ name: "DemoPiniaPage", inheritAttrs: false, meta: { title: "pinia" } });
 </script>
 
 <template>

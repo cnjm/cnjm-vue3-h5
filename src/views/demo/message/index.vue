@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { useMessage } from "/@/hooks/web/useMessage";
 
-  defineOptions({ inheritAttrs: false, name: "DemoMessagePage", meta: { title: "信息反馈" } });
+  defineOptions({ name: "DemoMessagePage", inheritAttrs: false, meta: { title: "信息反馈" } });
 
   const { createToast, createDialog } = useMessage();
 

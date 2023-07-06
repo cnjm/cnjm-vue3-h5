@@ -56,7 +56,13 @@ module.exports = defineConfig({
       },
     ],
     "space-before-function-paren": "off",
-    "vue/name-property-casing": ["error", "PascalCase"], // vue/component-definition-name-casing 对组件定义名称强制使用特定的大小
+    // "vue/name-property-casing": ["error", "PascalCase"], // vue/component-definition-name-casing 对组件定义名称强制使用特定的大小
+    "vue/multi-word-component-names": [
+      "error",
+      {
+        ignores: ["index"], //需要忽略的组件名
+      },
+    ],
     "vue/attributes-order": "off",
     "vue/one-component-per-file": "off",
     "vue/html-closing-bracket-newline": "off",
