@@ -15,8 +15,11 @@ declare global {
   const defineStore: typeof import('pinia')['defineStore']
   const effectScope: typeof import('vue')['effectScope']
   const getActivePinia: typeof import('pinia')['getActivePinia']
+  const getAssetsImageUrl: typeof import('../../../../@/utils/file/image')['getAssetsImageUrl']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const getImageUrl: typeof import('../../../../@/utils/file/image')['getImageUrl']
+  const getRelativeImageUrl: typeof import('../../../../@/utils/file/image')['getRelativeImageUrl']
   const h: typeof import('vue')['h']
   const inject: typeof import('vue')['inject']
   const isProxy: typeof import('vue')['isProxy']
@@ -95,8 +98,10 @@ declare module 'vue' {
     readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
+    readonly getAssetsImageUrl: UnwrapRef<typeof import('../../../../@/utils/file/image')['getAssetsImageUrl']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly getRelativeImageUrl: UnwrapRef<typeof import('../../../../@/utils/file/image')['getRelativeImageUrl']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
@@ -169,8 +174,10 @@ declare module '@vue/runtime-core' {
     readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
+    readonly getAssetsImageUrl: UnwrapRef<typeof import('../../../../@/utils/file/image')['getAssetsImageUrl']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly getRelativeImageUrl: UnwrapRef<typeof import('../../../../@/utils/file/image')['getRelativeImageUrl']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>

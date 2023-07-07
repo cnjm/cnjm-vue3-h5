@@ -26,12 +26,13 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   const root = process.cwd();
   const env = loadEnv(mode, pathResolve("env"));
   const viteEnv = wrapperEnv(env);
-  const { VITE_PORT, VITE_PROXY } = viteEnv;
+  const { VITE_PORT, VITE_PROXY, VITE_PUBLIC_PATH } = viteEnv;
 
   // 是否构建
   const isBuild = command === "build";
 
   return {
+    base: VITE_PUBLIC_PATH,
     root,
     server: {
       // 监听到本地IP

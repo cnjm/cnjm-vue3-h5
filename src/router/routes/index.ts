@@ -20,7 +20,7 @@ Object.values(modules).forEach(async (value) => {
 // 特定文件夹下的index.vue 默认作为一个页面
 const viewsFile = import.meta.glob("/src/views/demo/**/index.vue", { eager: true });
 const viewsFileAsync = import.meta.glob("/src/views/demo/**/index.vue");
-console.log(viewsFile, viewsFileAsync);
+// console.log(viewsFile, viewsFileAsync);
 
 // 无需配置路由配置文件，直接获取指定文件夹下的index文件，使用其导出的meat信息，组成路由配置
 // 此处以demo文件夹下为例,并且不考虑继续嵌套，需要可自行实现

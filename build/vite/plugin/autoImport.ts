@@ -17,6 +17,7 @@ export const autoImportPlugin = () => {
       // custom
       {
         "/@/hooks/web/useMessage": ["useMessage"],
+        "/@/utils/file/image": ["getAssetsImageUrl", "getRelativeImageUrl"],
         // "@vueuse/core": [
         //   // named imports
         //   "useMouse", // import { useMouse } from '@vueuse/core',
