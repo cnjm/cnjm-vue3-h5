@@ -1,6 +1,5 @@
 // 自定义的全局css
 import "/@/design/index.less";
-import "virtual:svg-icons-register"; // 引入svg注册脚本
 import "uno.css";
 import "virtual:unocss-devtools";
 

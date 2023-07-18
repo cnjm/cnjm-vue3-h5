@@ -9,6 +9,15 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    IconAboutBox: typeof import('~icons/about/box')['default']
+    IconAboutCar: typeof import('~icons/about/car')['default']
+    IconAboutLogout: typeof import('~icons/about/logout')['default']
+    IconCustomLogout: typeof import('~icons/custom/logout')['default']
+    IconSpinners12DotsScaleRotate: typeof import('~icons/svg-spinners/12-dots-scale-rotate')['default']
+    IconSpinnersBlocksShuffle2: typeof import('~icons/svg-spinners/blocks-shuffle2')['default']
+    IconSpinnersDotsScaleRotate: typeof import('~icons/svg-spinners/dots-scale-rotate')['default']
+    IconSpinnersRotate: typeof import('~icons/svg-spinners/rotate')['default']
+    IconSvgSpinnersBlocksShuffle2: typeof import('~icons/svg-spinners/blocks-shuffle2')['default']
     ResolverElement: typeof import('./src/components/resolver/resolverElement/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -18,6 +27,7 @@ declare module '@vue/runtime-core' {
     VanConfigProvider: typeof import('vant/es')['ConfigProvider']
     VanDivider: typeof import('vant/es')['Divider']
     VanEmpty: typeof import('vant/es')['Empty']
+    VanIcon: typeof import('vant/es')['Icon']
     VanNoticeBar: typeof import('vant/es')['NoticeBar']
     VanTab: typeof import('vant/es')['Tab']
     VanTabbar: typeof import('vant/es')['Tabbar']

@@ -38,6 +38,7 @@
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
+    "@iconify-json/svg-spinners": "^1.1.1",
     "@types/crypto-js": "^4.1.1",
     "@types/lodash-es": "^4.17.6",
     "@types/nprogress": "^0.2.0",
@@ -71,12 +72,12 @@
     "unocss": "^0.53.4",
     "unplugin-auto-import": "^0.16.4",
     "unplugin-auto-vconsole": "^0.0.4",
+    "unplugin-icons": "^0.16.5",
     "unplugin-vue-components": "^0.24.1",
     "vite": "^4.3.9",
     "vite-plugin-html": "^3.2.0",
     "vite-plugin-mock": "^2.9.6",
     "vite-plugin-style-import": "^2.0.0",
-    "vite-plugin-svg-icons": "^2.0.1",
     "vue-tsc": "^1.8.3"
   },
   "repository": {

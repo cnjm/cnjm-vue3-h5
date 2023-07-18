@@ -1,14 +1,12 @@
 import type { PluginOption } from "vite";
 import vue from "@vitejs/plugin-vue";
-// import vueSetupExtend from "vite-plugin-vue-setup-extend";
-// import { configStyleImportPlugin } from "./styleImport";
-import { configSvgIconsPlugin } from "./svgSprite";
 import { configViteMockServePlugin } from "./viteMockServe";
 import { configHtmlPlugin } from "./html";
 import { configUnocssPlugin } from "./unocss";
 import { componentResolverPlugin } from "./componentResolver";
 import { autoImportPlugin } from "./autoImport";
 import { autoVconsolePlugin } from "./autoVconsole";
+import { unpluginIcons } from "./unpluginIcons";
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const { VITE_USE_MOCK } = viteEnv;
@@ -19,8 +17,6 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     autoImportPlugin(),
     // use vueJsx
     // vueJsx(),
-    // https://www.npmjs.com/package/vite-plugin-vue-setup-extend
-    // vueSetupExtend(),
   ];
 
   // vite-plugin-html
@@ -29,8 +25,8 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   // unocss https://uno.antfu.me/
   vitePlugins.push(configUnocssPlugin());
 
-  // svg
-  vitePlugins.push(configSvgIconsPlugin(isBuild));
+  // svg icons
+  vitePlugins.push(unpluginIcons());
 
   // console
   vitePlugins.push(autoVconsolePlugin(isBuild));

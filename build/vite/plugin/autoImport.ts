@@ -1,5 +1,4 @@
 import AutoImport from "unplugin-auto-import/vite";
-// import { VantResolver } from "unplugin-vue-components/resolvers";
 
 export const autoImportPlugin = () => {
   return AutoImport({
@@ -43,10 +42,10 @@ export const autoImportPlugin = () => {
     ],
     vueTemplate: true,
     eslintrc: {
-      // enabled: true,
+      enabled: true,
       globalsPropValue: true,
     },
     // Custom
-    resolvers: [],
+    // resolvers: [IconsResolver()],
   });
 };

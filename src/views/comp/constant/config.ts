@@ -9,7 +9,10 @@ interface componentType {
 export const comList: componentType[] = [
   {
     title: "组件",
-    children: [{ title: "信息反馈", path: "/demo/message" }],
+    children: [
+      { title: "信息反馈", path: "/demo/message" },
+      { title: "Icon", path: "/demo/svgIcons" },
+    ],
   },
   {
     title: "示例",

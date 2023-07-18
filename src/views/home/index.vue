@@ -3,8 +3,6 @@
   import { usePageStore } from "/@/store/modules/page";
   const pageStore = usePageStore();
   const a = "666";
-  // const pageTitle = useTitle();
-  // pageTitle.value = "新的";
   function getData(e: Event) {
     pageStore.updatePageTitle("hhh");
     console.log("hh", a, e, pageStore);
