@@ -48,20 +48,6 @@ pnpm run build
 - [x] tabbar
 - [ ] 组件
 
-### axios 请求
-
-src\utils\axios\index.ts 中通过 createAxios 得到 http 实例，可以通过不同配置创建
-
-### 请求 mock 的使用
-
-axios 所有的请求默认路径带了/api 前缀，如有必要在配置文件中修改，mock 中也带有/api 前缀，需同步修改，在需要 mock 的接口的路径中加入/mock，即为请求 mock 数据
-
-1. 例如期望请求/api/user/login
-
-2. 在 src/api 文件夹中只需要填写/user/login 会正常请求
-
-3. 而填写/mock/user/login，则会请求/api/mock/user/login 获取 mock 数据
-
 ## Git 贡献提交规范
 
 - 这里遵循 [vue](https://github.com/vuejs/vue/blob/dev/.github/COMMIT_CONVENTION.md) 规范 ([Angular](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular))
