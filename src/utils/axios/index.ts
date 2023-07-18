@@ -1,6 +1,4 @@
 // axios配置  可自行根据项目进行更改，只需更改该文件即可，其他文件可以不动
-// The axios configuration can be changed according to the project, just change the file, other files can be left unchanged
-
 import type { AxiosResponse } from "axios";
 import type { RequestOptions, Result } from "/#/axios";
 import type { AxiosTransform, CreateAxiosOptions } from "./axiosTransform";
@@ -36,14 +34,15 @@ const transform: AxiosTransform = {
     // 错误的时候返回
     const { data } = res;
     if (!data) {
-      // return '[HTTP] Request has no return value';
+      // 请求没有返回值
       throw new Error("请求出错，请稍候重试");
     }
 
     //  这里 code，result，message为 后台统一的字段，需要在 types.ts内修改为项目自己的接口返回格式
     const { code, result, message } = data;
-    // 这里逻辑可以根据项目进行修改
+    // 这里逻辑可以根据项目自行修改
     const hasSuccess = data && Reflect.has(data, "code") && code === ResultEnum.SUCCESS;
+    // 条件成立则任务请求数据响应成功
     if (hasSuccess) {
       return result;
     }
@@ -146,8 +145,6 @@ const transform: AxiosTransform = {
    * @description: 响应错误处理
    */
   responseInterceptorsCatch: (error: any) => {
-    // const errorLogStore = useErrorLogStoreWithOut();
-    // errorLogStore.addAjaxErrorInfo(error);
     const { response, code, message, config } = error || {};
     const errorMessageMode = config?.requestOptions?.errorMessageMode || "none";
     const msg: string = response?.data?.message ?? "";
@@ -162,12 +159,13 @@ const transform: AxiosTransform = {
       if (err?.includes("Network Error")) {
         errMessage = "网络异常，请检查您的网络连接是否正常！";
       }
+      const { createToast } = useMessage();
 
       if (errMessage) {
         if (errorMessageMode === "modal") {
           // createErrorModal({ title: "错误提示", content: errMessage });
         } else if (errorMessageMode === "message") {
-          // createMessage.error(errMessage);
+          createToast(errMessage);
         }
         return Promise.reject(error);
       }
@@ -175,7 +173,7 @@ const transform: AxiosTransform = {
       throw new Error(error as unknown as string);
     }
     // 根据不同的错误码处理
-    checkStatus(error?.response?.status, msg);
+    checkStatus(error?.response?.status, msg, errorMessageMode);
     return Promise.reject(error);
   },
 };
@@ -218,7 +216,7 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
           urlPrefix,
           //  是否加入时间戳
           joinTime: true,
-          // 忽略重复请求
+          // 忽略取消重复请求标识
           ignoreCancelToken: true,
           // 是否携带token
           withToken: true,
@@ -228,6 +226,8 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
     ),
   );
 }
+
+// 创建axios实例并导出
 export const defHttp = createAxios();
 
 // 可以创建更多axios实例，opt会被深度合并

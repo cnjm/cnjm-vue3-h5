@@ -18,7 +18,7 @@ export const loginApi = (params: LoginParams, mode: ErrorMessageMode = "modal") 
  * @description: 获取用户信息
  */
 export const getUserInfo = () => {
-  return defHttp.get<GetUserInfoModel>({ url: Api.GetUserInfo }, { errorMessageMode: "none" });
+  return defHttp.get<GetUserInfoModel>({ url: Api.GetUserInfo, headers: {} }, { errorMessageMode: "none" });
 };
 /**
  * @description: 用户登出

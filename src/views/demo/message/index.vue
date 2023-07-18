@@ -22,7 +22,7 @@
 
 <template>
   <div>
-    <van-notice-bar mode="closeable">Vant Ui已有功能，可根据实际项目UI改造</van-notice-bar>
+    <van-notice-bar mode="closeable">Vant Ui已有功能，可根据实际项目UI改造再统一导出</van-notice-bar>
     <div class="p-20px">
       <van-button plain type="primary" size="small" @click="createToast('轻反馈')">Toast</van-button>
     </div>

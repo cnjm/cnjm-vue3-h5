@@ -19,12 +19,10 @@
     "lint:lint-staged": "lint-staged"
   },
   "dependencies": {
-    "@highlightjs/vue-plugin": "^2.1.0",
     "@vueuse/core": "10.2.1",
-    "axios": "^0.26.1",
+    "axios": "^1.4.0",
     "crypto-js": "^4.1.1",
     "dayjs": "^1.11.0",
-    "highlight.js": "^11.6.0",
     "lodash-es": "^4.17.21",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.3",

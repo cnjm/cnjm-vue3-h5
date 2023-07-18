@@ -1,10 +1,9 @@
+import { ErrorMessageMode } from "/#/axios";
 import { useUserStoreWithOut } from "/@/store/modules/user";
 
-export function checkStatus(status: number, msg: string): void {
+export function checkStatus(status: number, msg: string, errorMessageMode: ErrorMessageMode = "message"): void {
   const userStore = useUserStoreWithOut();
-  console.log(msg);
   let errMessage = msg;
-  // console.log(status, msg);
   switch (status) {
     case 400:
       errMessage = `${msg}`;
@@ -48,15 +47,12 @@ export function checkStatus(status: number, msg: string): void {
       break;
     default:
   }
-  // console.log(errMessage, 'errMessage', errorMessageMode);
-  console.log(errMessage);
-  // if (errMessage) {
-  //   if (errorMessageMode === "modal") {
-  //     console.log(errMessage);
-  //     createErrorModal({ title: t("sys.api.errorTip"), content: errMessage });
-  //   } else if (errorMessageMode === "message") {
-  //     console.log(errMessage);
-  //     error({ content: errMessage, key: `global_error_message_status_${status}` });
-  //   }
-  // }
+  const { createToast } = useMessage();
+  if (errMessage) {
+    if (errorMessageMode === "modal") {
+      console.log(errMessage);
+    } else if (errorMessageMode === "message") {
+      createToast(errMessage);
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import type { AxiosRequestConfig, AxiosInstance, AxiosResponse, AxiosError } from "axios";
+import type { InternalAxiosRequestConfig, AxiosInstance, AxiosResponse, AxiosError, AxiosRequestConfig } from "axios";
 import type { RequestOptions, Result, UploadFileParams } from "/#/axios";
 import type { CreateAxiosOptions } from "./axiosTransform";
 import axios from "axios";
@@ -24,23 +24,29 @@ export class VAxios {
   }
 
   /**
-   * @description:  Create axios instance
+   * @description:  创建 axios 实例
    */
-  private createAxios(config: CreateAxiosOptions): void {
-    this.axiosInstance = axios.create(config);
+  private createAxios(options: CreateAxiosOptions): void {
+    this.axiosInstance = axios.create(options);
   }
 
+  /**
+   * @description: 获取拦截器配置内容
+   */
   private getTransform() {
     const { transform } = this.options;
     return transform;
   }
 
+  /**
+   * @description: 返回 axios 实例
+   */
   getAxios(): AxiosInstance {
     return this.axiosInstance;
   }
 
   /**
-   * @description: Reconfigure axios
+   * @description: 重新更改 axios 的配置
    */
   configAxios(config: CreateAxiosOptions) {
     if (!this.axiosInstance) {
@@ -50,7 +56,7 @@ export class VAxios {
   }
 
   /**
-   * @description: Set general header
+   * @description: 设置通用的 header
    */
   setHeader(headers: any): void {
     if (!this.axiosInstance) {
@@ -60,7 +66,7 @@ export class VAxios {
   }
 
   /**
-   * @description: Interceptor configuration
+   * @description: 拦截器配置
    */
   private setupInterceptors() {
     const transform = this.getTransform();
@@ -72,9 +78,9 @@ export class VAxios {
 
     const axiosCanceler = new AxiosCanceler();
 
-    // Request interceptor configuration processing
-    this.axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
-      // If cancel repeat request is turned on, then cancel repeat request is prohibited
+    // 请求拦截器配置处理
+    this.axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+      // 获取单个请求是否配置ignoreCancelToken
       const {
         // @ts-ignore
         headers: { ignoreCancelToken },
@@ -84,19 +90,21 @@ export class VAxios {
         ignoreCancelToken !== undefined ? ignoreCancelToken : this.options.requestOptions?.ignoreCancelToken;
 
       !ignoreCancel && axiosCanceler.addPending(config);
+
       if (requestInterceptors && isFunction(requestInterceptors)) {
         config = requestInterceptors(config, this.options);
       }
       return config;
     }, undefined);
 
-    // Request interceptor error capture
+    // 请求拦截器错误捕获 transform不提供则无
     requestInterceptorsCatch &&
       isFunction(requestInterceptorsCatch) &&
       this.axiosInstance.interceptors.request.use(undefined, requestInterceptorsCatch);
 
-    // Response result interceptor processing
+    // 响应结果拦截器处理
     this.axiosInstance.interceptors.response.use((res: AxiosResponse<any>) => {
+      console.log(res);
       res && axiosCanceler.removePending(res.config);
       if (responseInterceptors && isFunction(responseInterceptors)) {
         res = responseInterceptors(res);
@@ -104,16 +112,16 @@ export class VAxios {
       return res;
     }, undefined);
 
-    // Response result interceptor error capture
+    // 响应结果拦截器错误捕获
     responseInterceptorsCatch &&
       isFunction(responseInterceptorsCatch) &&
       this.axiosInstance.interceptors.response.use(undefined, responseInterceptorsCatch);
   }
 
   /**
-   * @description:  File Upload
+   * @description:  文件上传
    */
-  uploadFile<T = any>(config: AxiosRequestConfig, params: UploadFileParams) {
+  uploadFile<T = any>(config: InternalAxiosRequestConfig, params: UploadFileParams) {
     const formData = new window.FormData();
     const customFilename = params.name || "file";
 
@@ -149,7 +157,7 @@ export class VAxios {
     });
   }
 
-  // support form-data
+  // form-data 模式
   supportFormData(config: AxiosRequestConfig) {
     const headers = config.headers || this.options.headers;
     const contentType = headers?.["Content-Type"] || headers?.["content-type"];
@@ -185,6 +193,9 @@ export class VAxios {
   }
 
   request<T = any>(config: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
+    console.log(config);
+    // config.headers = {};
+    // (config as InternalAxiosRequestConfig) = {headers:{},...cloneDeep(config)}
     let conf: CreateAxiosOptions = cloneDeep(config);
     const transform = this.getTransform();
 
