@@ -1,32 +1,34 @@
-export type ErrorMessageMode = "none" | "modal" | "message" | undefined;
+export type ErrorMessageMode = "none" | "dialog" | "toast" | undefined;
 
 export interface RequestOptions {
-  // Splicing request parameters to url
+  // post请求的时候添加参数到url
   joinParamsToUrl?: boolean;
-  // Format request parameter time
+  // 格式化提交参数时间
   formatDate?: boolean;
-  // Whether to process the request result
+  // 需要对返回数据进行处理 也就是后端给的code是不是直接返回
   isTransformResponse?: boolean;
-  // Whether to return native response headers
-  // For example: use this attribute when you need to get the response headers
+  // 是否返回原生响应头 比如：需要获取响应头时使用该属性
+  // 例如：当您需要获取响应标头时，请使用此属性
   isReturnNativeResponse?: boolean;
-  // Whether to join url
+  // 将prefix 添加到url
   joinPrefix?: boolean;
-  // Interface address, use the default apiUrl if you leave it blank
+  // 接口地址
   apiUrl?: string;
   // 请求拼接路径
   urlPrefix?: string;
   // mock数据路径有则表示使用
   mockUrl?: string;
-  // Error message prompt type
+  // 错误消息提示类型
   errorMessageMode?: ErrorMessageMode;
-  // Whether to add a timestamp
+  // 是否添加时间戳
   joinTime?: boolean;
+  // 忽略取消重复请求标识
   ignoreCancelToken?: boolean;
-  // Whether to send token in header
+  // 是否在 header 中携带 token
   withToken?: boolean;
 }
 
+// 响应的结构体
 export interface Result<T = any> {
   code: number;
   type: "success" | "error" | "warning";

@@ -1,7 +1,7 @@
 import { ErrorMessageMode } from "/#/axios";
 import { useUserStoreWithOut } from "/@/store/modules/user";
 
-export function checkStatus(status: number, msg: string, errorMessageMode: ErrorMessageMode = "message"): void {
+export function checkStatus(status: number, msg: string, errorMessageMode: ErrorMessageMode = "toast"): void {
   const userStore = useUserStoreWithOut();
   let errMessage = msg;
   switch (status) {
@@ -47,11 +47,14 @@ export function checkStatus(status: number, msg: string, errorMessageMode: Error
       break;
     default:
   }
-  const { createToast } = useMessage();
+  const { createToast, createDialog } = useMessage();
   if (errMessage) {
-    if (errorMessageMode === "modal") {
-      console.log(errMessage);
-    } else if (errorMessageMode === "message") {
+    if (errorMessageMode === "dialog") {
+      createDialog({
+        title: "错误提示",
+        message: errMessage,
+      });
+    } else if (errorMessageMode === "toast") {
       createToast(errMessage);
     }
   }

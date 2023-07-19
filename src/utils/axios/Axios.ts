@@ -104,7 +104,6 @@ export class VAxios {
 
     // 响应结果拦截器处理
     this.axiosInstance.interceptors.response.use((res: AxiosResponse<any>) => {
-      console.log(res);
       res && axiosCanceler.removePending(res.config);
       if (responseInterceptors && isFunction(responseInterceptors)) {
         res = responseInterceptors(res);
@@ -193,9 +192,6 @@ export class VAxios {
   }
 
   request<T = any>(config: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
-    console.log(config);
-    // config.headers = {};
-    // (config as InternalAxiosRequestConfig) = {headers:{},...cloneDeep(config)}
     let conf: CreateAxiosOptions = cloneDeep(config);
     const transform = this.getTransform();
 

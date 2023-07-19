@@ -64,9 +64,9 @@ const transform: AxiosTransform = {
 
     // errorMessageMode=‘modal’的时候会显示modal错误弹窗，而不是消息提示，用于一些比较重要的错误
     // errorMessageMode='none' 一般是调用时明确表示不希望自动弹出错误提示
-    if (options.errorMessageMode === "modal") {
+    if (options.errorMessageMode === "dialog") {
       // createErrorModal({ title: "错误提示", content: timeoutMsg });
-    } else if (options.errorMessageMode === "message") {
+    } else if (options.errorMessageMode === "toast") {
       // createMessage.error(timeoutMsg);
     }
 
@@ -122,8 +122,9 @@ const transform: AxiosTransform = {
    * @description: 请求拦截器处理
    */
   requestInterceptors: (config, options) => {
+    const userStore = useUserStoreWithOut();
+    const token = userStore.getToken;
     // 请求之前处理config
-    const token = "";
     if (token && (config as Recordable)?.requestOptions?.withToken !== false) {
       // jwt token
       (config as Recordable).headers.Authorization = options.authenticationScheme
@@ -159,12 +160,15 @@ const transform: AxiosTransform = {
       if (err?.includes("Network Error")) {
         errMessage = "网络异常，请检查您的网络连接是否正常！";
       }
-      const { createToast } = useMessage();
+      const { createToast, createDialog } = useMessage();
 
       if (errMessage) {
-        if (errorMessageMode === "modal") {
-          // createErrorModal({ title: "错误提示", content: errMessage });
-        } else if (errorMessageMode === "message") {
+        if (errorMessageMode === "dialog") {
+          createDialog({
+            title: "错误提示",
+            message: errMessage,
+          });
+        } else if (errorMessageMode === "toast") {
           createToast(errMessage);
         }
         return Promise.reject(error);
@@ -209,7 +213,7 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
           // 格式化提交参数时间
           formatDate: true,
           // 错误消息提示类型
-          errorMessageMode: "message",
+          errorMessageMode: "dialog",
           // 接口地址
           apiUrl,
           // 接口默认前缀拼接地址

@@ -11,14 +11,14 @@ enum Api {
 /**
  * @description: 用户登录
  */
-export const loginApi = (params: LoginParams, mode: ErrorMessageMode = "modal") =>
+export const loginApi = (params: LoginParams, mode: ErrorMessageMode = "dialog") =>
   defHttp.post<LoginResult>({ url: Api.Login, params }, { errorMessageMode: mode });
 
 /**
  * @description: 获取用户信息
  */
 export const getUserInfo = () => {
-  return defHttp.get<GetUserInfoModel>({ url: Api.GetUserInfo, headers: {} }, { errorMessageMode: "none" });
+  return defHttp.get<GetUserInfoModel>({ url: Api.GetUserInfo }, { errorMessageMode: "none" });
 };
 /**
  * @description: 用户登出
