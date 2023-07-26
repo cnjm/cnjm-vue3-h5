@@ -55,7 +55,11 @@ export const usePageStore = defineStore({
     persistQuery: ["enable_console"],
     routerParams: {},
   }),
-  getters: {},
+  getters: {
+    demoStoreTest(state) {
+      return state.pageTitle;
+    },
+  },
   actions: {
     // 更改标题
     updatePageTitle(title: string): void {
