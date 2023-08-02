@@ -23,6 +23,8 @@
     testArray: [1],
   };
 
+  demoStore.testObj.title = "5555";
+
   // 响应式的可以通过storeToRefs解构使用（读写）
   const { count, getDoubleCount } = storeToRefs(demoStore);
   // 此时需要.value访问，template中不用
@@ -68,6 +70,16 @@
   function addCount() {
     count.value++;
   }
+  function resetCount() {
+    // 重置单个
+    demoStore.$resetFields(["count"]);
+    // 重置多个
+    // demoStore.$resetFields(["count", "testObj"]);
+
+    // 重置全部
+    // demoStore.$reset();
+    // demoStore.$resetFields();
+  }
   function changeCount() {
     demoStore.updateCount(91);
   }
@@ -83,6 +95,7 @@
 
 <template>
   <div>
+    {{ demoStore.testObj.title }}
     <div>通过 storeToRefs count:{{ count }}</div>
     <br />
     <div>demoStore.count:{{ demoStore.count }}</div>
@@ -93,6 +106,9 @@
     <van-button @click="addCount">增加</van-button>
     <br />
     <br />
+    <van-button @click="resetCount">重置count</van-button>
+    <br />
+    <br />
     <div>通过actions改动</div>
     <van-button @click="changeCount">改为99</van-button>
     <br />
@@ -101,7 +117,7 @@
     <van-button @click="asyncChangeCount">改为88</van-button>
     <br />
     <br />
-    <div>订阅</div>
+    <div>订阅记录：</div>
     <div v-for="(item, index) in subscribeData.record" :key="index">{{ item }}</div>
     <br />
     <br />
