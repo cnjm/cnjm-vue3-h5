@@ -166,17 +166,9 @@ export const useUserStore = defineStore({
         });
     },
   },
-  // 持久化存储插件配置persist 默认使用的是session
   persist: {
-    enabled: true,
-    strategies: [
-      {
-        key: "user",
-        // storage可自定义见 https://seb-l.github.io/pinia-plugin-persist/advanced/custom-storage.html
-        storage: localStorage,
-        paths: ["token", "userInfo", "sessionTimeout"],
-      },
-    ],
+    key: "user",
+    paths: ["token", "userInfo", "sessionTimeout"],
   },
 });
 

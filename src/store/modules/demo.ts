@@ -53,14 +53,12 @@ export const useDemoStore = defineStore({
       }
     },
   },
+  // 持久化存储插件配置persist 默认使用的是 localStorage
   persist: {
-    enabled: true,
-    strategies: [
-      {
-        key: "demo",
-        paths: [""],
-      },
-    ],
+    key: "demo",
+    // storage可自定义见 https://prazdevs.github.io/pinia-plugin-persistedstate/zh/guide/config.html#storage
+    // storage: localStorage,
+    paths: [""],
   },
 });
 

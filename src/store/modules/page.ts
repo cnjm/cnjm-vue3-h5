@@ -70,13 +70,8 @@ export const usePageStore = defineStore({
     },
   },
   persist: {
-    enabled: true,
-    strategies: [
-      {
-        key: "page",
-        paths: ["routerParams"],
-      },
-    ],
+    key: "page",
+    paths: ["routerParams"],
   },
 });
 
