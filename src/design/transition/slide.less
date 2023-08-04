@@ -1,0 +1,19 @@
+.slide-transition {
+  .transition-default();
+
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+.slide-reverse-transition {
+  .transition-default();
+
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
