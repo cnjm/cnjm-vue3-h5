@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  defineOptions({ inheritAttrs: false, meta: { title: "自定义指令", name: "DemoCustomPage" } });
+  defineOptions({ name: "DemoCustomPage", inheritAttrs: false, meta: { title: "自定义指令" } });
 
   const { createToast } = useMessage();
 

@@ -19,6 +19,7 @@ export const comList: componentType[] = [
     children: [
       { title: "vue3使用示例", path: "/demo/example" },
       { title: "pinia使用示例", path: "/demo/example/pinia" },
+      { title: "router使用示例", path: "/demo/example/router" },
     ],
   },
   {

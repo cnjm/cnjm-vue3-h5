@@ -1,10 +1,12 @@
 import type { AppRouteRecordRaw, AppRouteModule } from "/@/router/types";
 import { PAGE_NOT_FOUND_ROUTE, NETWORK_ERROR_ROUTE } from "./error";
-
+import { useGlobSetting } from "/@/hooks/setting";
 import { entranceRoutes } from "./entrance";
 import { PageEnum } from "/@/enums/page.enum";
 import { LAYOUT } from "../constant";
 import { routerMetaAsync } from "/@/plugins/router";
+
+const { title } = useGlobSetting();
 
 // 这个路由配置列表
 const routeModuleList: AppRouteModule[] = [];
@@ -47,7 +49,7 @@ export const RootRoute: AppRouteRecordRaw = {
   name: "Root",
   redirect: PageEnum.BASE_HOME,
   meta: {
-    title: "CNJM-H5",
+    title,
   },
 };
 

@@ -91,8 +91,15 @@ export function createPermissionGuard(router: Router) {
   });
 
   router.afterEach((to) => {
-    if (to.name && pageStore.routerParams[to.name]) {
-      to.params = { ...(pageStore.routerParams[to.name] as RouteParams) };
+    // 如果有挂在routerParams上的params则在to中返回
+    if (to.name) {
+      // 将标记清除updateRouterParams对应的params
+      if (pageStore.markRouterPath && pageStore.markRouterPath === to.path) {
+        pageStore.markRouterPath = undefined;
+        pageStore.updateRouterParams(to.name, to.params);
+      } else if (to.name && pageStore.routerParams[to.name]) {
+        to.params = { ...(pageStore.routerParams[to.name] as RouteParams) };
+      }
     }
     closeProgress();
     // 进入登录页清空用户信息

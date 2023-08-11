@@ -12,7 +12,7 @@ export interface Tabbar {
 }
 
 interface ObjectOf {
-  [_: string | symbol]: RouteParamsRaw;
+  [_: string | symbol]: RouteParamsRaw | undefined;
 }
 interface PageState {
   // 页面标题
@@ -22,6 +22,8 @@ interface PageState {
   persistQuery: string[];
   // 路由跳转时 params 参数的暂存，以此替代
   routerParams: ObjectOf;
+  // 标记纯path router
+  markRouterPath?: string;
 }
 
 export const usePageStore = defineStore({
@@ -54,6 +56,7 @@ export const usePageStore = defineStore({
     ],
     persistQuery: ["enable_console"],
     routerParams: {},
+    markRouterPath: undefined,
   }),
   getters: {
     demoStoreTest(state) {
@@ -65,14 +68,18 @@ export const usePageStore = defineStore({
     updatePageTitle(title: string): void {
       this.pageTitle = title;
     },
-    updateRouterParams(name: string | symbol, params: RouteParamsRaw): void {
+    updateRouterParams(name: string | symbol, params?: RouteParamsRaw): void {
+      console.log("111", params);
       this.routerParams[name] = params;
     },
   },
-  persist: {
-    key: "page",
-    paths: ["routerParams"],
-  },
+  persist: [
+    {
+      key: "page",
+      paths: ["routerParams"],
+      storage: window.sessionStorage,
+    },
+  ],
 });
 
 export function usePageStoreWithOut() {

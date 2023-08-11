@@ -12,5 +12,7 @@ declare module "vue-router" {
     ignoreKeepAlive?: boolean;
     // 当前页面转换
     transitionName?: string;
+    // 忽略params 标记后将不会传递params
+    ignoreParams?: boolean;
   }
 }

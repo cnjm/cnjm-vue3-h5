@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="action">可以作为活动推广、分享</div>
+  <div class="action">假设为一个可以用作免于登录使用的营销活动页面</div>
 </template>
 
 <style scoped>

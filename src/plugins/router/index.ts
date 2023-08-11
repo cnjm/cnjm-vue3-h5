@@ -23,7 +23,7 @@ export function routerMetaAsync({ viewsFile, reg = new RegExp(/\/src\/views(\S*)
     if (mod.meta && itemPath.length) {
       const children = {
         path: itemPath[1],
-        name: mod.meta?.name || srcToUpperCase(itemPath[1]),
+        name: mod.name || srcToUpperCase(itemPath[1]),
         component: viewsFile[key],
         meta: mod.meta,
       };
@@ -49,17 +49,20 @@ function getRouterTo(router: Router, to: RouteLocationRaw) {
   let query: LocationQueryRaw | undefined = {};
 
   if (isRouteLocationPathRaw(to)) {
+    pageStore.markRouterPath = to.path;
     query = to.query;
   } else if (isRouteLocationNamedRaw(to)) {
     query = to.query;
-    if (to.name && to.params) {
+    if (to.name) {
       pageStore.updateRouterParams(to.name, to.params);
     }
     delete to.params;
   } else {
+    pageStore.markRouterPath = to;
     to = { path: to, query: {} } as RouteLocationPathRaw;
   }
   to.query = { ...persistQuery, ...query };
+
   return to;
 }
 
