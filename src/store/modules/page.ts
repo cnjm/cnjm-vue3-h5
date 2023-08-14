@@ -54,7 +54,7 @@ export const usePageStore = defineStore({
         title: "关于",
       },
     ],
-    persistQuery: ["enable_console"],
+    persistQuery: ["enable_console", "test"],
     routerParams: {},
     markRouterPath: undefined,
   }),

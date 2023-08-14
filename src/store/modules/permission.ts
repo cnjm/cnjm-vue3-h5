@@ -24,7 +24,7 @@ export const usePermissionStore = defineStore({
     setDynamicAddedRoute(value: boolean) {
       this.isDynamicAddedRoute = value;
     },
-    // routes action
+    // 此处筛选能访问的路由
     async buildRoutesAction(): Promise<AppRouteRecordRaw[]> {
       let routes: AppRouteRecordRaw[] = [];
       const routeFilter = (route: AppRouteRecordRaw) => {

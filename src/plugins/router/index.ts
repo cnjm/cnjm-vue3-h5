@@ -9,6 +9,7 @@ import type {
 import type { AppRouteRecordRaw } from "/@/router/types";
 import { usePageStoreWithOut } from "/@/store/modules/page";
 import { srcToUpperCase } from "/@/utils/helper/transform";
+import { queryUrlParams } from "/@/utils/util";
 
 // 无需配置路由配置文件，直接获取指定文件夹下的index文件，使用其导出的meat信息，组成路由配置
 // 此处以demo文件夹下为例,并且不考虑继续嵌套，需要可自行实现
@@ -41,7 +42,7 @@ function isRouteLocationNamedRaw(to: RouteLocationRaw): to is RouteLocationNamed
   return (to as RouteLocationNamedRaw).name !== undefined;
 }
 
-// 重新整合to
+// 重新整合to 使得params挂到pageStore中，在跳转后的组件可以通过route获取，同时，如果通过 path 重新跳转到此页面，将被标记清空
 function getRouterTo(router: Router, to: RouteLocationRaw) {
   const pageStore = usePageStoreWithOut();
   const currentRouteQuery = router.currentRoute.value.query || {};
@@ -49,6 +50,7 @@ function getRouterTo(router: Router, to: RouteLocationRaw) {
   let query: LocationQueryRaw | undefined = {};
 
   if (isRouteLocationPathRaw(to)) {
+    // markRouterPath一旦标记，历史路由中相同path的params同样会被清掉，
     pageStore.markRouterPath = to.path;
     query = to.query;
   } else if (isRouteLocationNamedRaw(to)) {
@@ -58,7 +60,11 @@ function getRouterTo(router: Router, to: RouteLocationRaw) {
     }
     delete to.params;
   } else {
-    pageStore.markRouterPath = to;
+    const [path, q] = to.split("?");
+    pageStore.markRouterPath = path;
+    if (q) {
+      query = queryUrlParams(q);
+    }
     to = { path: to, query: {} } as RouteLocationPathRaw;
   }
   to.query = { ...persistQuery, ...query };

@@ -32,6 +32,25 @@ export function setObjToUrlParams(baseUrl: string, obj: any): string {
   return /\?$/.test(baseUrl) ? baseUrl + parameters : baseUrl.replace(/\/?$/, "?") + parameters;
 }
 
+/**
+ * 获取url中的参数
+ * @param baseUrl url
+ * @param obj
+ * @returns {string}
+ * eg:
+ *  queryUrlParams('www.baidu.com?a=3&b=4')
+ *  {a: '3', b: '4'}
+ */
+export function queryUrlParams(url: string): { [key: string]: string } {
+  const pattern = /(\w+)=(\w+)/gi;
+  let params: { [key: string]: string } = {};
+  url.replace(pattern, (_$, $1: string, $2: string): string => {
+    params[$1] = $2;
+    return "";
+  });
+  return params;
+}
+
 export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
   let key: string;
   for (key in target) {

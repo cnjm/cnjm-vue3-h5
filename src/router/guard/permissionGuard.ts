@@ -16,21 +16,25 @@ export function createPermissionGuard(router: Router) {
   const pageStore = usePageStoreWithOut();
   router.beforeEach(async (to, from, next) => {
     startProgress();
-    // console.log(to, from);
 
     const token = userStore.getToken;
 
+    // 白名单直接进
     if (whitePathList.includes(to.path as PageEnum)) {
+      // 如果有登录页并且有token
       if (to.path === LOGIN_PATH && token) {
+        console.log(to);
         try {
           await userStore.afterLoginAction();
           next((to.query?.redirect as string) || "/");
           return;
         } catch {}
       }
+      console.log(1);
       next();
       return;
     }
+    console.log(2);
 
     // 如果找不到token
     if (!token) {
@@ -40,7 +44,7 @@ export function createPermissionGuard(router: Router) {
         return;
       }
 
-      // 重定向到登录，记下当前to.path，以作登录后跳回
+      // 重定向到登录，记下当前to.fullPath，以作登录后跳回
       const redirectData: { path: string; replace: boolean; query?: Recordable<string> } = {
         path: LOGIN_PATH,
         replace: true,
@@ -48,14 +52,14 @@ export function createPermissionGuard(router: Router) {
       if (to.path) {
         redirectData.query = {
           ...redirectData.query,
-          redirect: to.path,
+          redirect: encodeURIComponent(to.fullPath),
         };
       }
       next(redirectData);
       return;
     }
 
-    // 如果未获取过用户信息
+    // 如果未获取过用户信息 刷新页面会重新获取
     if (userStore.getLastUpdateTime === 0) {
       try {
         await userStore.getUserInfoAction();
@@ -65,17 +69,18 @@ export function createPermissionGuard(router: Router) {
       }
     }
 
+    // 已经添加过路由的
     if (permissionStore.getIsDynamicAddedRoute) {
       next();
       return;
     }
 
+    // 动态添加相关路由
     const routes = await permissionStore.buildRoutesAction();
     // console.log(routes);
     routes.forEach((route) => {
       router.addRoute(route as unknown as RouteRecordRaw);
     });
-
     permissionStore.setDynamicAddedRoute(true);
 
     if (to.name === PAGE_NOT_FOUND_ROUTE.name) {
@@ -83,6 +88,7 @@ export function createPermissionGuard(router: Router) {
       next({ path: to.fullPath, replace: true, query: to.query });
       return;
     } else {
+      console.log(33);
       const redirectPath = (from.query.redirect || to.path) as string;
       const redirect = decodeURIComponent(redirectPath);
       const nextData = to.path === redirect ? { ...to, replace: true } : { path: redirect };

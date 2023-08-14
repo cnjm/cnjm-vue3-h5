@@ -1,12 +1,10 @@
 import type { UserInfo } from "/#/store";
-import type { RouteRecordRaw } from "vue-router";
+import type { LocationQueryValue, RouteRecordRaw } from "vue-router";
 import { store } from "/@/store";
 import { defineStore } from "pinia";
 import { RoleEnum } from "/@/enums/role.enum";
 import { GetUserInfoModel, LoginParams } from "/@/api/system/model/user.model";
 import { ErrorMessageMode } from "/#/axios";
-// import { getLocalCache, setLocalCache } from "/@/utils/cache";
-// import { TOKEN_KEY, USER_INFO_KEY, USER_ROLES_KEY } from "/@/enums/cache.enum";
 import { router } from "/@/router";
 import { PAGE_NOT_FOUND_ROUTE } from "/@/router/routes/error";
 import { PageEnum } from "/@/enums/page.enum";
@@ -14,6 +12,12 @@ import { usePermissionStore } from "./permission";
 import { doLogout, getUserInfo, loginApi } from "/@/api/system/user";
 import { isArray } from "/@/utils/internal/isType";
 import { useMessage } from "/@/hooks/web/useMessage";
+
+interface LoginAfterParams {
+  goHome?: boolean;
+  redirect?: LocationQueryValue;
+  mode?: ErrorMessageMode;
+}
 
 interface UserState {
   userInfo: Nullable<UserInfo>;
@@ -80,20 +84,15 @@ export const useUserStore = defineStore({
     /**
      * @description: 登录
      */
-    async login(
-      params: LoginParams & {
-        goHome?: boolean;
-        mode?: ErrorMessageMode;
-      },
-    ): Promise<GetUserInfoModel | null> {
+    async login(params: LoginParams, afterParams: LoginAfterParams): Promise<GetUserInfoModel | null> {
       try {
-        const { goHome = true, mode, ...loginParams } = params;
-        const data = await loginApi(loginParams, mode);
+        const { goHome = false, mode, redirect = undefined } = afterParams;
+        const data = await loginApi(params, mode);
         const { token } = data;
 
         // save token
         this.setToken(token);
-        return this.afterLoginAction(goHome);
+        return this.afterLoginAction(goHome, redirect);
       } catch (error) {
         return Promise.reject(error);
       }
@@ -101,7 +100,7 @@ export const useUserStore = defineStore({
     /**
      * @description: 登录后
      */
-    async afterLoginAction(goHome?: boolean): Promise<GetUserInfoModel | null> {
+    async afterLoginAction(goHome?: boolean, redirect?: LocationQueryValue): Promise<GetUserInfoModel | null> {
       if (!this.getToken) return null;
       // 获取用户信息
       const userInfo = await this.getUserInfoAction();
@@ -115,7 +114,13 @@ export const useUserStore = defineStore({
         router.addRoute(PAGE_NOT_FOUND_ROUTE as unknown as RouteRecordRaw);
         permissionStore.setDynamicAddedRoute(true);
       }
-      goHome && (await router.replace(PageEnum.BASE_HOME));
+
+      if (!goHome && redirect) {
+        console.log(decodeURIComponent(redirect));
+        await router.replace(decodeURIComponent(redirect));
+      } else {
+        await router.replace(PageEnum.BASE_HOME);
+      }
 
       return userInfo;
     },
