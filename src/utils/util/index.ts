@@ -43,7 +43,7 @@ export function setObjToUrlParams(baseUrl: string, obj: any): string {
  */
 export function queryUrlParams(url: string): { [key: string]: string } {
   const pattern = /(\w+)=(\w+)/gi;
-  let params: { [key: string]: string } = {};
+  const params: { [key: string]: string } = {};
   url.replace(pattern, (_$, $1: string, $2: string): string => {
     params[$1] = $2;
     return "";
