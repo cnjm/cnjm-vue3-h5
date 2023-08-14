@@ -116,7 +116,6 @@ export const useUserStore = defineStore({
       }
 
       if (!goHome && redirect) {
-        console.log(decodeURIComponent(redirect));
         await router.replace(decodeURIComponent(redirect));
       } else {
         await router.replace(PageEnum.BASE_HOME);

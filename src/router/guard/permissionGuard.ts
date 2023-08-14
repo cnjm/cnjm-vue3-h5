@@ -21,20 +21,17 @@ export function createPermissionGuard(router: Router) {
 
     // 白名单直接进
     if (whitePathList.includes(to.path as PageEnum)) {
-      // 如果有登录页并且有token
+      // 如果是登录页并且有token
       if (to.path === LOGIN_PATH && token) {
-        console.log(to);
         try {
           await userStore.afterLoginAction();
           next((to.query?.redirect as string) || "/");
           return;
         } catch {}
       }
-      console.log(1);
       next();
       return;
     }
-    console.log(2);
 
     // 如果找不到token
     if (!token) {
@@ -59,7 +56,7 @@ export function createPermissionGuard(router: Router) {
       return;
     }
 
-    // 如果未获取过用户信息 刷新页面会重新获取
+    // 如果未获取过用户信息 刷新页面也会重新获取
     if (userStore.getLastUpdateTime === 0) {
       try {
         await userStore.getUserInfoAction();
@@ -77,7 +74,6 @@ export function createPermissionGuard(router: Router) {
 
     // 动态添加相关路由
     const routes = await permissionStore.buildRoutesAction();
-    // console.log(routes);
     routes.forEach((route) => {
       router.addRoute(route as unknown as RouteRecordRaw);
     });
@@ -88,7 +84,6 @@ export function createPermissionGuard(router: Router) {
       next({ path: to.fullPath, replace: true, query: to.query });
       return;
     } else {
-      console.log(33);
       const redirectPath = (from.query.redirect || to.path) as string;
       const redirect = decodeURIComponent(redirectPath);
       const nextData = to.path === redirect ? { ...to, replace: true } : { path: redirect };
