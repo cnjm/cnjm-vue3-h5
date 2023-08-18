@@ -1,11 +1,11 @@
 import type { UserInfo } from "/#/store";
 import type { LocationQueryValue, RouteRecordRaw } from "vue-router";
+import { useRouter } from "vue-router";
 import { store } from "/@/store";
 import { defineStore } from "pinia";
 import { RoleEnum } from "/@/enums/role.enum";
 import { GetUserInfoModel, LoginParams } from "/@/api/system/model/user.model";
 import { ErrorMessageMode } from "/#/axios";
-import { router } from "/@/router";
 import { PAGE_NOT_FOUND_ROUTE } from "/@/router/routes/error";
 import { PageEnum } from "/@/enums/page.enum";
 import { usePermissionStore } from "./permission";
@@ -102,6 +102,9 @@ export const useUserStore = defineStore({
      */
     async afterLoginAction(goHome?: boolean, redirect?: LocationQueryValue): Promise<GetUserInfoModel | null> {
       if (!this.getToken) return null;
+
+      const router = useRouter();
+
       // 获取用户信息
       const userInfo = await this.getUserInfoAction();
 
@@ -152,6 +155,7 @@ export const useUserStore = defineStore({
       }
       this.setToken(undefined);
       this.setUserInfo(null);
+      const router = useRouter();
       goLogin && router.push(PageEnum.BASE_LOGIN);
     },
     // 登出确认弹窗

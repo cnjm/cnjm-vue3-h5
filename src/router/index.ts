@@ -28,6 +28,7 @@ export const router = createRouter({
 export function setupRouter(app: App<Element>) {
   app.use(router);
   // router guard
+  console.log(router);
   setupRouterGuard(router);
   // over write
   overWriteRouter(router);

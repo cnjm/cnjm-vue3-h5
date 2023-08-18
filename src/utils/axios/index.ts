@@ -213,7 +213,7 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
           // 格式化提交参数时间
           formatDate: true,
           // 错误消息提示类型
-          errorMessageMode: "dialog",
+          errorMessageMode: "toast",
           // 接口地址
           apiUrl,
           // 接口默认前缀拼接地址

@@ -1,6 +1,10 @@
 # cnjm-h5
 
-基于 Vue3.3 + Typescript + Vite + vant4
+基于 Vue3.3 + Typescript + Vite + vant4 + pinia + vue-router + unoCss
+
+如果对你有用，欢迎给个[star](https://github.com/cnjm/cnjm-vue3-h5)
+
+如果有什么建议或想法，欢迎 issues 或 pr
 
 ## 在线预览
 
@@ -37,15 +41,16 @@ pnpm run build
 ## 完成进度
 
 - [x] husky & .eslintrc - 代码规范
-- [x] unocss(使用样式预算、属性模式预设) & .prettierrc & postcss-px-to-viewport & styleImport - 样式相关
-- [x] vite-plugin-svg-icons 引入 svg - 辅助功能
+- [x] unocss(使用样式预算、属性模式预设) & .prettierrc & postcss-px-to-viewport(多设计尺寸) - 样式相关
+- [x] unplugin-icons 图标功能
+- [x] unplugin-auto-import & unplugin-auto-vconsole 自动导入方法、组件（一些 vant 组件或者 vue3、pinia、router 等引入还是很方便的，但不可滥用）
 - [x] mock - 请求数据模拟
-- [x] pinia - store 全局状态管理
+- [x] pinia - store 全局状态管理 - 持久化等
 - [x] axios - http 请求
-- [x] router（路由权限 - 目前只支持校验 token）
-- [x] 登入登出（后续加入微信联登）
-- [x] 构建信息 - 关于页
+- [x] router 路由权限等一系列基础用法
+- [x] 简单的登入登出
 - [x] tabbar
+- [ ] hook (加载列表示例)
 - [ ] 组件
 
 ## Git 贡献提交规范

@@ -2,7 +2,7 @@ import type { AppRouteRecordRaw } from "/@/router/types";
 import { defineStore } from "pinia";
 import { store } from "/@/store";
 
-import { asyncRoutes } from "/@/router/routes";
+import { getAsyncRoutes } from "/@/router/routes";
 import { filter } from "/@/utils/helper/treeHelper";
 import { getAuthStatus } from "/@/hooks/web/useAuth";
 
@@ -33,8 +33,9 @@ export const usePermissionStore = defineStore({
         return getAuthStatus(roles);
       };
 
-      routes = filter(asyncRoutes, routeFilter);
+      routes = filter(getAsyncRoutes(), routeFilter);
       routes = routes.filter(routeFilter);
+      console.log(routes);
       return routes;
     },
   },

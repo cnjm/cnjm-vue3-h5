@@ -69,7 +69,6 @@ export const usePageStore = defineStore({
       this.pageTitle = title;
     },
     updateRouterParams(name: string | symbol, params?: RouteParamsRaw): void {
-      console.log("111", params);
       this.routerParams[name] = params;
     },
   },

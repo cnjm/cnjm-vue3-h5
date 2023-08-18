@@ -4,6 +4,7 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "mrmlnc.vscode-less",
-    "antfu.unocss"
+    "antfu.unocss",
+    "Vue.volar"
   ]
 }
