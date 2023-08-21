@@ -1,21 +1,36 @@
 <script setup lang="ts">
   import { loadList } from "/@/api/example/hooks";
-  import { LoadListFormState } from "/@/api/example/model/hooks.model";
   import useLoadList from "/@/hooks/core/useLoadList";
 
   defineOptions({ name: "DemoListHooksPage", inheritAttrs: false, meta: { title: "listHooks" } });
 
-  const formState = reactive({ type: "1" });
+  const formState = reactive({ name: "" });
 
-  const { loading, finished, loadState, loadData } = useLoadList<LoadListFormState, number>(loadList, formState);
-  // console.log(loadState.list);
+  const { loading, refreshing, error, finished, loadState, loadData, onRefresh } = useLoadList<string>({
+    request: loadList,
+    formState: formState,
+  });
 </script>
 
 <template>
   <div>
-    <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="loadData">
-      <van-cell v-for="item in loadState.list" :key="item" :title="item" />
-    </van-list>
+    <van-field v-model="formState.name" center label="筛选参数" placeholder="输入错误/无数据进行测试">
+      <template #button>
+        <van-button size="small" type="primary" @click="onRefresh">搜索</van-button>
+      </template>
+    </van-field>
+    <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+      <van-list
+        v-model:loading="loading"
+        v-model:error="error"
+        :finished="finished"
+        :finished-text="loadState.status === 'noMore' ? '没有更多了' : '暂无数据'"
+        error-text="请求失败，点击重新加载"
+        @load="loadData"
+      >
+        <van-cell v-for="item in loadState.list" :key="item" :title="item" />
+      </van-list>
+    </van-pull-refresh>
   </div>
 </template>
 

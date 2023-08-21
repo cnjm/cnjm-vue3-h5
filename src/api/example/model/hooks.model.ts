@@ -1,6 +1,6 @@
 import { BasicPageParams } from "../../model/base.model";
 
 export type LoadListFormState = {
-  type: string;
+  name: string;
 };
 export type LoadListParams = BasicPageParams & LoadListFormState;

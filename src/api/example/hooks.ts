@@ -9,4 +9,4 @@ enum Api {
 /**
  * @description: 加载列表hooks示例
  */
-export const loadList = (params: LoadListParams) => defHttp.post<BasicFetchResult<number>>({ url: Api.LOAD, params });
+export const loadList = (params: LoadListParams) => defHttp.post<BasicFetchResult<string>>({ url: Api.LOAD, params });

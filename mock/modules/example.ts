@@ -5,9 +5,15 @@ export default [
     url: `${baseUrl}/loadList`,
     method: "post",
     response: (res) => {
-      const { pageNum, pageSize } = res.body;
-      const total = 85;
+      const { pageNum, pageSize, name } = res.body;
+      const total = name === "无数据" ? 0 : 85;
       const preNum = (pageNum - 1) * pageSize;
+
+      let code = 20000;
+
+      if (name === "错误") {
+        code = Math.floor(Math.random() * 10 + 1) > 7 ? 0 : 20000;
+      }
 
       let size = pageSize;
 
@@ -16,13 +22,13 @@ export default [
       }
 
       const result = {
-        items: [...new Array(size)].map((_x, n) => n + preNum),
+        items: [...new Array(size)].map((_x, n) => name + ":" + (n + preNum)),
         total,
       };
       return {
-        code: 20000,
+        code,
         result,
-        message: "登录成功",
+        message: "ok",
       };
     },
   },
