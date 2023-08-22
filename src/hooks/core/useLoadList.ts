@@ -2,11 +2,11 @@ import { ref, reactive } from "vue";
 import { BasicFetchResult } from "/@/api/model/base.model";
 import { LoadStatusEnum } from "/@/enums/loading.enum";
 
-interface DefHttpRequest<T> {
+export interface DefHttpRequest<T> {
   (arg: any): Promise<BasicFetchResult<T>>;
 }
 
-interface LoadState<T> {
+export interface UseLoadState<T> {
   list: T[];
   // 加载态
   status: LoadStatusEnum;
@@ -16,6 +16,12 @@ interface LoadState<T> {
   pageSize: number;
   // 总数量
   total: number;
+}
+
+interface LoadListParams<T> {
+  request: DefHttpRequest<T>;
+  formState: Object;
+  tabState?: Object;
 }
 
 // 此处默认处理的是以下形式的请求以及响应，需结合实际业务需求
@@ -33,8 +39,8 @@ interface LoadState<T> {
 //   },
 // };
 
-export default function useLoadList<T>({ request, formState }: { request: DefHttpRequest<T>; formState: Object }) {
-  const loadState = reactive<LoadState<T>>({
+export default function useLoadList<T>({ request, formState, tabState = {} }: LoadListParams<T>) {
+  const loadState: UseLoadState<T> = reactive({
     list: [],
     status: LoadStatusEnum.LOADING,
     pageNum: 1,
@@ -55,7 +61,7 @@ export default function useLoadList<T>({ request, formState }: { request: DefHtt
   const finished = computed(() => [LoadStatusEnum.NO_DATA, LoadStatusEnum.NO_MORE].includes(loadState.status));
 
   // 处理响应
-  function handleList(result: BasicFetchResult<any>) {
+  function handleList(result: BasicFetchResult<T>) {
     const { items = [], total = 0 } = result;
 
     // 第一页、并且没有数据，应为无数据状态 直接return
@@ -80,6 +86,7 @@ export default function useLoadList<T>({ request, formState }: { request: DefHtt
       pageNum: loadState.pageNum,
       pageSize: loadState.pageSize,
       ...formState,
+      ...tabState,
     };
     return params;
   }

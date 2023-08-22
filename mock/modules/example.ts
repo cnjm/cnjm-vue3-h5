@@ -4,6 +4,7 @@ export default [
   {
     url: `${baseUrl}/loadList`,
     method: "post",
+    timeout: 500,
     response: (res) => {
       const { pageNum, pageSize, name } = res.body;
       const total = name === "无数据" ? 0 : 85;

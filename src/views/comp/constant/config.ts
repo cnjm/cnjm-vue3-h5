@@ -27,6 +27,7 @@ export const comList: componentType[] = [
     children: [
       { title: "自定义指令", path: "/demo/custom" },
       { title: "列表hooks", path: "/demo/listHooks" },
+      { title: "多个列表hooks", path: "/demo/listHooksMultiple" },
     ],
   },
 ];
