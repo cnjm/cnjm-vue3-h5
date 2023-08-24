@@ -18,7 +18,7 @@
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
     "baseUrl": ".",
-    "types": ["vite/client", "pinia-plugin-persistedstate", "unplugin-icons/types/vue"],
+    "types": ["vite/client", "pinia-plugin-persistedstate/dist", "unplugin-icons/types/vue"],
     "typeRoots": ["./node_modules/@types/", "./types"],
     "skipLibCheck": true,
     "noImplicitAny": false,
