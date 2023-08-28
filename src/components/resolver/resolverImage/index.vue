@@ -3,7 +3,7 @@
 <template>
   <van-image v-bind="$attrs">
     <template v-for="(_value, name) in $slots" #[name]="slotData">
-      <slot :name="name" v-bind="slotData || {}" />
+      <slot :name="name" v-bind="slotData || {}"></slot>
     </template>
   </van-image>
 </template>
