@@ -1,7 +1,18 @@
 <script setup lang="ts">
   import { useMessage } from "/@/hooks/web/useMessage";
+  // import { useCommandComponent } from "/@/hooks/web/useCommandComponent";
+  // import DefaultPopup from "/@/components/popup/defaultPopup/index.vue";
+  // import { closeDialog } from "vant";
+  defineOptions({
+    name: "DemoMessagePage",
+    inheritAttrs: false,
+    meta: { title: "信息反馈" },
+  });
 
-  defineOptions({ name: "DemoMessagePage", inheritAttrs: false, meta: { title: "信息反馈" } });
+  // const command = useCommandComponent(DefaultPopup);
+
+  // const show = ref(true);
+  // console.log(visible, command, close);
 
   const { createToast, createDialog } = useMessage();
 

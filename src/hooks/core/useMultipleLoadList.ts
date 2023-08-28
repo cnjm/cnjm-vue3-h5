@@ -43,7 +43,7 @@ export default function useMultipleLoadList<T>({ request, formState, tabs, field
   }
 
   function onRefresh() {
-    tabsData.forEach((tab) => tab.onRefresh());
+    tabsData.forEach((tab) => tab.loadState.list.length && tab.onRefresh());
   }
 
   return { tabsData, onRefresh };
