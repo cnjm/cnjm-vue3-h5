@@ -78,6 +78,7 @@
     "storeToRefs": true,
     "getAssetsImageUrl": true,
     "getRelativeImageUrl": true,
-    "useMessage": true
+    "useMessage": true,
+    "WritableComputedRef": true
   }
 }
