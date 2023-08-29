@@ -18,7 +18,6 @@ const pathResolve = (dir: string) => {
 const manualChunks = {
   vue: ["vue"],
   "vue-router": ["vue-router"],
-  vconsole: ["vconsole"],
   axios: ["axios"],
 };
 
