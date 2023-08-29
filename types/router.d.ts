@@ -8,8 +8,8 @@ declare module "vue-router" {
     ignoreAuth?: boolean;
     // 角色信息
     roles?: RoleEnum[];
-    // 是否不缓存
-    ignoreKeepAlive?: boolean;
+    // 是否缓存
+    keepAlive?: boolean;
     // 当前页面转换
     transitionName?: string;
     // 忽略params 标记后将不会传递params

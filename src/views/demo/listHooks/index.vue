@@ -2,13 +2,17 @@
   import { loadList } from "/@/api/example/hooks";
   import useLoadList from "/@/hooks/core/useLoadList";
 
-  defineOptions({ name: "DemoListHooksPage", inheritAttrs: false, meta: { title: "listHooks" } });
+  defineOptions({ name: "DemoListHooksPage", inheritAttrs: false, meta: { title: "listHooks", keepAlive: true } });
 
   const formState = reactive({ name: "" });
 
   const { loading, refreshing, error, finished, loadState, loadData, onRefresh } = useLoadList<string>({
     request: loadList,
     formState: formState,
+  });
+
+  onActivated(() => {
+    console.log("onActivated");
   });
 </script>
 

@@ -2,7 +2,7 @@
   import { useRoute } from "vue-router";
   import TabBar from "./tabBar/index.vue";
   const uRoute = useRoute();
-  const includes = ["CompPage"];
+  const includes = ["DemoListHooksPage"];
 
   const defaultTransitionName = "fade";
 </script>

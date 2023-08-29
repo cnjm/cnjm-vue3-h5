@@ -18,7 +18,6 @@ const comp: AppRouteModule = {
       meta: {
         title: "组件",
         showTabbar: true,
-        keepAlive: true,
       },
     },
     // {

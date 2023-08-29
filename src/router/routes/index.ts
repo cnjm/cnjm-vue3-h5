@@ -39,7 +39,6 @@ export const getAsyncRoutes = () => {
     },
     children: routeList,
   });
-
   return routeModuleList;
 };
 
