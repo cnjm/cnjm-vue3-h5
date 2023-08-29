@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { onMounted, onBeforeUnmount, ref } from "vue";
   import { useRouter } from "vue-router";
+
   const router = useRouter();
 
   const countDown = ref(5);

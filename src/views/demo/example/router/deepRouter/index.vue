@@ -17,7 +17,9 @@
   console.log(pageStore.routerParams);
   console.log(router);
 
-  function goBack() {}
+  function goBack() {
+    router.back();
+  }
 </script>
 
 <template>
