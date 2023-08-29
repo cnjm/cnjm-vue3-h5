@@ -15,6 +15,13 @@ const pathResolve = (dir: string) => {
   return resolve(process.cwd(), ".", dir);
 };
 
+const manualChunks = {
+  vue: ["vue"],
+  "vue-router": ["vue-router"],
+  vconsole: ["vconsole"],
+  axios: ["axios"],
+};
+
 const { dependencies, devDependencies, name, version } = pkg;
 const __APP_INFO__ = {
   pkg: { dependencies, devDependencies, name, version },
@@ -59,8 +66,13 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           chunkFileNames: (chunkInfo) => {
             const facadeModuleId = chunkInfo.facadeModuleId ? chunkInfo.facadeModuleId.split("/") : [];
             const fileName = facadeModuleId[facadeModuleId.length - 2] || "[name]";
+
+            if (chunkInfo.name && Object.keys(manualChunks).includes(chunkInfo.name)) {
+              return `public/[name].js`;
+            }
             return `js/${fileName}/[name].[hash].js`;
           },
+          manualChunks,
         },
       },
     },

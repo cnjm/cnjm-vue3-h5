@@ -7,9 +7,10 @@ import { componentResolverPlugin } from "./componentResolver";
 import { autoImportPlugin } from "./autoImport";
 import { autoVconsolePlugin } from "./autoVconsole";
 import { unpluginIcons } from "./unpluginIcons";
+import { compressionPlugin } from "./compression";
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
-  const { VITE_USE_MOCK } = viteEnv;
+  const { VITE_USE_MOCK, VITE_USE_GZIP } = viteEnv;
 
   const vitePlugins: (PluginOption | PluginOption[])[] = [
     vue(),
@@ -30,6 +31,9 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 
   // console
   vitePlugins.push(autoVconsolePlugin(isBuild));
+
+  // 压缩
+  vitePlugins.push(compressionPlugin(VITE_USE_GZIP));
 
   // mock
   VITE_USE_MOCK && vitePlugins.push(configViteMockServePlugin(isBuild, VITE_USE_MOCK));
