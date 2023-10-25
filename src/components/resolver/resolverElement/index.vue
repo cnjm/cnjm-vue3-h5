@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  console.log("11");
+  console.log("全局组件示例");
 </script>
 
 <template>

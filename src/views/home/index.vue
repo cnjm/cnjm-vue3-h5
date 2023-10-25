@@ -1,7 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>首页</div>
+  <div class="flex justify-center">
+    <resolverImage src="logo.png"></resolverImage>
+  </div>
 </template>
 
 <style scoped></style>

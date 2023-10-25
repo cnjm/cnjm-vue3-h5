@@ -14,7 +14,7 @@
     "preview": "npm run build && vite preview",
     "preview:dist": "vite preview",
     "prepare": "husky install",
-    "lint:eslint": "eslint --cache --max-warnings 0  \"{src,mock}/**/*.{vue,ts,tsx}\" --fix",
+    "lint:eslint": "vue-tsc --noEmit --skipLibCheck && eslint --cache --max-warnings 0  \"{src,mock}/**/*.{vue,ts,tsx}\" --fix",
     "lint:prettier": "prettier --write  \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
     "lint:lint-staged": "lint-staged"
   },

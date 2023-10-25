@@ -1,21 +1,28 @@
 <script setup lang="ts">
   import { ref } from "vue";
-  import { useRoute, useRouter } from "vue-router";
+  import { useRouter } from "vue-router";
   import { Tabbar, usePageStore } from "/@/store/modules/page";
   const pageStore = usePageStore();
   const tabbar = pageStore.tabbar;
-  const route = useRoute();
   const router = useRouter();
   let activeValue = "home";
-  tabbar.forEach((item) => {
-    if (item.path === route.path) {
-      activeValue = item.name;
-    }
-  });
+
   const active = ref(activeValue);
   const onClick = (tab: Tabbar) => {
     router.replace({ path: tab.path });
   };
+
+  watch(
+    () => router.currentRoute.value.path,
+    (newValue: any) => {
+      tabbar.forEach((item) => {
+        if (item.path === newValue) {
+          active.value = item.name;
+        }
+      });
+    },
+    { immediate: true },
+  );
 </script>
 
 <template>
