@@ -2,7 +2,7 @@
 
 <template>
   <div class="flex justify-center">
-    <resolverImage src="logo.png"></resolverImage>
+    <resolverImage src="logo.png" />
   </div>
 </template>
 
