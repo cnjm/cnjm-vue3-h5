@@ -15,12 +15,6 @@ const pathResolve = (dir: string) => {
   return resolve(process.cwd(), ".", dir);
 };
 
-const manualChunks = {
-  vue: ["vue"],
-  "vue-router": ["vue-router"],
-  axios: ["axios"],
-};
-
 const { dependencies, devDependencies, name, version } = pkg;
 const __APP_INFO__ = {
   pkg: { dependencies, devDependencies, name, version },
@@ -66,12 +60,23 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
             const facadeModuleId = chunkInfo.facadeModuleId ? chunkInfo.facadeModuleId.split("/") : [];
             const fileName = facadeModuleId[facadeModuleId.length - 2] || "[name]";
 
-            if (chunkInfo.name && Object.keys(manualChunks).includes(chunkInfo.name)) {
-              return `public/[name].js`;
+            // const reg = new RegExp(/\/src\/views(\S*)\/index\.vue/);
+            // const itemPath = chunkInfo.facadeModuleId ? chunkInfo.facadeModuleId.match(reg) || [] : [];
+            // if (chunkInfo.name && ["vue", "vue-router"].includes(chunkInfo.name)) {
+            //   return `assets/[name].js`;
+            // }
+            if (chunkInfo.name && chunkInfo.name.includes("demo-")) {
+              return `js/demo/[name].[hash].js`;
             }
             return `js/${fileName}/[name].[hash].js`;
           },
-          manualChunks,
+          manualChunks: (id) => {
+            const itemPath = id.match(RegExp(/\/src\/views\/demo(\S*)\/index\.vue/));
+            if (itemPath) {
+              const [, modPath] = itemPath[1].split("/");
+              return `demo-${modPath}`;
+            }
+          },
         },
       },
     },

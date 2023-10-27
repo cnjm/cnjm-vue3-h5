@@ -24,6 +24,7 @@ export const getAsyncRoutes = () => {
   /****动态生成约定式路由配置信息****/
   // 特定文件夹下的index.vue 默认作为一个页面
   // import.meta.glob只能传字符串，如果需要换别的文件夹下，只需要修改 demo 为对应文件夹名称就行
+  // 更改demo目录之后务必修改vite.config.ts rollupOptions中的demo路径
   const viewsFile = import.meta.glob("/src/views/demo/**/index.vue", { import: "default", eager: true });
 
   // 无需配置路由配置文件，直接获取指定文件夹下的index文件，使用其导出的meat信息，组成路由配置
