@@ -65,18 +65,18 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
             // if (chunkInfo.name && ["vue", "vue-router"].includes(chunkInfo.name)) {
             //   return `assets/[name].js`;
             // }
-            if (chunkInfo.name && chunkInfo.name.includes("demo-")) {
-              return `js/demo/[name].[hash].js`;
-            }
+            // if (chunkInfo.name && chunkInfo.name.includes("demo-")) {
+            //   return `js/demo/[name].[hash].js`;
+            // }
             return `js/${fileName}/[name].[hash].js`;
           },
-          manualChunks: (id) => {
-            const itemPath = id.match(RegExp(/\/src\/views\/demo(\S*)\/index\.vue/));
-            if (itemPath) {
-              const [, modPath] = itemPath[1].split("/");
-              return `demo-${modPath}`;
-            }
-          },
+          // manualChunks: (id) => {
+          //   const itemPath = id.match(RegExp(/\/src\/views\/demo(\S*)\/index\.vue/));
+          //   if (itemPath) {
+          //     const [, modPath] = itemPath[1].split("/");
+          //     return `demo-${modPath}`;
+          //   }
+          // },
         },
       },
     },
