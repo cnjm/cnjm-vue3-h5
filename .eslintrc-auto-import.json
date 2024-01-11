@@ -79,6 +79,9 @@
     "getAssetsImageUrl": true,
     "getRelativeImageUrl": true,
     "useMessage": true,
-    "WritableComputedRef": true
+    "WritableComputedRef": true,
+    "ExtractDefaultPropTypes": true,
+    "ExtractPropTypes": true,
+    "ExtractPublicPropTypes": true
   }
 }

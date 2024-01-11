@@ -35,6 +35,7 @@ export function configHtmlPlugin(env: ViteEnv, isBuild: boolean) {
           ]
         : [],
     },
+    viteNext: true,
   });
   return htmlPlugin;
 }

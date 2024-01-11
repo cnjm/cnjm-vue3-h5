@@ -1,6 +1,6 @@
 # cnjm-h5
 
-基于 Vue3.3 + Typescript + Vite + vant4 + pinia + vue-router + unoCss
+基于 Vue3.4 + Typescript + Vite5 + vant4 + pinia + vue-router + unoCss
 
 如果对你有用，欢迎给个[star](https://github.com/cnjm/cnjm-vue3-h5)
 
@@ -50,7 +50,7 @@ pnpm run build
 - [x] router 路由权限等一系列基础用法
 - [x] 简单的登入登出
 - [x] tabbar
-- [ ] hook (加载列表示例)
+- [x] hook (加载列表示例)
 - [ ] 组件
 
 ## Git 贡献提交规范
