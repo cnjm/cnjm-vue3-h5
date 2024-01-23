@@ -5,6 +5,7 @@
     "esbenp.prettier-vscode",
     "mrmlnc.vscode-less",
     "antfu.unocss",
-    "Vue.volar"
+    "Vue.volar",
+    "antfu.goto-alias"
   ]
 }
