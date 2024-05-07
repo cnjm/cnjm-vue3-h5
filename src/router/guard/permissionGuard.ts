@@ -83,11 +83,15 @@ export function createPermissionGuard(router: Router) {
       // 动态添加路由后，此处应当重定向到fullPath，否则会加载404页面内容
       next({ path: to.fullPath, replace: true, query: to.query });
       return;
-    } else {
-      const redirectPath = (from.query.redirect || to.path) as string;
+    } else if (from.query.redirect) {
+      const redirectPath = from.query.redirect as string;
       const redirect = decodeURIComponent(redirectPath);
       const nextData = to.path === redirect ? { ...to, replace: true } : { path: redirect };
       next(nextData);
+      return;
+    } else {
+      next();
+      return;
     }
   });
 
@@ -103,8 +107,5 @@ export function createPermissionGuard(router: Router) {
       }
     }
     closeProgress();
-    // 进入登录页清空用户信息
-    if (to.path === PageEnum.BASE_LOGIN) {
-    }
   });
 }
