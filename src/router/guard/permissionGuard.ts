@@ -83,7 +83,7 @@ export function createPermissionGuard(router: Router) {
       next({ path: to.fullPath, replace: true, query: to.query });
       return;
     } else if (from.query.redirect) {
-      const redirectPath = from.query.redirect;
+      const redirectPath = from.query.redirect; // test
       const redirect = decodeURIComponent(redirectPath);
       const nextData = to.path === redirect ? { ...to, replace: true } : { path: redirect };
       next(nextData);
