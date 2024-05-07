@@ -16,7 +16,6 @@ export function createPermissionGuard(router: Router) {
   const pageStore = usePageStoreWithOut();
   router.beforeEach(async (to, from, next) => {
     startProgress();
-    console.log("test");
     const token = userStore.getToken;
 
     // 白名单直接进
@@ -84,7 +83,7 @@ export function createPermissionGuard(router: Router) {
       next({ path: to.fullPath, replace: true, query: to.query });
       return;
     } else if (from.query.redirect) {
-      const redirectPath = from.query.redirect as string;
+      const redirectPath = from.query.redirect;
       const redirect = decodeURIComponent(redirectPath);
       const nextData = to.path === redirect ? { ...to, replace: true } : { path: redirect };
       next(nextData);
