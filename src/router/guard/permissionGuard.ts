@@ -16,7 +16,7 @@ export function createPermissionGuard(router: Router) {
   const pageStore = usePageStoreWithOut();
   router.beforeEach(async (to, from, next) => {
     startProgress();
-
+    console.log("test");
     const token = userStore.getToken;
 
     // 白名单直接进
