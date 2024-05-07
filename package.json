@@ -92,7 +92,8 @@
   "homepage": "https://github.com/cnjm-cli-template/vue_h5",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint --fix"
+      "eslint --fix",
+      "prettier --config .prettierrc.js --write"
     ],
     "{!(package)*.json,*.code-snippets,.!(browserslist)*rc}": [
       "prettier --config .prettierrc.js --write--parser json"
