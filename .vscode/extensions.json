@@ -1,11 +1,10 @@
 {
   "recommendations": [
-    "johnsoncodehk.volar",
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "mrmlnc.vscode-less",
     "antfu.unocss",
-    "Vue.volar",
-    "antfu.goto-alias"
+    "antfu.goto-alias",
+    "vue.volar"
   ]
 }
