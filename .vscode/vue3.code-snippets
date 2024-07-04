@@ -1,0 +1,33 @@
+{
+  // Place your cnjm-vue3-h5 工作区 snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+  // description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+  // is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+  // used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+  // Placeholders with the same ids are connected.
+  // Example:
+  "vue3Init": {
+    "scope": "vue",
+    "prefix": "cvue",
+    "body": [
+      "<script setup lang=\"ts\">",
+      "  defineOptions({ name: \"$1\", inheritAttrs: false, meta: { title: \"$2\" } });",
+      "</script>",
+      "",
+      "<template>",
+      "  <div></div>",
+      "</template>",
+      "",
+      "<style scoped lang=\"less\"></style>"
+    ],
+    "description": "vue3文件初始化"
+  },
+  "useMessage": {
+    "scope": "typescript,javascript",
+    "prefix": "cum",
+    "body": [
+      "const { ${1:createToast} } = useMessage();"
+    ],
+    "description": "useMessage"
+  }
+}

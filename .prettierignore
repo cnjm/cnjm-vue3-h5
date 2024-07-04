@@ -5,5 +5,5 @@
 
 **/*.svg
 **/*.sh
-
+.vscode
 /public/*

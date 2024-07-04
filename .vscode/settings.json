@@ -1,0 +1,35 @@
+{
+  "cSpell.words": [
+    "attributify",
+    "cnjm",
+    "commitlint",
+    "esno",
+    "iconify",
+    "mockjs",
+    "nprogress",
+    "persistedstate",
+    "Pinia",
+    "tabbar",
+    "unocss",
+    "unplugin",
+    "vant",
+    "vconsole",
+    "vueuse"
+  ],
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact",
+    "vue-html": "html"
+  },
+  "emmet.syntaxProfiles": {
+    "html": {
+      "self_closing_tag": "xhtml"
+    }
+  },
+  "emmet.variables": {
+    "lang": "html"
+  },
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "vue.codeActions.enabled": false,
+  "vue3snippets.enable-compile-vue-file-on-did-save-code": false
+}
