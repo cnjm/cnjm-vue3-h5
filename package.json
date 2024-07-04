@@ -93,29 +93,23 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",
-      "prettier --config .prettierrc.js --write",
-      "git add"
+      "prettier --config .prettierrc.js --write"
     ],
     "{!(package)*.json,*.code-snippets,.!(browserslist)*rc}": [
-      "prettier --config .prettierrc.js --write--parser json",
-      "git add"
+      "prettier --config .prettierrc.js --write--parser json"
     ],
     "package.json": [
-      "prettier --config .prettierrc.js --write",
-      "git add"
+      "prettier --config .prettierrc.js --write"
     ],
     "*.vue": [
       "eslint --fix",
-      "prettier --config .prettierrc.js --write",
-      "git add"
+      "prettier --config .prettierrc.js --write"
     ],
     "*.{scss,less,styl,html}": [
-      "prettier --config .prettierrc.js --write",
-      "git add"
+      "prettier --config .prettierrc.js --write"
     ],
     "*.md": [
-      "prettier --config .prettierrc.js --write",
-      "git add"
+      "prettier --config .prettierrc.js --write"
     ]
   }
 }

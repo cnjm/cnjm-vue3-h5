@@ -1,12 +1,13 @@
-<script lang="ts">
-  export default { name: "DemoExamplePage", meta: { title: "vue3使用示例" } };
-</script>
-
 <script setup lang="ts">
   import { ref, shallowRef } from "vue";
   import lifeTab from "./component/lifeTab.vue";
   import proxyTab from "./component/proxyTab.vue";
 
+  defineOptions({
+    name: "DemoExamplePage",
+    inheritAttrs: false,
+    meta: { title: "vue3使用示例" },
+  });
   const tabList = shallowRef([
     {
       component: proxyTab,

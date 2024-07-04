@@ -5,6 +5,7 @@
     "mrmlnc.vscode-less",
     "antfu.unocss",
     "antfu.goto-alias",
-    "vue.volar"
+    "vue.volar",
+    "ms-vscode.vscode-typescript-next"
   ]
 }

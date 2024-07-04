@@ -4,12 +4,19 @@
 
   defineOptions({ name: "DemoListHooksPage", inheritAttrs: false, meta: { title: "listHooks", keepAlive: true } });
 
+  // const router = useRouter();
+
   const formState = reactive({ name: "" });
 
   const { loading, refreshing, error, finished, loadState, loadData, onRefresh } = useLoadList<string>({
     request: loadList,
     formState: formState,
   });
+
+  function linkDetail(data: string) {
+    console.log(data);
+    // router.push({ path: `/demo/listHooks/detail` });
+  }
 
   onActivated(() => {
     console.log("onActivated");
@@ -32,7 +39,7 @@
         error-text="请求失败，点击重新加载"
         @load="loadData"
       >
-        <van-cell v-for="item in loadState.list" :key="item" :title="item" />
+        <van-cell v-for="item in loadState.list" :key="item" :title="item" @click="linkDetail(item)" />
       </van-list>
     </van-pull-refresh>
   </div>
