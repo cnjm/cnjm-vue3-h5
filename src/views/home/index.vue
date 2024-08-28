@@ -1,8 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import Logo from "./images/logo.png";
+</script>
 
 <template>
   <div class="flex justify-center">
-    <resolverImage src="logo.png" />
+    <van-image :src="Logo" />
   </div>
 </template>
 

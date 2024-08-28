@@ -32,6 +32,17 @@ export default [
     },
   },
   {
+    url: `${baseUrl}/getSmsCode`,
+    method: "post",
+    response: () => {
+      return {
+        code: 20000,
+        result: {},
+        message: "获取成功",
+      };
+    },
+  },
+  {
     url: `${baseUrl}/logout`,
     method: "get",
     response: () => {

@@ -1,6 +1,6 @@
 export interface LoginParams {
-  account: string;
-  password: string;
+  userPhone: string;
+  smsCode: string;
 }
 
 export interface LoginResult {

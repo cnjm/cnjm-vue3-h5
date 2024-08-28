@@ -5,6 +5,7 @@ import { defHttp } from "/@/utils/axios/index";
 enum Api {
   Login = "/mock/user/login",
   GetUserInfo = "/mock/user/getUserInfo",
+  SmsCode = "/mock/user/getSmsCode",
   Logout = "/mock/user/logout",
 }
 
@@ -20,6 +21,13 @@ export const loginApi = (params: LoginParams, mode: ErrorMessageMode = "dialog")
 export const getUserInfo = () => {
   return defHttp.get<GetUserInfoModel>({ url: Api.GetUserInfo }, { errorMessageMode: "none" });
 };
+
+/**
+ * @description: 获取手机验证码
+ */
+export const getSmsCode = (params: { phone: string }, mode: ErrorMessageMode = "toast") =>
+  defHttp.post({ url: Api.SmsCode, params }, { errorMessageMode: mode });
+
 /**
  * @description: 用户登出
  */
