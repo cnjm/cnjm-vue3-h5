@@ -1,6 +1,6 @@
 # cnjm-h5
 
-基于 Vue3.4 + Typescript + Vite5 + vant4 + pinia + vue-router + unoCss
+基于 Vue3.5 + Typescript + Vite5 + vant4 + pinia + vue-router + unoCss
 
 如果对你有用，欢迎给个[star](https://github.com/cnjm/cnjm-vue3-h5)
 

@@ -1,5 +1,5 @@
 import type { AppRouteRecordRaw, AppRouteModule } from "/@/router/types";
-import { PAGE_NOT_FOUND_ROUTE, NETWORK_ERROR_ROUTE } from "./error";
+import { PAGE_ERROR_ROUTE } from "./error";
 import { useGlobSetting } from "/@/hooks/setting";
 import { entranceRoutes } from "./entrance";
 import { PageEnum } from "/@/enums/page.enum";
@@ -56,4 +56,4 @@ export const RootRoute: AppRouteRecordRaw = {
 };
 
 // 基础路由（异常、无需token等页面）应为为白名单，不会鉴权
-export const basicRoutes = [RootRoute, ...entranceRoutes, NETWORK_ERROR_ROUTE, PAGE_NOT_FOUND_ROUTE];
+export const basicRoutes = [RootRoute, ...entranceRoutes, PAGE_ERROR_ROUTE];

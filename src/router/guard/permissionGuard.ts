@@ -1,5 +1,5 @@
 import type { RouteParams, Router, RouteRecordRaw } from "vue-router";
-import { PAGE_NOT_FOUND_ROUTE } from "/@/router/routes/error";
+import { PageNotFoundName } from "/@/router/routes/error";
 import { PageEnum } from "/@/enums/page.enum";
 import { usePermissionStoreWithOut } from "/@/store/modules/permission";
 import { useUserStoreWithOut } from "/@/store/modules/user";
@@ -78,7 +78,7 @@ export function createPermissionGuard(router: Router) {
     });
     permissionStore.setDynamicAddedRoute(true);
 
-    if (to.name === PAGE_NOT_FOUND_ROUTE.name) {
+    if (to.name === PageNotFoundName) {
       // 动态添加路由后，此处应当重定向到fullPath，否则会加载404页面内容
       next({ path: to.fullPath, replace: true, query: to.query });
       return;

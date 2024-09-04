@@ -6,7 +6,7 @@ import { defineStore } from "pinia";
 import { RoleEnum } from "/@/enums/role.enum";
 import { GetUserInfoModel, LoginParams } from "/@/api/system/model/user.model";
 import { ErrorMessageMode } from "/#/axios";
-import { PAGE_NOT_FOUND_ROUTE } from "/@/router/routes/error";
+// import { PAGE_NOT_FOUND_ROUTE } from "/@/router/routes/error";
 import { router } from "/@/router";
 import { PageEnum } from "/@/enums/page.enum";
 import { usePermissionStore } from "./permission";
@@ -113,7 +113,7 @@ export const useUserStore = defineStore({
         routes.forEach((route) => {
           router.addRoute(route as unknown as RouteRecordRaw);
         });
-        router.addRoute(PAGE_NOT_FOUND_ROUTE as unknown as RouteRecordRaw);
+        // router.addRoute(PAGE_NOT_FOUND_ROUTE as unknown as RouteRecordRaw);
         permissionStore.setDynamicAddedRoute(true);
       }
 
