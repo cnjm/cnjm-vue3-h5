@@ -2,6 +2,7 @@
   import { ref, shallowRef } from "vue";
   import lifeTab from "./component/lifeTab.vue";
   import proxyTab from "./component/proxyTab.vue";
+  import commTab from "./component/commTab.vue";
 
   defineOptions({
     name: "DemoExamplePage",
@@ -16,6 +17,10 @@
     {
       component: lifeTab,
       title: "生命周期",
+    },
+    {
+      component: commTab,
+      title: "组件通信",
     },
   ]);
 

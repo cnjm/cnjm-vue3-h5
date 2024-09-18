@@ -49,6 +49,7 @@ declare global {
   const onServerPrefetch: typeof import("vue")["onServerPrefetch"];
   const onUnmounted: typeof import("vue")["onUnmounted"];
   const onUpdated: typeof import("vue")["onUpdated"];
+  const onWatcherCleanup: typeof import("vue")["onWatcherCleanup"];
   const provide: typeof import("vue")["provide"];
   const reactive: typeof import("vue")["reactive"];
   const readonly: typeof import("vue")["readonly"];
@@ -69,11 +70,14 @@ declare global {
   const useAttrs: typeof import("vue")["useAttrs"];
   const useCssModule: typeof import("vue")["useCssModule"];
   const useCssVars: typeof import("vue")["useCssVars"];
+  const useId: typeof import("vue")["useId"];
   const useLink: typeof import("vue-router")["useLink"];
   const useMessage: typeof import("../../../../@/hooks/web/useMessage")["useMessage"];
+  const useModel: typeof import("vue")["useModel"];
   const useRoute: typeof import("vue-router")["useRoute"];
   const useRouter: typeof import("vue-router")["useRouter"];
   const useSlots: typeof import("vue")["useSlots"];
+  const useTemplateRef: typeof import("vue")["useTemplateRef"];
   const watch: typeof import("vue")["watch"];
   const watchEffect: typeof import("vue")["watchEffect"];
   const watchPostEffect: typeof import("vue")["watchPostEffect"];
@@ -144,6 +148,7 @@ declare module "vue" {
     readonly onServerPrefetch: UnwrapRef<typeof import("vue")["onServerPrefetch"]>;
     readonly onUnmounted: UnwrapRef<typeof import("vue")["onUnmounted"]>;
     readonly onUpdated: UnwrapRef<typeof import("vue")["onUpdated"]>;
+    readonly onWatcherCleanup: UnwrapRef<typeof import("vue")["onWatcherCleanup"]>;
     readonly provide: UnwrapRef<typeof import("vue")["provide"]>;
     readonly reactive: UnwrapRef<typeof import("vue")["reactive"]>;
     readonly readonly: UnwrapRef<typeof import("vue")["readonly"]>;
@@ -164,11 +169,14 @@ declare module "vue" {
     readonly useAttrs: UnwrapRef<typeof import("vue")["useAttrs"]>;
     readonly useCssModule: UnwrapRef<typeof import("vue")["useCssModule"]>;
     readonly useCssVars: UnwrapRef<typeof import("vue")["useCssVars"]>;
+    readonly useId: UnwrapRef<typeof import("vue")["useId"]>;
     readonly useLink: UnwrapRef<typeof import("vue-router")["useLink"]>;
     readonly useMessage: UnwrapRef<typeof import("../../../../@/hooks/web/useMessage")["useMessage"]>;
+    readonly useModel: UnwrapRef<typeof import("vue")["useModel"]>;
     readonly useRoute: UnwrapRef<typeof import("vue-router")["useRoute"]>;
     readonly useRouter: UnwrapRef<typeof import("vue-router")["useRouter"]>;
     readonly useSlots: UnwrapRef<typeof import("vue")["useSlots"]>;
+    readonly useTemplateRef: UnwrapRef<typeof import("vue")["useTemplateRef"]>;
     readonly watch: UnwrapRef<typeof import("vue")["watch"]>;
     readonly watchEffect: UnwrapRef<typeof import("vue")["watchEffect"]>;
     readonly watchPostEffect: UnwrapRef<typeof import("vue")["watchPostEffect"]>;
