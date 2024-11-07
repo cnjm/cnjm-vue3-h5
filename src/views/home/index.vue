@@ -5,7 +5,7 @@
 <template>
   <div class="flex justify-center">
     <!-- <van-image src="./images/logo.png" /> -->
-    <!-- <van-image :src="Logo" /> -->
+    <!--    <van-image :src="Logo" />-->
   </div>
 </template>
 
