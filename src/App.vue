@@ -1,5 +1,8 @@
 <script setup lang="ts">
   import { usePageTitle } from "/@/hooks/web/usePageTitle";
+  import { usePageStore } from "/@/store/modules/page";
+  const pageStore = usePageStore();
+  const { pageTheme } = storeToRefs(pageStore);
   usePageTitle();
   const themeVars = {
     // tab的底部横线颜色
@@ -16,7 +19,7 @@
 </script>
 
 <template>
-  <van-config-provider :theme-vars="themeVars"><RouterView /></van-config-provider>
+  <van-config-provider :theme-vars="themeVars" :theme="pageTheme"><RouterView /></van-config-provider>
 </template>
 
 <style lang="less">

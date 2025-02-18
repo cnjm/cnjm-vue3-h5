@@ -66,7 +66,7 @@
     "postcss-less": "^6.0.0",
     "prettier": "^2.6.2",
     "rollup": "^4.21.2",
-    "typescript": "^5.5.4",
+    "typescript": "^5.7.3",
     "unocss": "^0.58.0",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-auto-vconsole": "^0.0.5",
@@ -77,7 +77,7 @@
     "vite-plugin-html": "^3.2.2",
     "vite-plugin-mock": "2.9.6",
     "vue-eslint-parser": "^9.4.3",
-    "vue-tsc": "^1.8.8"
+    "vue-tsc": "^2.2.2"
   },
   "repository": {
     "type": "git",

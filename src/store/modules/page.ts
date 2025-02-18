@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { store } from "/@/store";
 import { PageEnum } from "/@/enums/page.enum";
 import { RouteParamsRaw } from "vue-router";
+import { ConfigProviderTheme } from "vant";
 
 export interface Tabbar {
   name: string;
@@ -17,6 +18,8 @@ interface ObjectOf {
 interface PageState {
   // 页面标题
   pageTitle: string;
+  // 页面主题
+  pageTheme: ConfigProviderTheme;
   tabbar: Tabbar[];
   // 路由跳转时需要带上的字段，a=>b 只要a页面链接有就会带上
   persistQuery: string[];
@@ -30,6 +33,7 @@ export const usePageStore = defineStore({
   id: "page",
   state: (): PageState => ({
     pageTitle: "",
+    pageTheme: "light",
     // 底部导航
     tabbar: [
       {
@@ -68,6 +72,10 @@ export const usePageStore = defineStore({
     updatePageTitle(title: string): void {
       this.pageTitle = title;
     },
+    // 更改主题
+    updateTheme(theme: ConfigProviderTheme) {
+      this.pageTheme = theme;
+    },
     updateRouterParams(name: string | symbol, params?: RouteParamsRaw): void {
       this.routerParams[name] = params;
     },
@@ -75,7 +83,7 @@ export const usePageStore = defineStore({
   persist: [
     {
       key: "page",
-      paths: ["routerParams"],
+      paths: ["pageTheme", "routerParams"],
       storage: window.sessionStorage,
     },
   ],
