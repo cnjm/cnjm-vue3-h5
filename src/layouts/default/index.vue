@@ -12,10 +12,9 @@
     <template #default="{ Component, route }">
       <!-- 没有填写则使用默认的transitionName -->
       <transition :name="route.meta.transitionName || defaultTransitionName" mode="out-in" appear>
-        <keep-alive v-if="route.meta.keepAlive" :include="includes">
+        <keep-alive :include="includes">
           <component :is="Component" :key="route.fullPath" />
         </keep-alive>
-        <component v-else :is="Component" :key="route.fullPath" />
       </transition>
     </template>
   </RouterView>
